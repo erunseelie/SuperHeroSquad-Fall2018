@@ -1,4 +1,4 @@
-package shs.cos.entities;
+package shs.cos.puzzles;
 
 public class Puzzle {
 }

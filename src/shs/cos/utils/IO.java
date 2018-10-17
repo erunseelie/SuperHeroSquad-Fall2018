@@ -1,4 +1,4 @@
-package shs.cos.lib;
+package shs.cos.utils;
 
 import java.io.File;
 import java.io.FileNotFoundException;

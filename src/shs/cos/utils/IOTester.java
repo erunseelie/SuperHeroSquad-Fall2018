@@ -1,11 +1,11 @@
-package shs.cos;
+package shs.cos.utils;
 
-import shs.cos.lib.IO;
+import shs.cos.utils.IO;
 
 import java.io.File;
 import java.util.TreeMap;
 
-public class Tester {
+public class IOTester {
 
     public static void main(String[] args) {
 

@@ -1,4 +1,4 @@
-package shs.cos.entities;
+package shs.cos.items;
 
 public class Item {
 }
