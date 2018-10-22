@@ -1,4 +1,7 @@
 package shs.cos.items.consumables;
 
-public class ItemConsumable {
+public interface ItemConsumable {
+
+    void consumeItem();
+
 }
