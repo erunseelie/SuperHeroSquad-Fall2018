@@ -1,4 +1,4 @@
 package shs.cos.entities;
 
-public class Character {
+public abstract class Character {
 }

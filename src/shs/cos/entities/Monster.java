@@ -1,4 +1,4 @@
 package shs.cos.entities;
 
-public class Monster {
+public class Monster extends Character{
 }
