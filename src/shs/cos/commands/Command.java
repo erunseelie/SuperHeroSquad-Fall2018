@@ -1,4 +1,4 @@
-package shs.cos;
+package shs.cos.commands;
 
 public class Command {
 }
