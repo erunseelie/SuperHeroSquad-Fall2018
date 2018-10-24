@@ -91,4 +91,35 @@ public class Room
 	{
 		return roomList;
 	}
+
+	public String getRoomName()
+	{
+		return roomName;
+	}
+	
+	public String getDesc()
+	{
+		return description;
+	}
+	
+	public ArrayList<String> getConnections()
+	{
+		return connections;
+	}
+	
+	public ArrayList<String> getItems()
+	{
+		return itemIDList;
+	}
+	
+	public ArrayList<String> getPuzzles()
+	{
+		return puzzleIDList;
+	}
+	
+	public ArrayList<String> getMonsters()
+	{
+		return monsterIDList;
+	}
 }
+
