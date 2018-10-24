@@ -6,7 +6,6 @@ import java.util.TreeMap;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-
 public class Room
 {
 	private static String seperator = "::";
@@ -20,7 +19,7 @@ public class Room
 
 	private static Scanner input;
 	static TreeMap<String, Room> roomList = new TreeMap<>();
-	
+
 	public Room()
 	{
 
@@ -72,7 +71,7 @@ public class Room
 					{
 						newRoom.itemIDList.add(nextLine[1]);
 					}
-					
+
 					if (nextLine[0].equals("monster"))
 					{
 						newRoom.monsterIDList.add(nextLine[1]);
@@ -87,7 +86,7 @@ public class Room
 			}
 		}
 	}
-	
+
 	public TreeMap<String, Room> getMap()
 	{
 		return roomList;
