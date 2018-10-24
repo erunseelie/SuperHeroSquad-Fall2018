@@ -1,40 +1,22 @@
 ID::B0R0
-roomName::testname
-desc::testdesc
-door::testdoor1
-door::testdoor2
-puzzle::testpuzzle
-monster::testmonster
+roomName::Outside
+desc::Outside, the sun is beating down on your shoulders and the wind is kicking dust into your eyes. The town seems dead, you are on a road that stretches the length of the town. You can see 6 buildings that you can explore.
 endRoom::
-ID::B0R1
-roomName::testname
-desc::testdesc
-door::testdoor1
-door::testdoor2
-puzzle::testpuzzle
-monster::testmonster
+ID::B1R1
+roomName::Police Department
+desc::The jail seems to be clean, aside from its emptiness. The door to the sheriff's office is cracked open, the armory is unlocked, but the jail cell seems to be locked up tight with some sort of intricate puzzle. There is a machete that's been stabbed into a bench.
 endRoom::
-ID::B0R2
-roomName::testname
-desc::testdesc
-door::testdoor1
-door::testdoor2
-puzzle::testpuzzle
-monster::testmonster
+ID::B1R2
+roomName::Jail Cell
+desc::There seems to be some sort of hole under one of the beds. The locks on the jail cell seem to have been protecting some sort of tun-nel. This must lead to the gold mine you've heard so much about.
 endRoom::
-ID::B0R3
-roomName::testname
-desc::testdesc
-door::testdoor1
-door::testdoor2
-puzzle::testpuzzle
-monster::testmonster
+ID::B1R3
+roomName::Sheriff's Office
+desc::The office seems to have been roughed up a little bit. There is a safe in the corner, and a first aid kit on a shelf. There is a plaque the wall with the writing "Lucky Strike Valley Est. 1832"
+item::Bandages
 endRoom::
-ID::B0R4
-roomName::testname
-desc::testdesc
-door::testdoor1
-door::testdoor2
-puzzle::testpuzzle
-monster::testmonster
+ID::B1R4
+roomName::Armory
+desc::There are a couple of gun cabinets, all emptied out. The bandits seem to have left a shotgun behind the door.
+item::Shotgun
 endRoom::

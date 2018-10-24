@@ -19,6 +19,8 @@ public class Room
 
 	private static Scanner input;
 	static TreeMap<String, Room> roomList = new TreeMap<>();
+	
+	static String currentRoomKey = "B0R0";
 
 	public Room()
 	{
@@ -121,5 +123,14 @@ public class Room
 	{
 		return monsterIDList;
 	}
-}
 
+	public void setCurrentRoom(String passedKey)
+	{
+		currentRoomKey = passedKey;
+	}
+
+	public String getCurrentRoomKey()
+	{
+		return currentRoomKey;
+	}
+}
