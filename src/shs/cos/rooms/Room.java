@@ -129,7 +129,7 @@ public class Room
 		currentPlayerLocationKey = passedKey;
 	}
 
-	public String getCurrentRoomKey()
+	public static String getCurrentRoomKey()
 	{
 		return currentPlayerLocationKey;
 	}
