@@ -1,4 +1,4 @@
 package shs.cos.commands;
 
-public class Command {
+public abstract class Command {
 }

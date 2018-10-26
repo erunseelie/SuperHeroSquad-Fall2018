@@ -129,7 +129,7 @@ public class Room
 		currentRoomKey = passedKey;
 	}
 
-	public String getCurrentRoomKey()
+	public static String getCurrentRoomKey()
 	{
 		return currentRoomKey;
 	}
