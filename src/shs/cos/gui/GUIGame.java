@@ -119,7 +119,7 @@ public class GUIGame {
 
     //private String command = null;
     public static void main(String[] args) {
-        new GUIGame();
+
         //gameGui frame = new gameGui();
         //gameGui.printTextLine("asdf");
         //frame.clearText();
@@ -331,11 +331,10 @@ public class GUIGame {
     // gets the command entered in the inputTextArea.
     public class handlerCommand implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            // TODO: add ActionListener
             String[] command = inputTextArea.getText().toLowerCase().split(" ");
-            // TODO: add command parsing
+            // TODO: add full command parsing
             if (command[0].equals("look")) {
-                gameLog.append(CommandLook.runCommand());
+                gameLog.append(CommandLook.runCommand() + "\n");
             }
 
             inputTextArea.setText("");

@@ -27,7 +27,7 @@ public class Room
 
 	}
 
-	public void readRoomFile(File f)
+	public static void readRoomFile(File f)
 	{
 		try
 		{
