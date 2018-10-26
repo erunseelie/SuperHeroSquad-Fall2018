@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 
 public class Room
 {
-	private static String seperator = "::";
+	private static String separator = "::";
 
 	private String roomName;
 	private String description;
@@ -39,7 +39,7 @@ public class Room
 
 		while (input.hasNextLine())
 		{
-			String[] nextLine = input.nextLine().split(seperator);
+			String[] nextLine = input.nextLine().split(separator);
 
 			OUTER_LOOP: if (nextLine[0].equals("ID"))
 			{
@@ -48,7 +48,7 @@ public class Room
 
 				while (input.hasNextLine())
 				{
-					nextLine = input.nextLine().split(seperator);
+					nextLine = input.nextLine().split(separator);
 					if (nextLine[0].equals("roomName"))
 					{
 						newRoom.roomName = nextLine[1];
@@ -89,7 +89,7 @@ public class Room
 		}
 	}
 
-	public TreeMap<String, Room> getMap()
+	public static TreeMap<String, Room> getMap()
 	{
 		return roomList;
 	}

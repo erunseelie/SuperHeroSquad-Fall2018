@@ -1,5 +1,7 @@
 package shs.cos.gui;
 
+import shs.cos.commands.CommandLook;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,7 +15,8 @@ public class GUIGame {
     Font startTextFont = new Font("Times New Roman", Font.PLAIN, 30);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 14);
     JButton startButton, lookButton, pickUpButton, enterButton, exitButton, saveButton, puzzleBtn, hintBtn, attackBtn, fleeBtn, useEquipBtn, dropBtn;
-    JTextArea gameLog, inputTextArea;
+    JTextArea gameLog;
+    JTextField inputTextArea;
     //private JTextPane textPane;
 //private JTextField textInput;
     startHandler sHandler = new startHandler();
@@ -102,11 +105,16 @@ public class GUIGame {
 // textInput.setEnabled(false);
 // textPane = new JTextPane();
 // textPane.setEditable(false);
-        inputTextArea = new JTextArea("Text Input");
+        inputTextArea = new JTextField("Text Input");
         inputTextArea.setBounds(20, 20, 300, 150);
         inputTextArea.setBackground(Color.white);
         inputTextArea.setForeground(Color.black);
         inputTextArea.setFont(normalFont);
+
+        inputTextArea.setActionCommand("\n");
+        inputTextArea.addActionListener(new handlerCommand());
+        // this maybe works?
+
         userTextPanel.add(inputTextArea);
 //buttons1
         choiceButtonPanel1 = new JPanel();
@@ -263,6 +271,21 @@ public class GUIGame {
     public class startHandler implements ActionListener {
         public void actionPerformed(ActionEvent event) {
             gameScreen();
+        }
+    }
+
+    // gets the command entered in the inputTextArea.
+    public class handlerCommand implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            JTextField input = inputTextArea;
+            // TODO: add ActionListener
+            String[] command = input.getText().toLowerCase().split(" ");
+            // TODO: add command parsing
+            if (command[0] == "look") {
+                gameLog.setText(CommandLook.runCommand());
+            }
+
+            input.setText("");
         }
     }
 // //text box
