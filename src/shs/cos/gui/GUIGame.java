@@ -9,63 +9,110 @@ import java.awt.event.ActionListener;
 
 public class GUIGame {
     JFrame gameWindow;
+
     Container contain;
-    JPanel startPanel, startButtonPanel, gameLogPanel, userTextPanel, choiceButtonPanel1, cbp2, playerPanel, enemyPanel, inventoryPanel, iBtnPanel;
-    JLabel startTextLabel, playerAttributesLabel, healthLabel, healthNumLabel, defenseLabel, defenseNumLabel, weaponLabel, weaponNameLabel, enemyLabel, eHealthLabel, eHealthNumLabel, eDefLabel, eDefNumLabel, eWeaponLabel, eWeaponNameLabel, inventoryLabel, inventoryListLabel;
+
+    JPanel startPanel,
+            startButtonPanel,
+            gameLogPanel,
+            userTextPanel,
+            choiceButtonPanel1,
+            cbp2,
+            playerPanel,
+            enemyPanel,
+            inventoryPanel,
+            iBtnPanel;
+
+    JLabel startTextLabel,
+            playerAttributesLabel,
+            healthLabel,
+            healthNumLabel,
+            defenseLabel,
+            defenseNumLabel,
+            weaponLabel,
+            weaponNameLabel,
+            enemyLabel,
+            eHealthLabel,
+            eHealthNumLabel,
+            eDefLabel,
+            eDefNumLabel,
+            eWeaponLabel,
+            eWeaponNameLabel,
+            inventoryLabel,
+            inventoryListLabel;
+
     Font startTextFont = new Font("Times New Roman", Font.PLAIN, 30);
     Font normalFont = new Font("Times New Roman", Font.PLAIN, 14);
-    JButton startButton, lookButton, pickUpButton, enterButton, exitButton, saveButton, puzzleBtn, hintBtn, attackBtn, fleeBtn, useEquipBtn, dropBtn;
+
+    JButton startButton,
+            lookButton,
+            pickUpButton,
+            enterButton,
+            exitButton,
+            saveButton,
+            puzzleBtn,
+            hintBtn,
+            attackBtn,
+            fleeBtn,
+            useEquipBtn,
+            dropBtn;
+
     JTextArea gameLog;
     JTextField inputTextArea;
+
     //private JTextPane textPane;
-//private JTextField textInput;
+    //private JTextField textInput;
+
     startHandler sHandler = new startHandler();
 
-    //window method
+    // window method
     public GUIGame() {
-//create new window
+
+        // create new window
         gameWindow = new JFrame();
-//set window size
+        //set window size
         gameWindow.setSize(800, 600);
-//for window to close properly
+        //for window to close properly
         gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//create backgrounds color
+        //create backgrounds color
         gameWindow.getContentPane().setBackground(Color.black);
-//create customized layout so this be null to do so
+        //create customized layout so this be null to do so
         gameWindow.setLayout(null);
-//make created window visible
+        //make created window visible
         gameWindow.setVisible(true);
-//contain is base that can hold several things
+        //contain is base that can hold several things
         contain = gameWindow.getContentPane();
-//creating space for text
+
+        //creating space for text
         startPanel = new JPanel();
-//change depending on title
-//x, y, width, height
-//can adjust later
+        //change depending on title
+        //x, y, width, height
+        //can adjust later
         startPanel.setBounds(100, 100, 600, 150);
         startPanel.setBackground(Color.black);
-//text
+        //text
         startTextLabel = new JLabel("Lucky Strike Valley");
-//text color
+        //text color
         startTextLabel.setForeground(Color.white);
         startTextLabel.setFont(startTextFont);
-//panel for button
+        //panel for button
         startButtonPanel = new JPanel();
-//where it will be on window
+        //where it will be on window
         startButtonPanel.setBounds(300, 400, 200, 100);
         startButtonPanel.setBackground(Color.black);
-//startButton
+        //startButton
         startButton = new JButton("START");
-//color for background of button
+        //color for background of button
         startButton.setBackground(Color.black);
-//color for text on button
+        //color for text on button
         startButton.setForeground(Color.white);
-//text size on start button
+        //text size on start button
         startButton.setFont(normalFont);
-//click start button will call
+        //click start button will call
         startButton.addActionListener(sHandler);
         startPanel.add(startTextLabel);
         startButtonPanel.add(startButton);
+
         contain.add(startPanel);
         contain.add(startButtonPanel);
     }
@@ -73,17 +120,18 @@ public class GUIGame {
     //private String command = null;
     public static void main(String[] args) {
         new GUIGame();
-//gameGui frame = new gameGui();
-//gameGui.printTextLine("asdf");
-//frame.clearText();
-//System.out.println(frame.getCommand());
+        //gameGui frame = new gameGui();
+        //gameGui.printTextLine("asdf");
+        //frame.clearText();
+        //System.out.println(frame.getCommand());
 
     }
 
     public void gameScreen() {
         startPanel.setVisible(false);
         startButtonPanel.setVisible(false);
-////game log
+
+        //game log
         gameLogPanel = new JPanel();
         gameLogPanel.setBounds(20, 20, 300, 150);
         gameLogPanel.setBackground(Color.black);
@@ -95,28 +143,29 @@ public class GUIGame {
         gameLog.setFont(normalFont);
         gameLog.setLineWrap(true);
         gameLogPanel.add(gameLog);
-//input text box
+
+        //input text box
         userTextPanel = new JPanel();
         userTextPanel.setBounds(20, 170, 300, 40);
         userTextPanel.setBackground(Color.white);
         contain.add(userTextPanel);
-// textInput = new JTextField();
-// userTextPanel.add(textInput);
-// textInput.setEnabled(false);
-// textPane = new JTextPane();
-// textPane.setEditable(false);
+        // textInput = new JTextField();
+        // userTextPanel.add(textInput);
+        // textInput.setEnabled(false);
+        // textPane = new JTextPane();
+        // textPane.setEditable(false);
         inputTextArea = new JTextField("Text Input");
         inputTextArea.setBounds(20, 20, 300, 150);
         inputTextArea.setBackground(Color.white);
         inputTextArea.setForeground(Color.black);
         inputTextArea.setFont(normalFont);
 
+        // this maybe works?
         inputTextArea.setActionCommand("\n");
         inputTextArea.addActionListener(new handlerCommand());
-        // this maybe works?
 
         userTextPanel.add(inputTextArea);
-//buttons1
+        //buttons1
         choiceButtonPanel1 = new JPanel();
         choiceButtonPanel1.setBounds(20, 210, 150, 200);
         choiceButtonPanel1.setBackground(Color.black);
@@ -146,7 +195,8 @@ public class GUIGame {
         saveButton.setForeground(Color.white);
         saveButton.setFont(normalFont);
         choiceButtonPanel1.add(saveButton);
-//buttons2
+
+        //buttons2
         cbp2 = new JPanel();
         cbp2.setBounds(170, 210, 150, 200);
         cbp2.setBackground(Color.black);
@@ -171,7 +221,8 @@ public class GUIGame {
         fleeBtn.setForeground(Color.white);
         fleeBtn.setFont(normalFont);
         cbp2.add(fleeBtn);
-//player
+
+        //player
         playerPanel = new JPanel();
         playerPanel.setBounds(330, 20, 200, 190);
         playerPanel.setBackground(Color.black);
@@ -205,7 +256,8 @@ public class GUIGame {
         weaponNameLabel.setFont(normalFont);
         weaponNameLabel.setForeground(Color.white);
         playerPanel.add(weaponNameLabel);
-//enemy
+
+        //enemy
         enemyPanel = new JPanel();
         enemyPanel.setBounds(330, 210, 200, 200);
         enemyPanel.setBackground(Color.black);
@@ -239,8 +291,9 @@ public class GUIGame {
         eWeaponNameLabel.setFont(normalFont);
         eWeaponNameLabel.setForeground(Color.white);
         enemyPanel.add(eWeaponNameLabel);
-//inventory
-//holds list
+
+        //inventory
+        //holds list
         inventoryPanel = new JPanel();
         inventoryPanel.setBounds(540, 20, 200, 190);
         inventoryPanel.setBackground(Color.black);
@@ -249,7 +302,8 @@ public class GUIGame {
         inventoryLabel.setFont(normalFont);
         inventoryLabel.setForeground(Color.white);
         inventoryPanel.add(inventoryLabel);
-//inventory button panel
+
+        //inventory button panel
         iBtnPanel = new JPanel();
         iBtnPanel.setBounds(540, 210, 200, 200);
         iBtnPanel.setBackground(Color.black);
@@ -277,17 +331,17 @@ public class GUIGame {
     // gets the command entered in the inputTextArea.
     public class handlerCommand implements ActionListener {
         public void actionPerformed(ActionEvent e) {
-            JTextField input = inputTextArea;
             // TODO: add ActionListener
-            String[] command = input.getText().toLowerCase().split(" ");
+            String[] command = inputTextArea.getText().toLowerCase().split(" ");
             // TODO: add command parsing
-            if (command[0] == "look") {
-                gameLog.setText(CommandLook.runCommand());
+            if (command[0].equals("look")) {
+                gameLog.append(CommandLook.runCommand());
             }
 
-            input.setText("");
+            inputTextArea.setText("");
         }
     }
+
 // //text box
 // public void printTextLine(String text) {
 // textPane.setText(textPane.getText() + text + "\n");
