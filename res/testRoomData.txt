@@ -1,22 +1,100 @@
 ID::B0R0
 roomName::Outside
 desc::Outside, the sun is beating down on your shoulders and the wind is kicking dust into your eyes. The town seems dead, you are on a road that stretches the length of the town. You can see 6 buildings that you can explore.
+door::B1R1
+door::B2R1
+door::B3R1
+door::B4R1
+door::B5R1
+door::B7R1
 endRoom::
 ID::B1R1
 roomName::Police Department
 desc::The jail seems to be clean, aside from its emptiness. The door to the sheriff's office is cracked open, the armory is unlocked, but the jail cell seems to be locked up tight with some sort of intricate puzzle. There is a machete that's been stabbed into a bench.
+door::B0R0
+door::B1R2
+door::B1R3
+door::B1R4
 endRoom::
 ID::B1R2
 roomName::Jail Cell
 desc::There seems to be some sort of hole under one of the beds. The locks on the jail cell seem to have been protecting some sort of tun-nel. This must lead to the gold mine you've heard so much about.
+door::B1R1
+door::B6R1
 endRoom::
 ID::B1R3
 roomName::Sheriff's Office
 desc::The office seems to have been roughed up a little bit. There is a safe in the corner, and a first aid kit on a shelf. There is a plaque the wall with the writing "Lucky Strike Valley Est. 1832"
+door::B1R1
 item::Bandages
 endRoom::
 ID::B1R4
 roomName::Armory
 desc::There are a couple of gun cabinets, all emptied out. The bandits seem to have left a shotgun behind the door.
+door::B1R1
 item::Shotgun
+endRoom::
+ID::B2R1
+roomName::Main Entrance
+desc::There are tables flipped over and chairs scattered all around the sitting area. One of the couches is in the fireplace for some reason. The bar looks to have been ransacked. There are empty and broken bottles everywhere. There is one last pristine bottle of moonshine left on the shelf. There looks to be entrances to a kitchen, base-ment, storage room, and a bathroom.
+door::B0R0
+door::B2R2
+door::B2R3
+door::B2R4
+door::B2R5
+endRoom::
+ID::B2R2
+roomName::Kitchen
+desc::The kitchen is a mess, food strewn all over the place. There are pots and pans all over the place, and shattered dishes all over the floor.
+door::B2R1
+endRoom::
+ID::B2R3
+roomName::Basement
+desc::A large mostly empty room with some shelves in the back and barrels of whiskey lined up along the walls. There's a shovel propped up in the back corner.
+door::B2R1
+endRoom::
+ID::B2R4
+roomName::Storage Room
+desc::There are some cleaning supplies on a shelf and what seems to be a bottle of aged whiskey on display. It has a description under it that reads "Smooth 1734 swill". There also seems to be a safe in the cor-ner of the room.
+door::B2R1
+endRoom::
+ID::B2R5
+roomName::Bathroom
+desc::It looks like a typical bathroom. A sink with a mirror on the wall, a toilet in the back, and a spit bucket in the corner. Someone left some bandages sitting on the edge of the tub.
+door::B2R1
+endRoom::
+ID::B3R1
+roomName::Main Entrance
+desc::The shelves are all tipped over, merchandise all over the floor. There is a leather tunic that looks to be made of deer skin draped over the checkout desk. There's a long hallway that leads to a storage room and a set of stairs that lead down to the basement.
+door::B0R0
+door::B3R2
+door::B3R3
+endRoom::
+ID::B3R2
+roomName::StorageRoom
+desc::There are crates of merchandise that look like they were stacked up, now they're all knocked over onto the floor. There's a book on top of one of the boxes.
+door::B3R1
+endRoom::
+ID::B3R3
+roomName::Basement
+desc::The basement is oddly empty. There’re cobwebs decorating the ceil-ing and a large American flag draped across the wall. It's dark but you can see there is a safe in the far back.
+door::B3R1
+endRoom::
+
+ID::
+roomName::
+desc::
+door::
+endRoom::
+
+ID::
+roomName::
+desc::
+door::
+endRoom::
+
+ID::
+roomName::
+desc::
+door::
 endRoom::

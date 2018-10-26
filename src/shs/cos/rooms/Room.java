@@ -20,7 +20,7 @@ public class Room
 	private static Scanner input;
 	static TreeMap<String, Room> roomList = new TreeMap<>();
 	
-	static String currentRoomKey = "B0R0";
+	static String currentPlayerLocationKey = "B0R0";
 
 	public Room()
 	{
@@ -126,11 +126,11 @@ public class Room
 
 	public void setCurrentRoom(String passedKey)
 	{
-		currentRoomKey = passedKey;
+		currentPlayerLocationKey = passedKey;
 	}
 
 	public String getCurrentRoomKey()
 	{
-		return currentRoomKey;
+		return currentPlayerLocationKey;
 	}
 }
