@@ -145,3 +145,48 @@ roomName::Storage Room
 desc::There are piles of unfolded sheets bedsheets and pillow cases scat-tered all around the room. The is a pickaxe down here for some odd reason as well.
 door::B4R1
 endRoom::
+ID::B5R1
+roomName::Main Entrance
+desc::There are a few broken tools on a workbench and a coat rack with a leather tunic that looks to be made of buffalo hide.
+door::B0R0
+door::B5R2
+door::B5R3
+door::B5R4
+endRoom::
+ID::B5R2
+roomName::Stables
+desc::There are a few large bales of hay and one giant stack of hay in the corner of the barn with a pitchfork stuck in it. There is a book on top one of the haybales.
+door::B5R1
+endRoom::
+ID::B5R3
+roomName::Wash Stall
+desc::The stall looks empty aside from a water tap and a bucket of water.
+door::B5R1
+endRoom::
+ID::B5R4
+roomName::Storage Room
+desc::There are a few saddles and horseshoes lying around. There is a safe up against the wall.
+door::B5R1
+endRoom::
+ID::B6R1
+roomName::Mine Shaft
+desc::There are loads of rocks piled up everywhere and a few minecarts around. There is a door at the end of the mineshaft.
+door::B0R0
+door::B6R2
+endRoom::
+ID::B6R2
+roomName::Gold Mine
+desc::The room is filled with gold. This stockpile could be worth enough to live 100 lifetimes.
+door::B6R1
+endRoom::
+ID::B7R1
+roomName::Main Room
+desc::There are benches for attendees to sit during service and a big stage with a podium the podium seems to have been vandalized and there is a wooden board hanging off it. There is a doorway at the side of the stage that leads to the crypts.
+door::B0R0
+door::B7R2
+endRoom::
+ID::B7R2
+roomName::Crypt
+desc::The room has an odd smell. There are coffins lining the walls. One of the coffins seems to have been tampered with.
+door::B7R1
+endRoom::
