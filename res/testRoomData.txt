@@ -77,24 +77,71 @@ door::B3R1
 endRoom::
 ID::B3R3
 roomName::Basement
-desc::The basement is oddly empty. There’re cobwebs decorating the ceil-ing and a large American flag draped across the wall. It's dark but you can see there is a safe in the far back.
+desc::The basement is oddly empty. There are cobwebs decorating the ceil-ing and a large American flag draped across the wall. It's dark but you can see there is a safe in the far back.
 door::B3R1
 endRoom::
-
-ID::
-roomName::
-desc::
-door::
+ID::B4R1
+roomName::Main Entrance
+desc::The building looks like it's been cleared out, there's a hammer stuck in the wall for some reason. The front desk is empty with an open ledger on the desk. There seems to be three guest rooms, and a storage room.
+door::B0R0
+door::B4R2
+door::B4R5
+door::B4R8
+door::B4R11
 endRoom::
-
-ID::
-roomName::
-desc::
-door::
+ID::B4R2
+roomName::Bedroom 1
+desc::You can see the saloon through the window. There is a bed that’s been made recently, a dresser with a couple pictures and a knife on it, and a closet on the other side of the room. There is are doors to a bathroom and a closet.
+door::B4R1
+door::B4R3
+door::B4R4
 endRoom::
-
-ID::
-roomName::
-desc::
-door::
+ID::B4R3
+roomName::Bathroom 1
+desc::It's just a simple bathroom. A tub, a sink, and a toilet. There's a bottle of blue pills on the sink.
+door::B4R2
+endRoom::
+ID::B4R4
+roomName::Closet 1
+desc::There are a few coats hanging up and some boxes stacked up in the corner and an oil canister up against the wall.
+door::B4R2
+endRoom::
+ID::B4R5
+roomName::Bedroom 2
+desc::The window is cracked so it’s difficult to see out of. There is no mattress just a bed frame and the dresser are knocked over with some shattered picture frames. The closet and bathroom doors have been left wide open. There is a bottle of red pills on the floor.
+door::B4R1
+door::B4R6
+door::B4R7
+endRoom::
+ID::B4R6
+roomName::Bathroom 2
+desc::The sink is busted and there is no toilet, just a pipe sticking out of the floor.
+door::B4R5
+endRoom::
+ID::B4R7
+roomName::Closet 2
+desc::The coat rack is missing but, there is a leather tunic that looks to be made of elk hide lying on the floor.
+door::B4R5
+endRoom::
+ID::B4R8
+roomName::Bedroom 3
+desc::The wallpaper in the closet is peeling and one of the floorboards is loose. The window has curtains over them. The bed has been recently slept in, and the dresser is open with clothes inside.
+door::B4R1
+door::B4R9
+door::B4R10
+endRoom::
+ID::B4R9
+roomName::Bathroom 3
+desc::There’s a mirror pointed at the door way. The sink is very dirty, like someone left in a rush. There seems to be some odd black powder on the countertop, it looks like it's gunpowder.
+door::B4R8
+endRoom::
+ID::B4R10
+roomName::Cloeset 3
+desc::There is a shelf with an axe on top of it. Other than that, there is just a few empty coat hangers.
+door::B4R8
+endRoom::
+ID::B4R11
+roomName::Storage Room
+desc::There are piles of unfolded sheets bedsheets and pillow cases scat-tered all around the room. The is a pickaxe down here for some odd reason as well.
+door::B4R1
 endRoom::
