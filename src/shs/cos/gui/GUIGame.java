@@ -1,6 +1,6 @@
 package shs.cos.gui;
 
-import shs.cos.commands.Command;
+import shs.cos.Command;
 
 import javax.swing.*;
 import java.awt.*;

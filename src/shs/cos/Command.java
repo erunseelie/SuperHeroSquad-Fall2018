@@ -1,7 +1,6 @@
-package shs.cos.commands;
+package shs.cos;
 
 import shs.cos.gui.GUIGame;
-import shs.cos.rooms.Room;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,14 +20,18 @@ public class Command implements ActionListener {
         int size = command.length;
 
         String verb = command[0];
-        String object = ""; if (size > 1) object = command[1];
-        String amount = ""; if (size > 2) amount = command[2];
+        String object = "";
+        if (size > 1) object = command[1];
+        String amount = "";
+        if (size > 2) amount = command[2];
 
         // TODO: add full command parsing
         if (verb.equals("look")) {
-            gui.logAdd(CommandLook.runCommand());
-        } else if (verb.equals("exit")) {
-            gui.logAdd(CommandExit.runCommand());
+            gui.logAdd(commandLook());
+        }
+
+        else if (verb.equals("exit")) {
+            gui.logAdd(commandExit());
         }
 
         else if (verb.equals("go")) {
@@ -45,4 +48,14 @@ public class Command implements ActionListener {
 
         gui.logAdd("\n");
     }
+
+    public String commandLook() {
+        return Room.getMap().get(Room.getCurrentRoomKey()).getDesc();
+    }
+
+    public String commandExit() {
+        Room.setCurrentRoom("B0R0");
+        return "You have returned to the street.";
+    }
+
 }

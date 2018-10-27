@@ -1,7 +1,6 @@
 package shs.cos;
 
 import shs.cos.gui.GUIGame;
-import shs.cos.rooms.Room;
 
 import java.io.File;
 

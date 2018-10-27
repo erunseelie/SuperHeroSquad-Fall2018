@@ -1,4 +1,4 @@
-package shs.cos.rooms;
+package shs.cos;
 
 import java.util.ArrayList;
 import java.util.Scanner;
