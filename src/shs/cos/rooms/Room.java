@@ -124,7 +124,7 @@ public class Room
 		return monsterIDList;
 	}
 
-	public void setCurrentRoom(String passedKey)
+	public static void setCurrentRoom(String passedKey)
 	{
 		currentPlayerLocationKey = passedKey;
 	}

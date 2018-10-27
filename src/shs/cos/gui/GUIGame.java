@@ -1,6 +1,6 @@
 package shs.cos.gui;
 
-import shs.cos.commands.CommandLook;
+import shs.cos.commands.Command;
 
 import javax.swing.*;
 import java.awt.*;
@@ -57,8 +57,8 @@ public class GUIGame {
             useEquipBtn,
             dropBtn;
 
-    JTextArea gameLog;
-    JTextField inputTextArea;
+    static JTextArea gameLog;
+    static JTextField inputTextArea;
 
     //private JTextPane textPane;
     //private JTextField textInput;
@@ -117,16 +117,6 @@ public class GUIGame {
         contain.add(startButtonPanel);
     }
 
-    //private String command = null;
-    public static void main(String[] args) {
-
-        //gameGui frame = new gameGui();
-        //gameGui.printTextLine("asdf");
-        //frame.clearText();
-        //System.out.println(frame.getCommand());
-
-    }
-
     public void gameScreen() {
         startPanel.setVisible(false);
         startButtonPanel.setVisible(false);
@@ -159,12 +149,8 @@ public class GUIGame {
         inputTextArea.setBackground(Color.white);
         inputTextArea.setForeground(Color.black);
         inputTextArea.setFont(normalFont);
-
-        // this maybe works?
-        inputTextArea.setActionCommand("\n");
-        inputTextArea.addActionListener(new handlerCommand());
-
         userTextPanel.add(inputTextArea);
+
         //buttons1
         choiceButtonPanel1 = new JPanel();
         choiceButtonPanel1.setBounds(20, 210, 150, 200);
@@ -319,6 +305,10 @@ public class GUIGame {
         dropBtn.setForeground(Color.white);
         dropBtn.setFont(normalFont);
         iBtnPanel.add(dropBtn);
+
+
+        // Adds a specific ActionListener, Command, to this specific element, passing the gui itself as a reference.
+        inputTextArea.addActionListener(new Command(this));
     }
 
     //start button function
@@ -328,20 +318,17 @@ public class GUIGame {
         }
     }
 
-    // gets the command entered in the inputTextArea.
-    public class handlerCommand implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            String[] command = inputTextArea.getText().toLowerCase().split(" ");
-            // TODO: add full command parsing
-            if (command[0].equals("look")) {
-                gameLog.append(CommandLook.runCommand() + "\n");
-            }
-
-            inputTextArea.setText("");
-        }
+    public static String getInput() {
+        String s = inputTextArea.getText().toLowerCase();
+        inputTextArea.setText("");
+        return s;
     }
 
-// //text box
+    public static void logAdd(String s) {
+        gameLog.append(s);
+    }
+
+    // //text box
 // public void printTextLine(String text) {
 // textPane.setText(textPane.getText() + text + "\n");
 // textPane.selectAll();
