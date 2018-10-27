@@ -126,7 +126,7 @@ public class GUIGame {
         gameLogPanel.setBounds(20, 20, 300, 150);
         gameLogPanel.setBackground(Color.black);
         contain.add(gameLogPanel);
-        gameLog = new JTextArea("game log area...");
+        gameLog = new JTextArea("game log area...\n");
         gameLog.setBounds(20, 20, 300, 150);
         gameLog.setBackground(Color.black);
         gameLog.setForeground(Color.white);
