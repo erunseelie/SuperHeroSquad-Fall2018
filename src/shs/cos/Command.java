@@ -5,6 +5,7 @@ import shs.cos.gui.GUIGame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 // Gets the command entered.
 public class Command implements ActionListener {
@@ -17,12 +18,18 @@ public class Command implements ActionListener {
     }
 
     // The default ActionEvent fired when the enter key is pressed.
-    // welp, this just became rather defunct.
     public void actionPerformed(ActionEvent e) {
-        if (action.equals("look")) gui.logAdd(commandLook());
-        else if (action.equals("exit")) gui.logAdd(commandExit());
+        String s = null;
+        if (action != null) {
+            if (action.equals("look")) s = commandLook();
+            else if (action.equals("exit")) s = commandExit();
+            else if (action.equals("list")) s = commandList();
+        }
+
+        gui.logAdd(s);
 
 
+        // textual commands
 //        String[] command = gui.getInput().split(" ");
 //        int size = command.length;
 //
@@ -63,6 +70,19 @@ public class Command implements ActionListener {
     public String commandExit() {
         Room.setCurrentRoom("B0R0");
         return "You have returned to the street.";
+    }
+
+    public String commandList() {
+        ArrayList<String> rooms = Room.getMap().get(Room.getCurrentRoomKey()).getConnections();
+        String s = "";
+
+        TreeMap<String, Room> map = Room.getMap();
+        for (String r : rooms) {
+            Room room = map.get(r);
+            s += room.getRoomName() + ", ";
+        }
+
+        return s;
     }
 
 }

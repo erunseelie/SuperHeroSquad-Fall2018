@@ -175,7 +175,6 @@ public class GUIGame {
 		lookButton.setBackground(Color.black);
 		lookButton.setForeground(Color.white);
 		lookButton.setFont(normalFont);
-		lookButton.addActionListener(new Command(this,"look"));
 		
 		choiceButtonPanel1.add(lookButton);
 		pickUpButton = new JButton("Pick-Up");
@@ -183,7 +182,7 @@ public class GUIGame {
 		pickUpButton.setForeground(Color.white);
 		pickUpButton.setFont(normalFont);
 		choiceButtonPanel1.add(pickUpButton);
-		changeRoomButton = new JButton("Change Room");
+		changeRoomButton = new JButton("List Rooms");
 		changeRoomButton.setBackground(Color.black);
 		changeRoomButton.setForeground(Color.white);
 		changeRoomButton.setFont(normalFont);
@@ -192,7 +191,6 @@ public class GUIGame {
 		exitToStreetButton.setBackground(Color.black);
 		exitToStreetButton.setForeground(Color.white);
 		exitToStreetButton.setFont(normalFont);
-		exitToStreetButton.addActionListener(new Command(this,"exit"));
 		choiceButtonPanel1.add(exitToStreetButton);
 		saveGameButton = new JButton("Save Game");
 		saveGameButton.setBackground(Color.black);
@@ -254,7 +252,7 @@ public class GUIGame {
 		playerPanel.setBackground(Color.black);
 		playerPanel.setLayout(new GridLayout(8, 8));
 		contain.add(playerPanel);
-		playerAttributesLabel = new JLabel("Player Atrributes");
+		playerAttributesLabel = new JLabel("Player Attributes");
 		playerAttributesLabel.setFont(gLogFont);
 		playerAttributesLabel.setForeground(Color.white);
 		playerPanel.add(playerAttributesLabel);
@@ -346,9 +344,11 @@ public class GUIGame {
 		dropBtn.setFont(normalFont);
 		iBtnPanel.add(dropBtn);
 
-
-		// Adds a specific ActionListener, Command, to this specific element, passing the gui itself as a reference.
-//		puzzleInput.addActionListener(new Command(this));
+        // Matthew's important sandbox, no touchy
+        userInputNav.addActionListener(new Command(this, null));
+        lookButton.addActionListener(new Command(this,"look"));
+        changeRoomButton.addActionListener(new Command(this, "list"));
+        exitToStreetButton.addActionListener(new Command(this,"exit"));
 	}
 
 	//start button function
@@ -365,25 +365,25 @@ public class GUIGame {
 		}
 	}
 
-	public static void TextFromFile(JTextArea gLogPane)
-	{
-		try {
-			String path = "res/testRoomData.txt";
-			File file = new File(path);
-			FileReader fr = new FileReader(file);
-			while(fr.read() != -1) {
-				gLogPane.read(fr, null);
-			}
-			fr.close();
-		}catch(Exception ex) {
-			ex.printStackTrace();
-		}
-	}
+//	public static void TextFromFile(JTextArea gLogPane)
+//	{
+//		try {
+//			String path = "res/testRoomData.txt";
+//			File file = new File(path);
+//			FileReader fr = new FileReader(file);
+//			while(fr.read() != -1) {
+//				gLogPane.read(fr, null);
+//			}
+//			fr.close();
+//		}catch(Exception ex) {
+//			ex.printStackTrace();
+//		}
+//	}
 
 	// Matthew's important sandbox, no touchy
 	public static String getInput() {
-		String s = puzzleInput.getText().toLowerCase();
-		puzzleInput.setText("");
+		String s = userInputNav.getText().toLowerCase();
+        userInputNav.setText("");
 		return s;
 	}
 	public static void logAdd(String s) {
