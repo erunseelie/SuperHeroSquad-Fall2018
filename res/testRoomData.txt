@@ -35,7 +35,7 @@ door::B1R1
 item::Shotgun
 endRoom::
 ID::B2R1
-roomName::Main Entrance
+roomName::Saloon
 desc::There are tables flipped over and chairs scattered all around the sitting area. One of the couches is in the fireplace for some reason. The bar looks to have been ransacked. There are empty and broken bottles everywhere. There is one last pristine bottle of moonshine left on the shelf. There looks to be entrances to a kitchen, base-ment, storage room, and a bathroom.
 door::B0R0
 door::B2R2
@@ -64,7 +64,7 @@ desc::It looks like a typical bathroom. A sink with a mirror on the wall, a toil
 door::B2R1
 endRoom::
 ID::B3R1
-roomName::Main Entrance
+roomName::General Store
 desc::The shelves are all tipped over, merchandise all over the floor. There is a leather tunic that looks to be made of deer skin draped over the checkout desk. There's a long hallway that leads to a storage room and a set of stairs that lead down to the basement.
 door::B0R0
 door::B3R2
@@ -81,7 +81,7 @@ desc::The basement is oddly empty. There are cobwebs decorating the ceil-ing and
 door::B3R1
 endRoom::
 ID::B4R1
-roomName::Main Entrance
+roomName::The Inn
 desc::The building looks like it's been cleared out, there's a hammer stuck in the wall for some reason. The front desk is empty with an open ledger on the desk. There seems to be three guest rooms, and a storage room.
 door::B0R0
 door::B4R2
@@ -146,7 +146,7 @@ desc::There are piles of unfolded sheets bedsheets and pillow cases scat-tered a
 door::B4R1
 endRoom::
 ID::B5R1
-roomName::Main Entrance
+roomName::Barn
 desc::There are a few broken tools on a workbench and a coat rack with a leather tunic that looks to be made of buffalo hide.
 door::B0R0
 door::B5R2
@@ -180,7 +180,7 @@ desc::The room is filled with gold. This stockpile could be worth enough to live
 door::B6R1
 endRoom::
 ID::B7R1
-roomName::Main Room
+roomName::The Church
 desc::There are benches for attendees to sit during service and a big stage with a podium the podium seems to have been vandalized and there is a wooden board hanging off it. There is a doorway at the side of the stage that leads to the crypts.
 door::B0R0
 door::B7R2
