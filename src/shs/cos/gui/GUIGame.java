@@ -65,10 +65,10 @@ public class GUIGame {
 	useEquipBtn,
 	dropBtn;
 
-	JTextArea gLogArea;
+	static JTextArea gLogArea;
 	JScrollPane scrollPane;
 	
-	JTextField puzzleInput;
+	static JTextField puzzleInput;
 
 	startHandler sHandler = new startHandler();
 
@@ -147,7 +147,7 @@ public class GUIGame {
 		gLogArea.setForeground(Color.white);
 		//gLogArea.setFont(normalFont);
 		gLogArea.setFont(gLogFont);
-		TextFromFile(gLogArea);
+//		TextFromFile(gLogArea);
 		gameLogPanel.add(scrollPane);
 
 		//buttons1
@@ -159,6 +159,8 @@ public class GUIGame {
 		lookButton.setBackground(Color.black);
 		lookButton.setForeground(Color.white);
 		lookButton.setFont(normalFont);
+		lookButton.addActionListener(new Command(this,"look"));
+
 		choiceButtonPanel1.add(lookButton);
 		pickUpButton = new JButton("Pick-Up");
 		pickUpButton.setBackground(Color.black);
@@ -329,7 +331,7 @@ public class GUIGame {
 
 
 		// Adds a specific ActionListener, Command, to this specific element, passing the gui itself as a reference.
-		puzzleInput.addActionListener(new Command(this));
+//		puzzleInput.addActionListener(new Command(this));
 	}
 
 	//start button function
@@ -354,12 +356,14 @@ public class GUIGame {
 		}
 	}
 
-	public String getInput() {
-		// TODO Auto-generated method stub
-		return null;
+	// Matthew's important sandbox, no touchy
+	public static String getInput() {
+		String s = puzzleInput.getText().toLowerCase();
+		puzzleInput.setText("");
+		return s;
 	}
-	public void logAdd(String string) {
-		// TODO Auto-generated method stub
+	public static void logAdd(String s) {
+		gLogArea.append(s + "\n");
 	}
 
 }
