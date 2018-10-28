@@ -16,9 +16,8 @@ public class GUIGame {
 
 	JPanel startPanel,
 	startButtonPanel,
-	//
 	gameLogPanel,
-	//
+	userInputNavigationPanel,
 	choiceButtonPanel1,
 	cbp2,
 	puzzlePanel,
@@ -69,6 +68,8 @@ public class GUIGame {
 	JScrollPane scrollPane;
 	
 	static JTextField puzzleInput;
+	
+	static JTextField userInputNav;
 
 	startHandler sHandler = new startHandler();
 
@@ -132,23 +133,36 @@ public class GUIGame {
 
 		//game log
 		gameLogPanel = new JPanel();
-		gameLogPanel.setBounds(20, 20, 460, 220);
+		gameLogPanel.setBounds(20, 20, 460, 160);
 		gameLogPanel.setBackground(Color.black);
 		contain.add(gameLogPanel);
-		gLogArea = new JTextArea(10,20);
-	
+		gLogArea = new JTextArea(6,35);
 		scrollPane = new JScrollPane(gLogArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		gameLogPanel.setLayout(new FlowLayout());
-		
 		//setContentPane(gameLogPanel);
 		gLogArea.setEditable(false);
-		gLogArea.setBounds(20, 20, 400, 190);
+		gLogArea.setBounds(20, 20, 300, 100);
 		gLogArea.setBackground(Color.black);
 		gLogArea.setForeground(Color.white);
 		//gLogArea.setFont(normalFont);
 		gLogArea.setFont(gLogFont);
-//		TextFromFile(gLogArea);
+		//TextFromFile(gLogArea);
 		gameLogPanel.add(scrollPane);
+		
+		//user input navigation panel
+		userInputNavigationPanel = new JPanel();
+		userInputNavigationPanel.setBounds(30, 190, 200, 50);
+		userInputNavigationPanel.setBackground(Color.black);
+		userInputNavigationPanel.setLayout(new GridLayout(2, 2));
+		contain.add(userInputNavigationPanel);
+		//user input navigation text field
+		userInputNav = new JTextField("");
+		userInputNav.setBounds(50, 100, 130, 100);
+		userInputNav.setBackground(Color.white);
+		userInputNav.setForeground(Color.black);
+		userInputNav.setFont(normalFont);
+		userInputNavigationPanel.add(userInputNav);
+		
 
 		//buttons1
 		choiceButtonPanel1 = new JPanel();
