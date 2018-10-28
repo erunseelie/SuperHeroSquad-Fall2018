@@ -36,13 +36,19 @@ public class Command implements ActionListener {
             String verb = command[0];
             String object = "";
             if (size > 1) object = command[1];
-            String amount = "";
-            if (size > 2) amount = command[2];
+//            String amount = "";
+//            if (size > 2) amount = command[2];
 
             // TODO: add full command parsing
             if (verb.equals("look")) { s = (commandLook()); }
             else if (verb.equals("exit")) { s = (commandExit()); }
-            else if (verb.equals("go")) { s = commandGo(object); }
+            else if (verb.equals("go")) {
+                String location = object;
+                for (int i = 2; i < size; i++) {
+                    location += " " + command[i];
+                }
+                s = commandGo(location);
+            }
             else if (verb.equals("list")) { s = (commandList()); }
             else { s = ("You're unable to do that."); }
 
@@ -51,12 +57,12 @@ public class Command implements ActionListener {
     }
 
     private String commandLook() {
-        return Room.getMap().get(Room.getCurrentRoomKey()).getDesc();
+        return "LOOK: \n" + Room.getMap().get(Room.getCurrentRoomKey()).getDesc();
     }
 
     private String commandExit() {
         Room.setCurrentRoom("B0R0");
-        return "You have returned to the street.";
+        return "EXIT: \n" + "You have returned to the street.";
     }
 
     private String commandList() {
@@ -68,7 +74,7 @@ public class Command implements ActionListener {
             s += room.getRoomName() + ", ";
         }
 
-        return s;
+        return "LIST: \n" + s;
     }
 
     private String commandGo(String location) {
@@ -82,7 +88,7 @@ public class Command implements ActionListener {
                 break;
             } else s = "That place doesn't seem to be nearby.";
         }
-        return s;
+        return "GO: \n" + s;
     }
 
     private ArrayList<String> getRoomConnections() {

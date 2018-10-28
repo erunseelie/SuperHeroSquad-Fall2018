@@ -390,9 +390,9 @@ public class GUIGame {
         userInputNav.setText("");
 		return s;
 	}
-	// Adds a line of text to the game log and appends a newline.
+	// Adds a line of text to the game log and appends 2 newlines.
 	public static void logAdd(String s) {
-		gLogArea.append(s + "\n");
+		gLogArea.append(s + "\n\n");
 	}
 
 }
