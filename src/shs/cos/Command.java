@@ -2,7 +2,6 @@ package shs.cos;
 
 import shs.cos.gui.GUIGame;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -10,15 +9,17 @@ import java.util.TreeMap;
 
 // Gets the command entered.
 public class Command implements ActionListener {
-    private GUIGame gui;
     private String action;
 
-    public Command(GUIGame gui, String action) {
-        this.gui = gui;
+    TreeMap<String, Room> mapRooms = Room.getMap();
+
+    public Command(String action) {
+//        this.gui = gui;
         this.action = action;
     }
 
-    // The default ActionEvent fired when the enter key is pressed.
+    // The default ActionEvent fired when the enter key is pressed for text input,
+    // or when a button is clicked.
     public void actionPerformed(ActionEvent e) {
         String s = null;
         if (action != null) {
@@ -26,12 +27,10 @@ public class Command implements ActionListener {
             else if (action.equals("exit")) s = commandExit();
             else if (action.equals("list")) s = commandList();
             else s = "You don't know how to do that.";
-            gui.logAdd(s);
-
+            GUIGame.logAdd(s);
         } else {
-
             // textual commands
-            String[] command = gui.getInput().split(" ");
+            String[] command = GUIGame.getInput().split(" ");
             int size = command.length;
 
             String verb = command[0];
@@ -41,46 +40,53 @@ public class Command implements ActionListener {
             if (size > 2) amount = command[2];
 
             // TODO: add full command parsing
-            if (verb.equals("look")) {
-                s = (commandLook());
-            } else if (verb.equals("exit")) {
-                s = (commandExit());
-            } else if (verb.equals("go")) {
-                ArrayList<String> rooms = Room.getMap().get(Room.getCurrentRoomKey()).getConnections();
-                if (rooms.contains(object.toUpperCase())) {
-                    Room.setCurrentRoom(object.toUpperCase());
-                    s = ("You mosey through the dust. You have arrived at your destination...");
-                } else s = ("You can't go there.");
-            } else if (verb.equals("list")) {
-                s = (commandList());
-            } else {
-                s = ("You're unable to do that.");
-            }
+            if (verb.equals("look")) { s = (commandLook()); }
+            else if (verb.equals("exit")) { s = (commandExit()); }
+            else if (verb.equals("go")) { s = commandGo(object); }
+            else if (verb.equals("list")) { s = (commandList()); }
+            else { s = ("You're unable to do that."); }
 
-            gui.logAdd(s);
+            GUIGame.logAdd(s);
         }
     }
 
-    public String commandLook() {
+    private String commandLook() {
         return Room.getMap().get(Room.getCurrentRoomKey()).getDesc();
     }
 
-    public String commandExit() {
+    private String commandExit() {
         Room.setCurrentRoom("B0R0");
         return "You have returned to the street.";
     }
 
-    public String commandList() {
-        ArrayList<String> rooms = Room.getMap().get(Room.getCurrentRoomKey()).getConnections();
+    private String commandList() {
+        ArrayList<String> rooms = getRoomConnections();
         String s = "";
 
-        TreeMap<String, Room> map = Room.getMap();
         for (String r : rooms) {
-            Room room = map.get(r);
+            Room room = mapRooms.get(r);
             s += room.getRoomName() + ", ";
         }
 
         return s;
+    }
+
+    private String commandGo(String location) {
+        ArrayList<String> rooms = getRoomConnections();
+        String s = "";
+
+        for (String r : rooms) {
+            if (mapRooms.get(r).getRoomName().toLowerCase().equals(location)) {
+                Room.setCurrentRoom(r);
+                s = ("You mosey through the dust. You have arrived at your destination...");
+                break;
+            } else s = "That place doesn't seem to be nearby.";
+        }
+        return s;
+    }
+
+    private ArrayList<String> getRoomConnections() {
+        return Room.getMap().get(Room.getCurrentRoomKey()).getConnections();
     }
 
 }

@@ -48,7 +48,7 @@ public class GUIGame {
 	Font startTextFont = new Font("Times New Roman", Font.PLAIN, 30);
 	Font normalFont = new Font("Times New Roman", Font.PLAIN, 14);
 	Font gLogFont = new Font ("Times New Roman", Font.PLAIN, 14);
-	
+
 
 	JButton startButton,
 	lookButton,
@@ -347,10 +347,10 @@ public class GUIGame {
 		iBtnPanel.add(dropBtn);
 
         // Matthew's important sandbox, no touchy
-        userInputNav.addActionListener(new Command(this, null));
-        lookButton.addActionListener(new Command(this,"look"));
-        changeRoomButton.addActionListener(new Command(this, "list"));
-        exitToStreetButton.addActionListener(new Command(this,"exit"));
+        userInputNav.addActionListener(new Command( null));
+        lookButton.addActionListener(new Command("look"));
+        changeRoomButton.addActionListener(new Command( "list"));
+        exitToStreetButton.addActionListener(new Command("exit"));
 	}
 
 	//start button function
@@ -383,11 +383,14 @@ public class GUIGame {
 //	}
 
 	// Matthew's important sandbox, no touchy
+
+    // Returns the entered input in lowercase form and clears the field.
 	public static String getInput() {
 		String s = userInputNav.getText().toLowerCase();
         userInputNav.setText("");
 		return s;
 	}
+	// Adds a line of text to the game log and appends a newline.
 	public static void logAdd(String s) {
 		gLogArea.append(s + "\n");
 	}
