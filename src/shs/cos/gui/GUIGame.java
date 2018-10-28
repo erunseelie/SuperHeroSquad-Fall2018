@@ -47,7 +47,7 @@ public class GUIGame {
 
 	Font startTextFont = new Font("Times New Roman", Font.PLAIN, 30);
 	Font normalFont = new Font("Times New Roman", Font.PLAIN, 14);
-	Font gLogFont = new Font ("Times New Roman", Font.BOLD, 16);
+	Font gLogFont = new Font ("Times New Roman", Font.PLAIN, 14);
 	
 
 	JButton startButton,
@@ -146,6 +146,8 @@ public class GUIGame {
 		gLogArea.setBounds(20, 20, 300, 100);
 		gLogArea.setBackground(Color.black);
 		gLogArea.setForeground(Color.white);
+		gLogArea.setLineWrap(true);
+		gLogArea.setWrapStyleWord(true);
 		//gLogArea.setFont(normalFont);
 		gLogArea.setFont(gLogFont);
 		//TextFromFile(gLogArea);
