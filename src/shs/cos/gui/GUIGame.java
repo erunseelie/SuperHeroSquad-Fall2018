@@ -53,8 +53,8 @@ public class GUIGame {
 	JButton startButton,
 	lookButton,
 	pickUpButton,
-	enterRoomButton,
-	exitRoomButton,
+	changeRoomButton,
+	exitToStreetButton,
 	saveGameButton,
 	attackBtn,
 	fleeBtn,
@@ -72,6 +72,8 @@ public class GUIGame {
 	static JTextField userInputNav;
 
 	startHandler sHandler = new startHandler();
+	lookHandler lHandler = new lookHandler();
+	
 
 
 	// window method
@@ -174,23 +176,24 @@ public class GUIGame {
 		lookButton.setForeground(Color.white);
 		lookButton.setFont(normalFont);
 		lookButton.addActionListener(new Command(this,"look"));
-
+		
 		choiceButtonPanel1.add(lookButton);
 		pickUpButton = new JButton("Pick-Up");
 		pickUpButton.setBackground(Color.black);
 		pickUpButton.setForeground(Color.white);
 		pickUpButton.setFont(normalFont);
 		choiceButtonPanel1.add(pickUpButton);
-		enterRoomButton = new JButton("Enter Room");
-		enterRoomButton.setBackground(Color.black);
-		enterRoomButton.setForeground(Color.white);
-		enterRoomButton.setFont(normalFont);
-		choiceButtonPanel1.add(enterRoomButton);
-		exitRoomButton = new JButton("Exit Room");
-		exitRoomButton.setBackground(Color.black);
-		exitRoomButton.setForeground(Color.white);
-		exitRoomButton.setFont(normalFont);
-		choiceButtonPanel1.add(exitRoomButton);
+		changeRoomButton = new JButton("Change Room");
+		changeRoomButton.setBackground(Color.black);
+		changeRoomButton.setForeground(Color.white);
+		changeRoomButton.setFont(normalFont);
+		choiceButtonPanel1.add(changeRoomButton);
+		exitToStreetButton = new JButton("Exit To Street");
+		exitToStreetButton.setBackground(Color.black);
+		exitToStreetButton.setForeground(Color.white);
+		exitToStreetButton.setFont(normalFont);
+		exitToStreetButton.addActionListener(new Command(this,"exit"));
+		choiceButtonPanel1.add(exitToStreetButton);
 		saveGameButton = new JButton("Save Game");
 		saveGameButton.setBackground(Color.black);
 		saveGameButton.setForeground(Color.white);
@@ -352,6 +355,13 @@ public class GUIGame {
 	public class startHandler implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			gameScreen();
+		}
+	}
+	
+	//look button function
+	public class lookHandler implements ActionListener{
+		public void actionPerformed(ActionEvent event) {
+			
 		}
 	}
 
