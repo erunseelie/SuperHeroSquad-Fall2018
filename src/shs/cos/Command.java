@@ -14,7 +14,6 @@ public class Command implements ActionListener {
     TreeMap<String, Room> mapRooms = Room.getMap();
 
     public Command(String action) {
-//        this.gui = gui;
         this.action = action;
     }
 
