@@ -8,8 +8,10 @@ import java.io.FileNotFoundException;
 
 public class Room
 {
+	//indicator used to seperate data type indicator and the actual data to be added
 	private static String separator = "::";
 
+	//variables for storing individual room data
 	private String roomName;
 	private String description;
 	private ArrayList<String> connections = new ArrayList<>();
@@ -18,17 +20,23 @@ public class Room
 	private ArrayList<String> monsterIDList = new ArrayList<>();
 
 	private static Scanner input;
-	static TreeMap<String, Room> roomList = new TreeMap<>();
 	
+	//treeMap used to store rooms based on their key
+	static TreeMap<String, Room> roomList = new TreeMap<>();
+
+	//var used to track players current position
 	static String currentPlayerLocationKey = "B0R0";
 
+	//default constructor
 	public Room()
 	{
 
 	}
 
+	//reads in roomdata file, primary functionality of class
 	public static void readRoomFile(File f)
 	{
+		//creates scanner to read file
 		try
 		{
 			input = new Scanner(f);
@@ -37,15 +45,18 @@ public class Room
 			e.printStackTrace();
 		}
 
+		//loop used to cycle through lines in file
 		while (input.hasNextLine())
 		{
 			String[] nextLine = input.nextLine().split(separator);
 
+			//indicator point that loop breaks to when ever the end of a rooms respective data is reached
 			OUTER_LOOP: if (nextLine[0].equals("ID"))
 			{
 				Room newRoom = new Room();
 				String newRoomID = nextLine[1];
 
+				//checks current text line to get data type and info so that information is added to the right variable/arraylist
 				while (input.hasNextLine())
 				{
 					nextLine = input.nextLine().split(separator);
@@ -79,6 +90,7 @@ public class Room
 						newRoom.monsterIDList.add(nextLine[1]);
 					}
 
+					//check to break if the "endRoom" indicator is found. Also checks if a new room ID is detected as a fall back.
 					if (nextLine[0].equals("ID") || nextLine[0].equals("endRoom"))
 					{
 						roomList.put(newRoomID, newRoom);
@@ -89,6 +101,7 @@ public class Room
 		}
 	}
 
+	//getters and setters
 	public static TreeMap<String, Room> getMap()
 	{
 		return roomList;
@@ -98,27 +111,27 @@ public class Room
 	{
 		return roomName;
 	}
-	
+
 	public String getDesc()
 	{
 		return description;
 	}
-	
+
 	public ArrayList<String> getConnections()
 	{
 		return connections;
 	}
-	
+
 	public ArrayList<String> getItems()
 	{
 		return itemIDList;
 	}
-	
+
 	public ArrayList<String> getPuzzles()
 	{
 		return puzzleIDList;
 	}
-	
+
 	public ArrayList<String> getMonsters()
 	{
 		return monsterIDList;
