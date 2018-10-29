@@ -27,6 +27,7 @@ public class GUIGame {
 	iBtnPanel;
 
 	JLabel startTextLabel,
+	goRoomNameLabel,
 	enterAnswerLabel,
 	playerAttributesLabel,
 	healthLabel,
@@ -82,7 +83,7 @@ public class GUIGame {
 		// create new window
 		gameWindow = new JFrame();
 		//set window size
-		gameWindow.setSize(800, 700);
+		gameWindow.setSize(750, 700);
 		//for window to close properly
 		gameWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//create backgrounds color
@@ -135,31 +136,32 @@ public class GUIGame {
 
 		//game log
 		gameLogPanel = new JPanel();
-		gameLogPanel.setBounds(20, 20, 460, 160);
+		gameLogPanel.setBounds(20, 20, 670, 250);
 		gameLogPanel.setBackground(Color.black);
 		contain.add(gameLogPanel);
-		gLogArea = new JTextArea(6,35);
-		scrollPane = new JScrollPane(gLogArea, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		gLogArea = new JTextArea(13,55);
+		scrollPane = new JScrollPane(gLogArea, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		gameLogPanel.setLayout(new FlowLayout());
-		//setContentPane(gameLogPanel);
 		gLogArea.setEditable(false);
 		gLogArea.setBounds(20, 20, 300, 100);
 		gLogArea.setBackground(Color.black);
 		gLogArea.setForeground(Color.white);
 		gLogArea.setLineWrap(true);
 		gLogArea.setWrapStyleWord(true);
-		//gLogArea.setFont(normalFont);
 		gLogArea.setFont(gLogFont);
-		//TextFromFile(gLogArea);
 		gameLogPanel.add(scrollPane);
 		
 		//user input navigation panel
 		userInputNavigationPanel = new JPanel();
-		userInputNavigationPanel.setBounds(30, 190, 200, 50);
+		userInputNavigationPanel.setBounds(50, 280, 380, 50);
 		userInputNavigationPanel.setBackground(Color.black);
-		userInputNavigationPanel.setLayout(new GridLayout(2, 2));
+		userInputNavigationPanel.setLayout(new GridLayout(2,2));
 		contain.add(userInputNavigationPanel);
 		//user input navigation text field
+		goRoomNameLabel = new JLabel("Enter -go- followed by room name listed above:");
+		goRoomNameLabel.setFont(gLogFont);
+		goRoomNameLabel.setForeground(Color.white);
+		userInputNavigationPanel.add(goRoomNameLabel);
 		userInputNav = new JTextField("");
 		userInputNav.setBounds(50, 100, 130, 100);
 		userInputNav.setBackground(Color.white);
@@ -170,7 +172,7 @@ public class GUIGame {
 
 		//buttons1
 		choiceButtonPanel1 = new JPanel();
-		choiceButtonPanel1.setBounds(20, 250, 150, 200);
+		choiceButtonPanel1.setBounds(20, 350, 150, 200);
 		choiceButtonPanel1.setBackground(Color.black);
 		contain.add(choiceButtonPanel1);
 		lookButton = new JButton("Look");
@@ -202,7 +204,7 @@ public class GUIGame {
 
 		//buttons2
 		cbp2 = new JPanel();
-		cbp2.setBounds(170, 250, 150, 80);
+		cbp2.setBounds(170, 350, 150, 80);
 		cbp2.setBackground(Color.black);
 		contain.add(cbp2);
 		attackBtn = new JButton("Attack");
@@ -228,7 +230,7 @@ public class GUIGame {
 
 		//puzzle text box
 		puzzlePanel = new JPanel();
-		puzzlePanel.setBounds(170, 350, 150, 100);
+		puzzlePanel.setBounds(170, 440, 150, 100);
 		puzzlePanel.setBackground(Color.black);
 		puzzlePanel.setLayout(new GridLayout(4, 4));
 		contain.add(puzzlePanel);
@@ -250,7 +252,7 @@ public class GUIGame {
 
 		//player
 		playerPanel = new JPanel();
-		playerPanel.setBounds(330, 250, 150, 100);
+		playerPanel.setBounds(330, 350, 150, 100);
 		playerPanel.setBackground(Color.black);
 		playerPanel.setLayout(new GridLayout(8, 8));
 		contain.add(playerPanel);
@@ -285,7 +287,7 @@ public class GUIGame {
 
 		//enemy
 		enemyPanel = new JPanel();
-		enemyPanel.setBounds(330, 350, 150, 100);
+		enemyPanel.setBounds(330, 460, 150, 100);
 		enemyPanel.setBackground(Color.black);
 		enemyPanel.setLayout(new GridLayout(8, 8));
 		contain.add(enemyPanel);
@@ -321,7 +323,7 @@ public class GUIGame {
 		//inventory
 		//holds list
 		inventoryPanel = new JPanel();
-		inventoryPanel.setBounds(490, 20, 200, 320);
+		inventoryPanel.setBounds(490, 280, 200, 190);
 		inventoryPanel.setBackground(Color.black);
 		contain.add(inventoryPanel);
 		inventoryLabel = new JLabel("Inventory/Equipped Items");
@@ -331,9 +333,9 @@ public class GUIGame {
 
 		//inventory button panel
 		iBtnPanel = new JPanel();
-		iBtnPanel.setBounds(490, 350, 200, 200);
+		iBtnPanel.setBounds(490, 480, 200, 40);
 		iBtnPanel.setBackground(Color.black);
-		iBtnPanel.setLayout(new GridLayout(4, 2));
+		iBtnPanel.setLayout(new FlowLayout());
 		contain.add(iBtnPanel);
 		useEquipBtn = new JButton("Use/Equip");
 		useEquipBtn.setBackground(Color.black);
