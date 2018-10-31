@@ -9,27 +9,27 @@ import java.util.TreeMap;
 
 // Gets the command entered.
 public class Command implements ActionListener {
+    private GUIGame gui;
     private String action;
 
-    TreeMap<String, Room> mapRooms = Room.getMap();
-
-    public Command(String action) {
+    public Command(GUIGame gui, String action) {
+        this.gui = gui;
         this.action = action;
     }
 
     // The default ActionEvent fired when the enter key is pressed for text input,
     // or when a button is clicked.
     public void actionPerformed(ActionEvent e) {
-        String s = null;
+        String s;
         if (action != null) {
             if (action.equals("look")) s = commandLook();
             else if (action.equals("exit")) s = commandExit();
             else if (action.equals("list")) s = commandList();
             else s = "You don't know how to do that.";
-            GUIGame.logAdd(s);
+            gui.logAdd(s);
         } else {
             // textual commands
-            String[] command = GUIGame.getInput().split(" ");
+            String[] command = gui.getInput().split(" ");
             int size = command.length;
 
             String verb = command[0];
@@ -51,12 +51,14 @@ public class Command implements ActionListener {
             else if (verb.equals("list")) { s = (commandList()); }
             else { s = ("You're unable to do that."); }
 
-            GUIGame.logAdd(s);
+            gui.logAdd(s);
         }
     }
 
+    TreeMap<String, Room> mapRooms = Room.getMap();
+
     private String commandLook() {
-        return "LOOK: \n" + Room.getMap().get(Room.getCurrentRoomKey()).getDesc();
+        return "LOOK: \n" + mapRooms.get(Room.getCurrentRoomKey()).getDesc();
     }
 
     private String commandExit() {
@@ -91,7 +93,7 @@ public class Command implements ActionListener {
     }
 
     private ArrayList<String> getRoomConnections() {
-        return Room.getMap().get(Room.getCurrentRoomKey()).getConnections();
+        return mapRooms.get(Room.getCurrentRoomKey()).getConnections();
     }
 
 }

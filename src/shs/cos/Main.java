@@ -1,6 +1,7 @@
 package shs.cos;
 
 import shs.cos.gui.GUIGame;
+import shs.cos.gui.GUILogin;
 
 import java.io.File;
 
@@ -10,8 +11,9 @@ public class Main {
 
         Room.readRoomFile(new File("res/testRoomData.txt"));
 
-        new GUIGame();
-        
+//        new GUIGame();
+        GUILogin windowLogin = new GUILogin();
+//        windowLogin.start();
 
     }
 }

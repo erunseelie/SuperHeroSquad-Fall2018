@@ -15,16 +15,17 @@ public class GUIGame {
 
     private Font
         fontStart  = new Font("Times New Roman", Font.PLAIN, 30),
-        fontNormal = new Font("Times New Roman", Font.PLAIN,  14),
-        fontLog    = new Font("Times New Roman", Font.BOLD, 14);
+        fontNormal = new Font("Times New Roman", Font.PLAIN, 14),
+        fontLog    = new Font("Times New Roman", Font.BOLD,  14);
 
-    private static JTextArea gameLog;
+    private JTextArea gameLog;
     private JScrollPane gameLogScroller;
 
-    private static JTextField
+    private JTextField
             inputUser,
             inputPuzzle;
 
+    ArrayList<JPanel> panels = new ArrayList<>();
 	private JPanel
         pnlStart,
         pnlStartButton,
@@ -84,7 +85,7 @@ public class GUIGame {
         btnUseOrEquip,
         btnDropItem;
 
-	startHandler sHandler = new startHandler();
+	private handlerStart handler = new handlerStart();
 
 	// window method
 	public GUIGame() {
@@ -130,7 +131,7 @@ public class GUIGame {
 		//text size on start button
 		btnStart.setFont(fontNormal);
 		//click start button will call
-		btnStart.addActionListener(sHandler);
+		btnStart.addActionListener(handler);
 		pnlStart.add(lblStartText);
 		pnlStartButton.add(btnStart);
 
@@ -139,7 +140,7 @@ public class GUIGame {
 
 	}
 
-	public void makeGameWindow() {
+	protected void makeGameWindow() {
 		pnlStart.setVisible(false);
 		pnlStartButton.setVisible(false);
 
@@ -359,45 +360,30 @@ public class GUIGame {
 		btnDropItem.setFont(fontNormal);
 		pnlButtonsItem.add(btnDropItem);
 
-        // Matthew's important sandbox, no touchy
-        inputUser.addActionListener(new Command( null));
-        btnLook.addActionListener(new Command("look"));
-        btnChangeRoom.addActionListener(new Command( "list"));
-        btnExitToStreet.addActionListener(new Command("exit"));
+        /* Matthew's important sandbox, no touchy */
+        inputUser.addActionListener(new Command(this,null));
+        btnLook.addActionListener(new Command(this,"look"));
+        btnChangeRoom.addActionListener(new Command(this,"list"));
+        btnExitToStreet.addActionListener(new Command(this,"exit"));
 	}
 
 	//start button function
-	public class startHandler implements ActionListener {
+	public class handlerStart implements ActionListener {
 		public void actionPerformed(ActionEvent event) {
 			makeGameWindow();
 		}
 	}
 
-//	public static void TextFromFile(JTextArea gLogPane)
-//	{
-//		try {
-//			String path = "res/testRoomData.txt";
-//			File file = new File(path);
-//			FileReader fr = new FileReader(file);
-//			while(fr.read() != -1) {
-//				gLogPane.read(fr, null);
-//			}
-//			fr.close();
-//		}catch(Exception ex) {
-//			ex.printStackTrace();
-//		}
-//	}
-
-	// Matthew's important sandbox, no touchy
+	/* Matthew's important sandbox, no touchy */
 
     // Returns the entered input in lowercase form and clears the field.
-	public static String getInput() {
+	public String getInput() {
 		String s = inputUser.getText().toLowerCase();
         inputUser.setText("");
 		return s;
 	}
 	// Adds a line of text to the game log and appends 2 newlines.
-	public static void logAdd(String s) {
+	public void logAdd(String s) {
 		gameLog.append(s + "\n\n");
 	}
 
