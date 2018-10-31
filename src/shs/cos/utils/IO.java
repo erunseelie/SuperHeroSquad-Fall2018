@@ -10,7 +10,7 @@ public class IO {
     private Scanner input;
     // The separating characters for a key-value pair in our files are '::'.
     // Example: "C1::You enter a room that smells faintly of old shoes."
-    private String separator = "::";
+    public static final String separator = "::";
 
     public TreeMap<String, String> readFile(File f) {
         // Try to read the supplied file.

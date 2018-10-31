@@ -1,2 +1,0 @@
-C1::You enter a dark room.
-Necro::You cautiously push through the oversized doorway.

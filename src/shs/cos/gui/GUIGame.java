@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.TreeMap;
 
 public class GUIGame {
 	private JFrame windowGame;
@@ -87,8 +88,12 @@ public class GUIGame {
 
 	private handlerStart handler = new handlerStart();
 
+	private TreeMap<String, String> mapSaveData;
+
 	// window method
-	public GUIGame() {
+	public GUIGame(TreeMap<String, String> mapSaveData) {
+
+	    this.mapSaveData = mapSaveData;
 
 		// create new window
 		windowGame = new JFrame();
