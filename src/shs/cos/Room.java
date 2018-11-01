@@ -1,5 +1,7 @@
 package shs.cos;
 
+import shs.cos.utils.IO;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -9,7 +11,7 @@ import java.io.FileNotFoundException;
 public class Room
 {
 	//indicator used to seperate data type indicator and the actual data to be added
-	private static String separator = "::";
+	private static String separator = IO.separator;
 
 	//variables for storing individual room data
 	private String roomName;

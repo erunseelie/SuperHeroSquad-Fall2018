@@ -15,10 +15,12 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import shs.cos.Main;
 import shs.cos.utils.IO;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.TreeMap;
 
@@ -40,7 +42,7 @@ public class GUILogin extends Application {
         grid.setPadding(new Insets(10, 10, 10, 10));
 
         // create labels and fields
-        Text sceneTitle = new Text("Lucky Strike Valley");
+        Text sceneTitle = new Text("Existing User:");
         sceneTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         grid.add(sceneTitle, 0, 0, 2, 1);
 
@@ -58,12 +60,12 @@ public class GUILogin extends Application {
         HBox hbBtn = new HBox(10);
         hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
 
-        Button btnLogin = new Button("Login");
+        Button btnLogin = new Button("Log In");
         btnLogin.setOnAction(login);
         hbBtn.getChildren().add(btnLogin);
 
         Button btnNewUser = new Button("New User");
-//        btnNewUser.setOnAction(loginDialogue);
+        btnNewUser.setOnAction(createNewUser);
         hbBtn.getChildren().add(btnNewUser);
 
         grid.add(hbBtn, 1, 3);
@@ -76,8 +78,9 @@ public class GUILogin extends Application {
     }
 
     private TextField fldUsername, fldPassword;
+
     private EventHandler<ActionEvent> login = e -> {
-        if (loginAttempt(fldUsername.getText(), fldPassword.getText())) {
+        if (attemptLogIn(fldUsername.getText(), fldPassword.getText())) {
             Stage dialogue = new Stage();
             dialogue.initModality(Modality.APPLICATION_MODAL);
             dialogue.setResizable(false);
@@ -98,21 +101,23 @@ public class GUILogin extends Application {
 
             Button btnResume = new Button("Resume Game");
             btnResume.setOnAction(arg0 -> {
-                // TODO: send mapData to the game controller
+                clearLoginFields();
                 dialogue.close();
+                // TODO: load from save file
+                launchGameWindow();
             });
 
             Button btnNewGame = new Button("New Game");
             btnNewGame.setOnAction(arg0 -> {
+                clearLoginFields();
                 dialogue.close();
-                GUIGame gui = new GUIGame(null);
-                gui.makeGameWindow();
+                // TODO: create save file, load new game w/o userdata
+                launchGameWindow();
             });
 
             Button btnLogOut = new Button("Log Out");
             btnLogOut.setOnAction(arg0 -> {
-                fldUsername.clear();
-                fldPassword.clear();
+                clearLoginFields();
                 dialogue.close();
             });
 
@@ -131,11 +136,47 @@ public class GUILogin extends Application {
         }
     };
 
-    private boolean loginAttempt(String username, String password) {
+    private void launchGameWindow() {
+        Main.loadFinalize();
+    }
+
+    private void clearLoginFields() {
+        fldUsername.clear();
+        fldPassword.clear();
+    }
+
+    private EventHandler<ActionEvent> createNewGame = e -> {
+        // the user has created a new account, and we create & immediately launch a new game.
+        clearLoginFields();
+        launchGameWindow();
+    };
+
+    private EventHandler<ActionEvent> createNewUser = e -> {
+        // the user has selected the "new user" button.
+    };
+
+    private String saveDirectory = "res/saves/", saveExtension = ".txt";
+
+    private boolean createdNewSave(String username) {
+        File f = new File(saveDirectory + username + saveExtension);
+        PrintWriter fileOut;
+        try {
+            fileOut = new PrintWriter(f);
+        } catch (FileNotFoundException e) {
+            return false;
+        }
+        mapSaveData.forEach((k, v) -> {
+            fileOut.write(k + IO.separator + v);
+        });
+        fileOut.close();
+        return true;
+    }
+
+    private boolean attemptLogIn(String username, String password) {
         // attempt to load the file
         Scanner fileIn;
         try {
-            fileIn = new Scanner(new File("res/saves/" + username + ".txt"));
+            fileIn = new Scanner(new File( saveDirectory + username + saveExtension));
             currentUser = username;
         } catch (FileNotFoundException e) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -156,7 +197,7 @@ public class GUILogin extends Application {
 
         // check that passwords match
         if (password.equals(mapSaveData.get("pw"))) {
-            // TODO: pass data to the game controller.
+
             return true;
         } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
