@@ -327,6 +327,7 @@ public class GUIGame {
 
         /* Matthew's important sandbox, no touchy */
 
+        // quick-set all the buttons to the same colors and font style.
         for(JButton b : buttons) {
             b.setBackground(Color.BLACK);
             b.setForeground(Color.WHITE);
@@ -339,13 +340,20 @@ public class GUIGame {
         btnLook.addActionListener(new Command(this,"look"));
 	}
 
-    // Returns the entered input in lowercase form and clears the field.
+    /**
+     * Returns the entered input in lowercase form and clears the field.
+     * @return A lowercase String, the entered input.
+     */
 	public String getInput() {
 		String s = inputUser.getText().toLowerCase();
         inputUser.setText("");
 		return s;
 	}
-	// Adds a line of text to the game log and appends 2 newlines.
+
+    /**
+     * Adds a line of text to the game log and appends 2 newlines.
+     * @param s The text to append.
+     */
 	public void logAdd(String s) {
 		gameLog.append(s + "\n\n");
 	}

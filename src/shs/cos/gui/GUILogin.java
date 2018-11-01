@@ -26,8 +26,8 @@ import java.util.TreeMap;
 
 public class GUILogin extends Application {
 
-    private TreeMap<String, String> mapSaveData = new TreeMap<>();
-    private String currentUser;
+    public TreeMap<String, String> mapSaveData = new TreeMap<>();
+    public String currentUser;
 
     public static void main(String[] args) {
         launch(args);
@@ -79,6 +79,9 @@ public class GUILogin extends Application {
 
     private TextField fldUsername, fldPassword;
 
+    /**
+     * Handles everything that happens after the user hits the "log in" button.
+     */
     private EventHandler<ActionEvent> login = e -> {
         if (attemptLogIn(fldUsername.getText(), fldPassword.getText())) {
             Stage dialogue = new Stage();
@@ -146,18 +149,23 @@ public class GUILogin extends Application {
     }
 
     private EventHandler<ActionEvent> createNewGame = e -> {
-        // the user has created a new account, and we create & immediately launch a new game.
+        // TODO: the user has created a new account, and we create & immediately launch a new game.
         clearLoginFields();
         launchGameWindow();
     };
 
     private EventHandler<ActionEvent> createNewUser = e -> {
-        // the user has selected the "new user" button.
+        // TODO: the user has selected the "new user" button.
     };
 
     private String saveDirectory = "res/saves/", saveExtension = ".txt";
 
-    private boolean createdNewSave(String username) {
+    /**
+     * Copies all the data from a TreeMap to the designated file.
+     * @param username the name of the file to write to.
+     * @return whether the save file was successfully created & written to.
+     */
+    public boolean saveToFile(String username) {
         File f = new File(saveDirectory + username + saveExtension);
         PrintWriter fileOut;
         try {
@@ -172,12 +180,19 @@ public class GUILogin extends Application {
         return true;
     }
 
+    /**
+     * Attempts to load the save file associated with the given username.
+     * If the file is found and the password is correct, the save file's data
+     * is copied into this class' TreeMap.
+     * @param username Username
+     * @param password Password
+     * @return Whether the login attempt was successful.
+     */
     private boolean attemptLogIn(String username, String password) {
         // attempt to load the file
         Scanner fileIn;
         try {
             fileIn = new Scanner(new File( saveDirectory + username + saveExtension));
-            currentUser = username;
         } catch (FileNotFoundException e) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initStyle(StageStyle.UTILITY);
@@ -197,9 +212,10 @@ public class GUILogin extends Application {
 
         // check that passwords match
         if (password.equals(mapSaveData.get("pw"))) {
-
+            currentUser = username;
             return true;
         } else {
+            mapSaveData.clear();
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.initStyle(StageStyle.UTILITY);
             alert.setTitle(null);
