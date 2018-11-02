@@ -1,5 +1,6 @@
-package shs.cos;
+package shs.cos.utils;
 
+import shs.cos.Room;
 import shs.cos.gui.GUIGame;
 
 import java.awt.event.ActionEvent;
@@ -26,7 +27,7 @@ public class Command implements ActionListener {
             else if (action.equals("exit")) s = commandExit();
             else if (action.equals("list")) s = commandList();
             else s = "You don't know how to do that.";
-            gui.logAdd(s);
+            gui.addLogText(s);
         } else {
             // textual commands
             String[] command = gui.getInput().split(" ");
@@ -51,11 +52,11 @@ public class Command implements ActionListener {
             else if (verb.equals("list")) { s = (commandList()); }
             else { s = ("You're unable to do that."); }
 
-            gui.logAdd(s);
+            gui.addLogText(s);
         }
     }
 
-    TreeMap<String, Room> mapRooms = Room.getMap();
+    private TreeMap<String, Room> mapRooms = Room.getMap();
 
     private String commandLook() {
         return "LOOK: \n" + mapRooms.get(Room.getCurrentRoomKey()).getDesc();

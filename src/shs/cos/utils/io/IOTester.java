@@ -1,6 +1,6 @@
-package shs.cos.utils;
+package shs.cos.utils.io;
 
-import shs.cos.utils.IO;
+import shs.cos.utils.io.IO;
 
 import java.io.File;
 import java.util.TreeMap;

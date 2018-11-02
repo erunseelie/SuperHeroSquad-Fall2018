@@ -1,6 +1,6 @@
 package shs.cos;
 
-import shs.cos.utils.IO;
+import shs.cos.utils.io.IO;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -24,10 +24,10 @@ public class Room
 	private static Scanner input;
 	
 	//treeMap used to store rooms based on their key
-	static TreeMap<String, Room> roomList = new TreeMap<>();
+	private static TreeMap<String, Room> roomList = new TreeMap<>();
 
 	//var used to track players current position
-	static String currentPlayerLocationKey = "B0R0";
+	private static String currentPlayerLocationKey = "B0R0";
 
 	//default constructor
 	public Room()

@@ -1,13 +1,11 @@
 package shs.cos.gui;
 
-import shs.cos.Command;
+import shs.cos.utils.Command;
+import shs.cos.utils.GameManager;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.TreeMap;
 
 public class GUIGame {
 	private JFrame windowGame;
@@ -99,7 +97,7 @@ public class GUIGame {
         makeGameWindow();
 	}
 
-	protected void makeGameWindow() {
+	private void makeGameWindow() {
 		//game log
 		pnlGameLog = new JPanel();
 		pnlGameLog.setBounds(20, 20, 670, 250);
@@ -166,6 +164,10 @@ public class GUIGame {
         buttons.add(btnExitToStreet);
 
 		btnSaveGame = new JButton("Save Game");
+		btnSaveGame.addActionListener(a -> {
+		    GameManager.updateFile();
+		    addLogText("SAVE:\nSaved the game.");
+        });
 		pnlChoiceButton1.add(btnSaveGame);
         buttons.add(btnSaveGame);
 
@@ -355,7 +357,7 @@ public class GUIGame {
      * Adds a line of text to the game log and appends 2 newlines.
      * @param s The text to append.
      */
-	public void logAdd(String s) {
+	public void addLogText(String s) {
 		gameLog.append(s + "\n\n");
 	}
 
