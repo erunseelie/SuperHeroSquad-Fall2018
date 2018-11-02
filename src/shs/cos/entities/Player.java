@@ -8,25 +8,26 @@ public class Player extends Character
 
 	public Player()
 	{
+		//check for balance
 		enHealth = 100;
 	}
 
-	private String getCurrentWeapon()
+	public String getCurrentWeapon()
 	{
 		return currentWeaponID;
 	}
 
-	private String getCurrentArmor()
+	public String getCurrentArmor()
 	{
 		return currentArmorID;
 	}
 
-	private void setCurrentWeapon(String newWeapon)
+	public void setCurrentWeapon(String newWeapon)
 	{
 		currentWeaponID = newWeapon;
 	}
 
-	private void setCurrentArmor(String newArmor)
+	public void setCurrentArmor(String newArmor)
 	{
 		currentArmorID = newArmor;
 	}
