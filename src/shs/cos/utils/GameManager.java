@@ -1,6 +1,7 @@
 package shs.cos.utils;
 
 import shs.cos.Room;
+import shs.cos.entities.Player;
 import shs.cos.gui.GUILogin;
 import shs.cos.utils.io.IO;
 
@@ -10,21 +11,25 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.TreeMap;
 
+import static shs.cos.Main.player;
+
 public class GameManager {
 
     private static TreeMap<String, String> mapSaveData;
     public static String currentUser;
     private static String currentPassword;
 
-    private static String saveDirectory = "res/saves/", saveExtension = ".txt";
-    public static String idPassword = "pw";
-    public static String idRoom = "rm";
+    private final static String saveDirectory = "res/saves/", saveExtension = ".txt";
+    public final static String idPassword = "pw";
+    public final static String idRoom = "rm";
+    public final static String idHealth = "hp";
 
     /**
      * Add to this method as necessary in order to save data to the current file.
      */
     public static void updateFile() {
         updatePlayerData(idRoom, Room.getCurrentRoomKey());
+        updatePlayerData(idHealth, String.valueOf(player.getHealth()));
         saveToFile(mapSaveData, currentUser);
     }
 
@@ -32,8 +37,11 @@ public class GameManager {
      * Add to this method as necessary in order to load data into memory when
      * a file has been successfully read.
      */
-    public static void loadPlayerData() {
+    private static void loadPlayerData() {
+        player = new Player();
         Room.setCurrentRoom(mapSaveData.get(idRoom));
+        if (mapSaveData.get(idHealth) != null)
+            player.applyDamage(Player.healthDefault - Integer.parseInt(mapSaveData.get(idHealth)));
     }
 
     /**
@@ -59,6 +67,7 @@ public class GameManager {
     public static void clearPlayerData() {
         mapSaveData = new TreeMap<>();
         updatePlayerData(idPassword, currentPassword);
+        player = new Player();
 //        updateFile();
     }
 

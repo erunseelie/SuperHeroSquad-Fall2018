@@ -1,5 +1,6 @@
 package shs.cos;
 
+import shs.cos.entities.Player;
 import shs.cos.gui.GUIGame;
 import shs.cos.gui.GUILogin;
 
@@ -18,6 +19,8 @@ public class Main {
 //        loadFinalize();
 
     }
+
+    public static Player player;
 
     /**
      * GUILogin calls this method after successfully logging in.

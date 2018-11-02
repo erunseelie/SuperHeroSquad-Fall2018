@@ -6,10 +6,12 @@ public class Player extends Character
 	private String currentWeaponID;
 	private String currentArmorID;
 
+	public static int healthDefault = 100;
+
 	public Player()
 	{
 		//check for balance
-		enHealth = 100;
+		enHealth = healthDefault;
 	}
 
 	public String getCurrentWeapon()

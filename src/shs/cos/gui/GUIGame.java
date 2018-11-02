@@ -1,5 +1,6 @@
 package shs.cos.gui;
 
+import shs.cos.Main;
 import shs.cos.utils.Command;
 import shs.cos.utils.GameManager;
 
@@ -233,7 +234,7 @@ public class GUIGame {
 		lblHealth.setForeground(Color.white);
 		pnlPlayer.add(lblHealth);
 
-		lblHealthNumber = new JLabel("");
+		lblHealthNumber = new JLabel("" + Main.player.getHealth());
 		lblHealthNumber.setFont(fontNormal);
 		lblHealthNumber.setForeground(Color.white);
 		pnlPlayer.add(lblHealthNumber);
