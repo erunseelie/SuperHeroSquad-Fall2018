@@ -332,6 +332,7 @@ public class GUIGame {
             b.setBackground(Color.BLACK);
             b.setForeground(Color.WHITE);
             b.setFont(fontNormal);
+//			b.setPreferredSize(new Dimension(120, 30));
         }
 
         inputUser.addActionListener(new Command(this,null));

@@ -16,8 +16,8 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        guiLogin = new GUILogin();
-        guiLogin.main(null);
+//        GUIGame guiGame = new GUIGame();
+        guiLogin = new GUILogin(); guiLogin.main(null);
 
     }
 
@@ -45,5 +45,8 @@ public class Main {
     private static void saveUserData() {
         guiLogin.mapSaveData = mapGameSaveData;
         guiLogin.saveToFile(guiLogin.currentUser);
+    }
+    public static void updateUserData(TreeMap<String, String> map) {
+        mapGameSaveData = map;
     }
 }
