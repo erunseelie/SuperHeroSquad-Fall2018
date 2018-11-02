@@ -21,6 +21,22 @@ public class GameManager {
     public static String idRoom = "rm";
 
     /**
+     * Add to this method as necessary in order to save data to the current file.
+     */
+    public static void updateFile() {
+        updatePlayerData(idRoom, Room.getCurrentRoomKey());
+        saveToFile(mapSaveData, currentUser);
+    }
+
+    /**
+     * Add to this method as necessary in order to load data into memory when
+     * a file has been successfully read.
+     */
+    public static void loadPlayerData() {
+        Room.setCurrentRoom(mapSaveData.get(idRoom));
+    }
+
+    /**
      * Copies all the data from a TreeMap to the designated file.
      * @param username the name of the file to write to.
      */
@@ -34,11 +50,6 @@ public class GameManager {
         }
         map.forEach((k, v) -> fileOut.println(k + IO.separator + v));
         fileOut.close();
-    }
-
-    public static void updateFile() {
-        updatePlayerData(idRoom, Room.getCurrentRoomKey());
-        saveToFile(mapSaveData, currentUser);
     }
 
     public static void updatePlayerData(String k, String v) {
@@ -89,6 +100,7 @@ public class GameManager {
         if (password.equals(mapSaveData.get(idPassword))) {
             currentUser = username;
             currentPassword = password;
+            loadPlayerData();
             return true;
         } else {
             mapSaveData.clear();

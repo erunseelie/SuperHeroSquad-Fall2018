@@ -159,9 +159,9 @@ public class GUILogin extends Application {
         grid.setPadding(new Insets(10, 10, 10, 10));
 
         TextField username = new TextField();
-        username.setPromptText("Username");
+        username.setPromptText("Required");
         PasswordField password = new PasswordField();
-        password.setPromptText("Password");
+        password.setPromptText("Required");
 
         grid.add(new Label("Username:"), 0, 0);
         grid.add(username, 1, 0);
