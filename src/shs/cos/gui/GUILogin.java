@@ -67,6 +67,7 @@ public class GUILogin extends Application {
 
         // set the scene
         Scene scene = new Scene(grid, 500, 400);
+        scene.getStylesheets().addAll(this.getClass().getResource("GUILogin.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.setTitle("Lucky Strike Valley");
         primaryStage.show();

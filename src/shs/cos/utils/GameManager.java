@@ -50,6 +50,7 @@ public class GameManager {
      */
     private static void saveToFile(TreeMap<String, String> map, String username) {
         File f = new File(saveDirectory + username + saveExtension);
+        f.mkdirs();
         PrintWriter fileOut;
         try {
             fileOut = new PrintWriter(f);
