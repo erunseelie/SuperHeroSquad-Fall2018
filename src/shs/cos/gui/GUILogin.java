@@ -51,10 +51,13 @@ public class GUILogin extends Application {
         hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
 
         Button btnLogin = new Button("Log In");
+        btnLogin.setDefaultButton(true);
+        btnLogin.setStyle("-fx-background-color: #2DAF3A; -fx-text-fill: white;");
         btnLogin.setOnAction(eventLogIn);
         hbBtn.getChildren().add(btnLogin);
 
         Button btnNewUser = new Button("New User");
+        btnNewUser.setStyle("-fx-background-color: #365caf; -fx-text-fill: white;");
         btnNewUser.setOnAction(eventCreateNewUser);
         hbBtn.getChildren().add(btnNewUser);
 
@@ -106,12 +109,15 @@ public class GUILogin extends Application {
             clearLoginFields();
 
             Button btnResume = new Button("Resume Game");
+            btnResume.setDefaultButton(true);
+            btnResume.setStyle("-fx-background-color: #2DAF3A; -fx-text-fill: white;");
             btnResume.setOnAction(arg0 -> {
                 dialogue.close();
                 launchGameWindow();
             });
 
             Button btnNewGame = new Button("New Game");
+            btnNewGame.setStyle("-fx-background-color: #365caf; -fx-text-fill: white;");
             btnNewGame.setOnAction(arg0 -> {
                 dialogue.close();
                 GameManager.clearPlayerData();
@@ -119,6 +125,7 @@ public class GUILogin extends Application {
             });
 
             Button btnLogOut = new Button("Log Out");
+            btnLogOut.setStyle("-fx-background-color: #af110e; -fx-text-fill: white;");
             btnLogOut.setOnAction(arg0 -> dialogue.close());
 
             HBox hbBtn = new HBox(10);
@@ -169,6 +176,8 @@ public class GUILogin extends Application {
         grid.add(password, 1, 1);
 
         Button btnCreate = new Button("Create");
+        btnCreate.setStyle("-fx-background-color: #2DAF3A; -fx-text-fill: white;");
+        btnCreate.setDefaultButton(true);
         btnCreate.setOnAction(a -> {
             String user = username.getText();
             String pw = password.getText();
@@ -191,6 +200,7 @@ public class GUILogin extends Application {
 //                btnCreate.setDisable(newValue.trim().isEmpty()));
 
         Button btnCancel = new Button("Cancel");
+        btnCancel.setStyle("-fx-background-color: #af110e; -fx-text-fill: white;");
         btnCancel.setOnAction(a -> dialog.close());
 
         Platform.runLater(username::requestFocus);
