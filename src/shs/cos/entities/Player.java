@@ -8,10 +8,12 @@ public class Player extends Character
 	//no starting armor, defaults to 0
 	private String currentArmorID;
 
+	public static int healthDefault = 100;
+
 	public Player()
 	{
 		//check for balance
-		enHealth = 100;
+		enHealth = healthDefault;
 	}
 
 	public String getCurrentWeapon()

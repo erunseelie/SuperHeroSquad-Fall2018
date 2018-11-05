@@ -1,5 +1,6 @@
 package shs.cos;
 
+import shs.cos.entities.Player;
 import shs.cos.gui.GUIGame;
 import shs.cos.gui.GUILogin;
 
@@ -12,10 +13,14 @@ public class Main {
      */
     public static void main(String[] args) {
 
-//        GUIGame guiGame = new GUIGame();
+        // Transpose the comments on the following method calls to launch the game
+        // without requiring a login. Useful for development purposes.
         GUILogin.main(null);
+//        loadFinalize();
 
     }
+
+    public static Player player;
 
     /**
      * GUILogin calls this method after successfully logging in.
@@ -28,6 +33,7 @@ public class Main {
 
     /**
      * Handles loading all our custom game data from the text files into memory.
+     * Add to this method as necessary as more data is created.
      */
     private static void loadGameData() {
         String dataDirectory = "res/data/";
