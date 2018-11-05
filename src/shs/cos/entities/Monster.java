@@ -83,6 +83,11 @@ public class Monster extends Character
 						newMonster.monDefense = Integer.parseInt(nextLine[1]);
 					}
 					
+					if (nextLine[0].equals("monAtkValue"))
+					{
+						newMonster.monAtkValue = Integer.parseInt(nextLine[1]);
+					}
+					
 					if (nextLine[0].equals("atkName"))
 					{
 						newMonster.atkName = nextLine[1];

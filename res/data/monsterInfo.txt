@@ -1,0 +1,97 @@
+ID::En_Harley
+monName::Alamo Harley
+monDesc::Oh man, she looks quick with those daggers. I wonder if there's some-thing I could use to make her lose her balance and slow her down.
+monHealth::75
+monDefense::15
+monAtkValue::10
+atkName::Dagger Flurry
+weakness::oil canister //-----------------idnotname-------------------
+location::Gold Rooom //-----------------idnotname-------------------
+monSpeed::2
+endMon::
+
+ID::En_Gordo
+monName::Gordo
+monDesc::This guy is big. What a unit he is, maybe I should keep my distance.
+monHealth::100
+monDefense::50
+monAtkValue::40
+atkName::Body Slam
+weakness::Guns = extra turn //-----------------idnotname-------------------
+location::Gold Room //-----------------idnotname-------------------
+monSpeed::0
+endMon::
+
+ID::En_Larry
+monName::Larry The Lasso
+monDesc::This guy got a las-so? Maybe I should keep my distance.
+monHealth::50
+monDefense::25
+monAtkValue::20
+atkName::Lasso Choke
+weakness::Guns do double damage //-----------------idnotname-------------------
+location::Barn //-----------------idnotname-------------------
+monSpeed::2
+itemDrop::IT_Note6
+endMon::
+
+ID::En_RedEye
+monName::Red Eye
+monDesc::This looks to be something wrong with this one. He looks like a maniac, possibly drugged out. He's all over the place, maybe if I had something to slow him down.
+monHealth::50
+monDefense::10
+monAtkValue::35
+atkName::Maul
+weakness::Morphine //-----------------idnotname-------------------
+location:://-----------------idnotname-------------------
+monSpeed::1
+itemDrop::IT_Note4
+endMon::
+ID::En_Greasy
+monName::Greasy
+monDesc::This must be the chef of the group. He looks serious about trying to bludgeon me with kitchen utensils. He's got pots and pans tied all around his body. Guns probably won't work against this guy.
+monHealth::50
+monDefense::70
+monAtkValue::40
+atkName::Spatula Slap
+weakness::Gun equipped = 0 dmg //-----------------idnotname-------------------
+location::Saloon //-----------------idnotname-------------------
+monSpeed::1
+itemDrop::IT_Note1
+endMon::
+ID::En_Quick-Draw
+monName::Quick-Draw
+monDesc::This must be the sharpshoot. I'm going to have to be careful with this guy. Maybe I could use something to disturb his vision.
+monHealth::80
+monDefense::10
+monAtkValue::40
+atkName::Revolver Shot
+weakness::flash bomb = extra turn //-----------------idnotname-------------------
+location::Minshaft //-----------------idnotname-------------------
+monSpeed::1
+itemDrop::IT_Note2
+endMon::
+ID::En_Smokey
+monName::Smokey
+monDesc::This guy got a bunch of gunpowder and fire-starting device. He looks dangerous. I won-der what would happen if I had something to put out the fire.
+monHealth::50
+monDefense::10
+monAtkValue::40
+atkName::Flare
+weakness::bucket of water = extra turn //-----------------idnotname-------------------
+location::General Store //-----------------idnotname-------------------
+monSpeed::1
+itemDrop::IT_Note3
+endMon::
+ID::En_Birddog
+monName::Bird Dog
+monDesc::There something that doesn't seem right about this guy, he seems to be drunk. He can bare-ly stand up. This should be an easy fight.
+monHealth::7
+monDefense::7
+monAtkValue::5
+atkName::Hay-Maker
+weakness::gun = double damage //-----------------idnotname-------------------
+location::Inn //-----------------idnotname-------------------
+monSpeed::1
+itemDrop::IT_Note5
+endMon::
