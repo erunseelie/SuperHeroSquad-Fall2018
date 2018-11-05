@@ -8,8 +8,15 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -66,10 +73,15 @@ public class GUILogin extends Application {
         Platform.runLater(fldUsername::requestFocus);
 
         // set the scene
-        Scene scene = new Scene(grid, 500, 400);
-        scene.getStylesheets().addAll(this.getClass().getResource("GUILogin.css").toExternalForm());
+        int w = 500, h = 400;
+        Scene scene = new Scene(grid, w, h);
+        primaryStage.setMaxWidth(w);  primaryStage.setMinWidth(w);
+        primaryStage.setMaxHeight(h); primaryStage.setMinHeight(h);
         primaryStage.setScene(scene);
+
         primaryStage.setTitle("Lucky Strike Valley");
+        scene.getStylesheets().addAll(GUILogin.class.getResource("GUILogin.css").toExternalForm());
+
         primaryStage.show();
     }
 

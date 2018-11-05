@@ -1,7 +1,5 @@
-#pane{
-    -fx-background-image: url(GUILogin.png);
-    -fx-background-repeat: stretch;
-    -fx-background-size: 500 400;
-    -fx-background-position: center center;
-    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0);
+.root{
+    /* https://www.pexels.com/photo/brown-mountain-under-blue-and-white-sky-974091/ */
+    -fx-background-image: url("/shs/cos/gui/GUILogin.jpg");
+
 }
