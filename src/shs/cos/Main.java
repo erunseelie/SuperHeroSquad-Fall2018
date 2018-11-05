@@ -1,5 +1,6 @@
 package shs.cos;
 
+import shs.cos.entities.Monster;
 import shs.cos.entities.Player;
 import shs.cos.gui.GUIGame;
 import shs.cos.gui.GUILogin;
@@ -40,5 +41,6 @@ public class Main {
         String dataExtension = ".txt";
 
         Room.readRoomFile(new File(dataDirectory + "Rooms" + dataExtension));
+        Monster.readMonsterFile(new File(dataDirectory + "Monsters" + dataExtension));
     }
 }
