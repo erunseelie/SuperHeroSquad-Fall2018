@@ -6,13 +6,23 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -33,16 +43,39 @@ public class GUILogin extends Application {
         grid.setVgap(10);
         grid.setPadding(new Insets(10, 10, 10, 10));
 
+        // set the scene
+        int w = 500, h = 400;
+        Scene scene = new Scene(new Group());
+
+        // https://www.pexels.com/photo/brown-mountain-under-blue-and-white-sky-974091/
+        grid.setStyle("-fx-background-image: url('/shs/cos/gui/GUILogin.jpg');");
+        grid.setPrefSize(w, h);
+
+        Rectangle r = new Rectangle(w, 200);
+        r.setLayoutX(0);
+        r.setLayoutY(100);
+        r.getStyleClass().add("rect");
+        r.setStyle("-fx-fill: rgba(0,0,0,0.61);");
+
+        ((Group)scene.getRoot()).getChildren().add(grid);
+//        ((Group)scene.getRoot()).getChildren().add(r);
+
         // create labels and fields
-        Text sceneTitle = new Text("Existing User:");
-        sceneTitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+        Text sceneTitle = new Text("Existing User");
+        sceneTitle.setFont(Font.font("Tahoma", FontWeight.BOLD, 20));
+//        sceneTitle.setStyle("-fx-text-fill: white;");
+//        sceneTitle.setTextAlignment(TextAlignment.RIGHT);
         grid.add(sceneTitle, 0, 0, 2, 1);
 
-        grid.add(new Label("Username:"), 0, 1);
+        Label lblUsername = new Label("Username:");
+        lblUsername.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
+        grid.add(lblUsername, 0, 1);
         fldUsername = new TextField();
         grid.add(fldUsername, 1, 1);
 
-        grid.add(new Label("Password:"), 0, 2);
+        Label lblPassword = new Label("Password:");
+        lblPassword.setStyle("-fx-text-fill: white; -fx-font-weight: bold");
+        grid.add(lblPassword, 0, 2);
         fldPassword = new PasswordField();
         grid.add(fldPassword, 1, 2);
 
@@ -65,11 +98,12 @@ public class GUILogin extends Application {
 
         Platform.runLater(fldUsername::requestFocus);
 
-        // set the scene
-        Scene scene = new Scene(grid, 500, 400);
-        scene.getStylesheets().addAll(this.getClass().getResource("GUILogin.css").toExternalForm());
-        primaryStage.setScene(scene);
+        // finalize showing
         primaryStage.setTitle("Lucky Strike Valley");
+        primaryStage.setMaxWidth(w);  primaryStage.setMinWidth(w);
+        primaryStage.setMaxHeight(h); primaryStage.setMinHeight(h);
+        primaryStage.setScene(scene);
+
         primaryStage.show();
     }
 
