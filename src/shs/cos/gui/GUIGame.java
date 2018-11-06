@@ -72,7 +72,7 @@ public class GUIGame {
         btnHint,
         btnSubmit,
 
-        btnPickUp,
+        btnPickUpItem,
         btnUseOrEquip,
         btnDropItem;
 
@@ -152,9 +152,9 @@ public class GUIGame {
 		pnlChoiceButton1.add(btnLook);
 		buttons.add(btnLook);
 
-		btnPickUp = new JButton("Pick Up");
-		pnlChoiceButton1.add(btnPickUp);
-        buttons.add(btnPickUp);
+		btnPickUpItem = new JButton("Pick Up Item");
+		pnlChoiceButton1.add(btnPickUpItem);
+        buttons.add(btnPickUpItem);
 
 		btnChangeRoom = new JButton("List Rooms");
 		pnlChoiceButton1.add(btnChangeRoom);
@@ -342,6 +342,7 @@ public class GUIGame {
         btnExitToStreet.addActionListener(new Command(this,"exit"));
         btnChangeRoom.addActionListener(new Command(this,"list"));
         btnLook.addActionListener(new Command(this,"look"));
+        btnPickUpItem.addActionListener(new Command(this, "pick up"));
 	}
 
     /**

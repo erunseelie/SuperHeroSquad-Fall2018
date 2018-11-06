@@ -1,0 +1,263 @@
+ID::It_Shotgun
+itemName::Shotgun
+itemType::Weapon
+itemDesc::A shotgun. Not very accurate, but decent reload speed and wide shot spread.
+itemStat::35 DMG
+itemLocation::B1R4
+endItem::
+
+ID::It_Revolver
+itemName::Revolver
+itemType::Weapon
+itemDesc::A six-chamber revolver. Decent Accuracy but, slow reload speed and narrow shot spread.
+itemStat::10 DMG
+itemLocation::B0R0
+endItem::
+
+ID::It_Rifle
+itemName::Rifle
+itemType::Weapon
+itemDesc::A long-range rifle. Exceptional Accuracy but, slow reload speed and narrow shot spread. Poor in close-range engagements.
+itemStat::20 DMG
+itemLocation::B5R4
+endItem::
+
+ID::It_Knife
+itemName::Knife
+itemType::Weapon
+itemDesc::A knife. Can be thrown or used in close-quarters combat.
+itemStat::7 DMG
+itemLocation::B4R2
+endItem::
+
+ID::It_Machete
+itemName::Machete
+itemType::Weapon
+itemDesc::A machete. This can be used in close-quarters combat. It probably will do more damage than a regular knife.
+itemStat::9 DMG
+itemLocation::B4R6
+endItem::
+
+ID::It_Axe
+itemName::Axe
+itemType::Weapon
+itemDesc::A cutting axe. This could be used as a weapon.
+itemStat::8 DMG
+itemLocation::B4R10
+endItem::
+
+ID::It_Dynamite
+itemName::Dynamite
+itemType::Weapon
+itemDesc::This dynamite can be used to blow stuff up.
+itemStat::75 DMG
+itemLocation::B1R3
+endItem::
+
+ID::It_FirstAid
+itemName::First Aid Kit
+itemType::Consumable
+itemDesc::A first-aid kit. This can be used to heal wounds significantly.
+itemStat::Restore Full Health
+itemLocation::B4R8
+endItem::
+
+ID::It_Pan
+itemName::Pan
+itemType::Defense
+itemDesc::A metal cooking pan. This can be used in close-quarters combat or tied to the body for protection.
+itemStat::10 DF
+itemLocation::B2R2
+endItem::
+
+ID::It_Pickaxe
+itemName::Pickaxe
+itemType::Weapon
+itemDesc::This pickaxe can be used in close-quarters combat.
+itemStat::13 DMG
+itemLocation::B4R11
+endItem::
+
+ID::It_WoodBoard
+itemName::WoodenBoard
+itemType::Defense
+itemDesc::This can be tied to the body for protection.
+itemStat::5 DF
+itemLocation::B7R1
+endItem::
+
+ID::It_Shovel
+itemName::Shovel
+itemType::Weapon
+itemDesc::A rusty, old shovel. This can be used as a weapon.
+itemStat::11 DMG
+itemLocation::B2R3
+endItem::
+
+ID::It_Moonshine
+itemName::Moonshine
+itemType::Consumable
+itemDesc::This moonshine looks like it might be a little rough going down but, it could be used to reduce pain.
+itemStat::+10 health to player
+itemLocation::B2R1
+endItem::
+
+ID::It_WaterBucket
+itemName::Bucket of Water
+itemType::Combat
+itemDesc::This bucket of water can be used to make things wet.
+itemStat::Skip Enemies Next Turn in the Combat
+itemLocation::B5R3
+endItem::
+
+ID::It_BlueBook
+itemName::Blue book
+itemType::Puzzle
+itemDesc::It's a small blue book that reads: “From the mightiest oak, underneath, fauna crept. I now reside in a building supporting your steps.”
+itemLocation::B3R2
+endItem::
+
+ID::It_BrownBook
+itemName::Brown Book
+itemType::Puzzle
+itemDesc::A small, brown, leather book that reads: “Where the dead sleep and the living are blind, the treasure you seek, lies behind."
+itemLocation::B5R2
+endItem::
+
+ID::It_OilCan
+itemName::Oil Canister
+itemType::Combat
+itemDesc::It's a red aluminum canister with oil inside.
+itemStat::Skip Enemies Next Turn in the Combat
+itemLocation::B4R4
+endItem::
+
+ID::It_FlashBomb
+itemName::Flash Bomb
+itemType::Combat
+itemDesc::A flash bombs. This would probably mess up someone's vision bad if they were ex-posed to this.
+itemStat::Skip Enemies Next Turn in the Combat
+itemLocation::B2R4
+endItem::
+
+ID::It_Morphine
+itemName::Morphine Syringe
+itemType::Consumable
+itemDesc::This morphine isn't legal, no wonder they were hiding it. This could probably be used to ease pain. This would slow you down real nicely.
+itemStat::Increases the Max Health to 100
+itemLocation::B7R2
+endItem::
+
+ID::It_Bandages
+itemName::Bandages
+itemType::Consumable
+itemDesc::Sown bandages. This can be used to heal wounds.
+itemStat::+30 Health to player
+itemLocation::B2R5
+endItem::
+
+ID::It_Hammer
+itemName::Hammer
+itemType::Weapon
+itemDesc::This hammer has some nice weight to it. This could do some damage.
+itemStat::5 DMG
+itemLocation::B4R1
+endItem::
+
+ID::It_BuffaloArmor
+itemName::Leather Armor(Buffalo)
+itemType::Defense
+itemDesc::This buffalo-skin armor feels very strong. This would offer a good amount of protection.
+itemStat::+30 DF to player
+itemLocation::B5R1
+endItem::
+
+ID::It_ElkArmor
+itemName::Leather Armor(Elk)
+itemType::Defense
+itemDesc::This elk-skin armor is hefty. protection from this is probably pretty good.
+itemStat::+25 DF to player
+itemLocation::B4R7
+endItem::
+
+ID::It_DeerArmor
+itemName::Leather Armor(Deer) 
+itemType::Defense
+itemDesc::This deer-skin armor isn't much, but it could add some protection.
+itemStat::+15 DF to player
+itemLocation::B3R1
+endItem::
+
+ID::It_SteelArmor
+itemName::Leather Armor(Steel Plated) 
+itemType::Defense
+itemDesc::This armor has a steel plat inside. Taking damage would be an afterthought while wearing this.
+itemStat::+40 DF to play-er
+itemLocation::B3R3
+endItem::
+
+ID::It_BluePills
+itemName::Blue Pills
+itemType::Consumable
+itemDesc::These blue pills have a weird smell but, it kind of makes you feel a little amped up.
+itemStat::+ 10 DMG to player 
+itemLocation::B4R3
+endItem::
+
+ID::It_RedPills
+itemName::Red Pills
+itemType::Consumable
+itemDesc::These red pills have a weird smell but, it kind of makes you feel very steadfast.
+itemStat::+ 10 DF to player 
+itemLocation::B4R5
+endItem::
+
+ID::It_PitchFork
+itemName::Pitch Fork 
+itemType::Weapon
+itemDesc::This hay covered pitchfork would hurt if you were to get stabbed by it.
+itemStat::9 DMG
+itemLocation::B5R2
+endItem::
+
+ID::It_Note1
+itemName::Lever Note 1
+itemType::Puzzle
+itemDesc::It's a note that reads: “1 – Blue – Right”.
+itemLocation::
+endItem::
+
+ID::It_Note2
+itemName::Lever Note 2
+itemType::Puzzle
+itemDesc::It's a note that reads: “2 – Red – Down”.
+itemLocation::
+endItem::
+
+ID::It_Note3
+itemName::Lever Note 3
+itemType::Puzzle
+itemDesc::It's a note that reads: “3 – Green – Right”.
+itemLocation::
+endItem::
+
+ID::It_Note4
+itemName::Lever Note 4
+itemType::Puzzle
+itemDesc::It's a note that reads: “4 – Yellow – Left”.
+itemLocation::
+endItem::
+
+ID::It_Note5
+itemName::Lever Note 5
+itemType::Puzzle
+itemDesc::It's a note that reads: “5 – Purple – Up”.
+itemLocation::
+endItem::
+
+ID::It_Note6
+itemName::Lever Note 6
+itemType::Puzzle
+itemDesc::It's a note that reads: “6 – Orange – Up”.
+itemLocation::
+endItem::

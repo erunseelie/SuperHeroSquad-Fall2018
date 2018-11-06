@@ -124,7 +124,7 @@ public class Room
 		return connections;
 	}
 
-	public ArrayList<String> getItems()
+	public ArrayList<String> getItem()
 	{
 		return itemIDList;
 	}

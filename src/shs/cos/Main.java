@@ -4,6 +4,7 @@ import shs.cos.entities.Monster;
 import shs.cos.entities.Player;
 import shs.cos.gui.GUIGame;
 import shs.cos.gui.GUILogin;
+import shs.cos.items.Item;
 
 import java.io.File;
 
@@ -42,5 +43,6 @@ public class Main {
 
         Room.readRoomFile(new File(dataDirectory + "Rooms" + dataExtension));
         Monster.readMonsterFile(new File(dataDirectory + "Monsters" + dataExtension));
+        Item.readItemFile(new File(dataDirectory + "Items" + dataExtension));
     }
 }

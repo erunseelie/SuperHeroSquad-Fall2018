@@ -50,19 +50,20 @@ public class Command implements ActionListener {
                 s = commandGo(location);
             }
             else if (verb.equals("list")) { s = (commandList()); }
+          
             else { s = ("You're unable to do that."); }
 
             gui.addLogText(s);
         }
     }
 
-    private TreeMap<String, Room> mapRooms = Room.getMap();
+	private TreeMap<String, Room> mapRooms = Room.getMap();
 
     private String commandLook() {
         return "LOOK: \n" + mapRooms.get(Room.getCurrentRoomKey()).getDesc();
     }
-
-    private String commandExit() {
+    
+	private String commandExit() {
         Room.setCurrentRoom("B0R0");
         return "EXIT: \n" + "You have returned to the street.";
     }
@@ -95,6 +96,7 @@ public class Command implements ActionListener {
 
     private ArrayList<String> getRoomConnections() {
         return mapRooms.get(Room.getCurrentRoomKey()).getConnections();
-    }
+    } 
 
+    
 }
