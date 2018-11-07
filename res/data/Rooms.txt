@@ -18,7 +18,7 @@ door::B1R4
 endRoom::
 ID::B1R2
 roomName::Jail Cell
-desc::There seems to be some sort of hole under one of the beds. The locks on the jail cell seem to have been protecting some sort of tun-nel. This must lead to the gold mine you've heard so much about.
+desc::There seems to be some sort of hole under one of the beds. The locks on the jail cell seem to have been protecting some sort of tunnel. This must lead to the gold mine you've heard so much about.
 door::B1R1
 door::B6R1
 endRoom::
