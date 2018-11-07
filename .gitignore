@@ -1,6 +1,6 @@
 .idea/
-.idea/dictionaries
-.idea/inspectionProfiles
+.idea/dictionaries/
+.idea/inspectionProfiles/
 bin/
 lib/
 out/

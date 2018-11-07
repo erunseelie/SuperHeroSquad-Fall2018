@@ -23,10 +23,20 @@ public class Command implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         String s;
         if (action != null) {
-            if (action.equals("look")) s = commandLook();
-            else if (action.equals("exit")) s = commandExit();
-            else if (action.equals("list")) s = commandList();
-            else s = "You don't know how to do that.";
+            switch (action) {
+                case "look":
+                    s = commandLook();
+                    break;
+                case "exit":
+                    s = commandExit();
+                    break;
+                case "list":
+                    s = commandList();
+                    break;
+                default:
+                    s = "You don't know how to do that.";
+                    break;
+            }
             gui.addLogText(s);
         } else {
             // textual commands
@@ -40,18 +50,27 @@ public class Command implements ActionListener {
 //            if (size > 2) amount = command[2];
 
             // TODO: add full command parsing
-            if (verb.equals("look")) { s = (commandLook()); }
-            else if (verb.equals("exit")) { s = (commandExit()); }
-            else if (verb.equals("go")) {
-                String location = object;
-                for (int i = 2; i < size; i++) {
-                    location += " " + command[i];
-                }
-                s = commandGo(location);
+            switch (verb) {
+                case "look":
+                    s = (commandLook());
+                    break;
+                case "exit":
+                    s = (commandExit());
+                    break;
+                case "go":
+                    StringBuilder location = object == null ? null : new StringBuilder(object);
+                    for (int i = 2; i < size; i++) {
+                        location = (location == null ? new StringBuilder("null") : location).append(" ").append(command[i]);
+                    }
+                    s = commandGo(location == null ? null : location.toString());
+                    break;
+                case "list":
+                    s = (commandList());
+                    break;
+                default:
+                    s = ("You're unable to do that.");
+                    break;
             }
-            else if (verb.equals("list")) { s = (commandList()); }
-          
-            else { s = ("You're unable to do that."); }
 
             gui.addLogText(s);
         }
@@ -70,12 +89,15 @@ public class Command implements ActionListener {
 
     private String commandList() {
         ArrayList<String> rooms = getRoomConnections();
-        String s = "";
+        StringBuilder s = new StringBuilder();
 
         for (String r : rooms) {
             Room room = mapRooms.get(r);
-            s += room.getRoomName() + ", ";
+            s.append(room.getRoomName()).append(", ");
         }
+
+        s.deleteCharAt(s.length()-1);
+        s.deleteCharAt(s.length()-1);
 
         return "LIST: \n" + s;
     }

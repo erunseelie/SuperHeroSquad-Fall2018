@@ -23,6 +23,8 @@ public class Main {
 
     }
 
+    static GUIGame gui;
+
     public static Player player;
 
     /**
@@ -31,7 +33,8 @@ public class Main {
     public static void loadFinalize() {
         loadGameData();
 
-        new GUIGame();
+        gui = new GUIGame();
+//        gui.addObser
     }
 
     /**
@@ -44,6 +47,6 @@ public class Main {
 
         Room.readRoomFile(new File(dataDirectory + "Rooms" + dataExtension));
         Monster.readMonsterFile(new File(dataDirectory + "Monsters" + dataExtension));
-        Item.readItemFile(new File(dataDirectory + "Items" + dataExtension));
+//        Item.readItemFile(new File(dataDirectory + "Items" + dataExtension));
     }
 }

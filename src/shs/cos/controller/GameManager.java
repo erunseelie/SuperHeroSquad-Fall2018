@@ -22,8 +22,8 @@ public class GameManager extends Observable {
 
     private final static String saveDirectory = "res/saves/", saveExtension = ".txt";
     public final static String idPassword = "pw";
-    public final static String idRoom = "rm";
-    public final static String idHealth = "hp";
+    private final static String idRoom = "rm";
+    private final static String idHealth = "hp";
 
     /**
      * Add to this method as necessary in order to save data to the current file.

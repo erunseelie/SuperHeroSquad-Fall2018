@@ -1,8 +1,8 @@
 package shs.cos.view.gui;
 
+import shs.cos.controller.GameManager;
 import shs.cos.controller.Main;
 import shs.cos.model.Command;
-import shs.cos.controller.GameManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -337,6 +337,9 @@ public class GUIGame implements Observer {
         }
 
         inputUser.addActionListener(new Command(this,null));
+//        inputUser.addActionListener(a -> {
+//            command = getInput().split(" ");
+//        });
         btnExitToStreet.addActionListener(new Command(this,"exit"));
         btnChangeRoom.addActionListener(new Command(this,"list"));
         btnLook.addActionListener(new Command(this,"look"));
@@ -346,6 +349,8 @@ public class GUIGame implements Observer {
             addLogText("SAVE:\nSaved the game.");
         });
 	}
+
+	private String[] command;
 
     /**
      * Returns the entered input in lowercase form and clears the field.
@@ -368,5 +373,4 @@ public class GUIGame implements Observer {
     public void update(Observable obs, Object obj) {
 
     }
-
 }
