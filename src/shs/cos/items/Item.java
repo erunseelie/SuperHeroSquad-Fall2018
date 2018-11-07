@@ -5,14 +5,16 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.TreeMap;
 
+import shs.cos.utils.io.IO;
+
 public class Item {
-	private static String separator = "::";
+	private static String separator = IO.separator;
 	private String itemName;
 	private String itemType;
 	private String itemDesc;
-	private String itemLocation;
+	private String location;
 	
-	private int itemStat;
+	private String itemStat;
 	
 	private static Scanner input;
 	
@@ -22,9 +24,9 @@ public class Item {
 		
 	}
 	
-	public static void readItemFile(File i) {
+	public static void readItemFile(File f) {
 		try {
-			input = new Scanner(i);
+			input = new Scanner(f);
 		}catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -40,24 +42,24 @@ public class Item {
 					
 					nextLine = input.nextLine().split(separator);
 					
-					if (nextLine[0].equals("itemName"));{
+					if (nextLine[0].equals("itemName")){
 						newItem.itemName = nextLine[1];
 					}
 					
-					if (nextLine[0].equals("itemType"));{
+					if (nextLine[0].equals("itemType")){
 						newItem.itemType = nextLine[1];
 					}
 					
-					if (nextLine[0].equals("itemDesc"));{
+					if (nextLine[0].equals("itemDesc")){
 						newItem.itemDesc = nextLine[1];
 					}
-					
-					if (nextLine[0].equals("itemStat"));{
-						newItem.itemStat = Integer.parseInt(nextLine[1]);
+			
+					if (nextLine[0].equals("location")){
+						newItem.location = nextLine[1];
 					}
 					
-					if (nextLine[0].equals("itemLocation"));{
-						newItem.itemLocation = nextLine[1];
+					if (nextLine[0].equals("itemStat")){
+						newItem.itemStat = nextLine[1];
 					}
 					
 					if (nextLine[0].equals("endItem") || nextLine[0].equals("ID")){
@@ -86,12 +88,12 @@ public class Item {
 		return itemDesc;
 	}
 	
-	public int getItemStat() {
+	public String getItemStat() {
 		return itemStat;
 	}
-	
-	public String getItemLocation() {
-		return itemLocation;
+		
+	public String getLocation() {
+		return location;
 	}
 
 }
