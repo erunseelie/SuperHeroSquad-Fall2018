@@ -26,13 +26,11 @@ ID::B1R3
 roomName::Sheriff's Office
 desc::The office seems to have been roughed up a little bit. There is a safe in the corner, and a first aid kit on a shelf. There is a plaque the wall with the writing "Lucky Strike Valley Est. 1832"
 door::B1R1
-item::Bandages
 endRoom::
 ID::B1R4
 roomName::Armory
 desc::There are a couple of gun cabinets, all emptied out. The bandits seem to have left a shotgun behind the door.
 door::B1R1
-item::Shotgun
 endRoom::
 ID::B2R1
 roomName::Saloon
