@@ -47,6 +47,6 @@ public class Main {
 
         Room.readRoomFile(new File(dataDirectory + "Rooms" + dataExtension));
         Monster.readMonsterFile(new File(dataDirectory + "Monsters" + dataExtension));
-//        Item.readItemFile(new File(dataDirectory + "Items" + dataExtension));
+        Item.readItemFile(new File(dataDirectory + "Items" + dataExtension));
     }
 }

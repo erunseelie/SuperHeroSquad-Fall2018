@@ -5,10 +5,9 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.TreeMap;
 
-import shs.cos.utils.io.IO;
 
 public class Item {
-	private static String separator = IO.separator;
+	private static String separator = "::";
 	private String itemName;
 	private String itemType;
 	private String itemDesc;
