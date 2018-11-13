@@ -1,8 +1,7 @@
-ID::It_Shotgun
+﻿ID::It_Shotgun
 itemName::Shotgun
 itemType::Weapon
 itemDesc::A shotgun. Not very accurate, but decent reload speed and wide shot spread.
-itemStat::35
 itemLocation::B1R4
 endItem::
 ID::It_Revolver
@@ -96,13 +95,13 @@ endItem::
 ID::It_BlueBook
 itemName::Blue book
 itemType::Puzzle
-itemDesc::It's a small blue book that reads: “From the mightiest oak, underneath, fauna crept. I now reside in a building supporting your steps.”
+itemDesc::It's a small blue book that reads: â€œFrom the mightiest oak, underneath, fauna crept. I now reside in a building supporting your steps.â€�
 itemLocation::B3R2
 endItem::
 ID::It_BrownBook
 itemName::Brown Book
 itemType::Puzzle
-itemDesc::A small, brown, leather book that reads: “Where the dead sleep and the living are blind, the treasure you seek, lies behind."
+itemDesc::A small, brown, leather book that reads: â€œWhere the dead sleep and the living are blind, the treasure you seek, lies behind."
 itemLocation::B5R2
 endItem::
 ID::It_OilCan
@@ -175,43 +174,43 @@ endItem::
 ID::It_PitchFork
 itemName::Pitch Fork 
 itemType::Weapon
-itemDesc::This hay covered pitchfork would hurt if you were to get stabbed by it.
+itemDesc::This hay covered a pitch fork would this would hurt if you were to get stabbed by it.
 itemStat::9
 itemLocation::B5R2
 endItem::
 ID::It_Note1
 itemName::Lever Note 1
 itemType::Puzzle
-itemDesc::It's a note that reads: “1 – Blue – Right”.
+itemDesc::It's a note that reads: 1 Blue Right
 itemLocation::
 endItem::
 ID::It_Note2
 itemName::Lever Note 2
 itemType::Puzzle
-itemDesc::It's a note that reads: “2 – Red – Down”.
+itemDesc::It's a note that reads: 2 Red Down
 itemLocation::
 endItem::
 ID::It_Note3
 itemName::Lever Note 3
 itemType::Puzzle
-itemDesc::It's a note that reads: “3 – Green – Right”.
+itemDesc::It's a note that reads: 3 Green Right
 itemLocation::
 endItem::
 ID::It_Note4
 itemName::Lever Note 4
 itemType::Puzzle
-itemDesc::It's a note that reads: “4 – Yellow – Left”.
+itemDesc::It's a note that reads: 4 Yellow Left
 itemLocation::
 endItem::
 ID::It_Note5
 itemName::Lever Note 5
 itemType::Puzzle
-itemDesc::It's a note that reads: “5 – Purple – Up”.
+itemDesc::It's a note that reads: 5 Purple Up
 itemLocation::
 endItem::
 ID::It_Note6
 itemName::Lever Note 6
 itemType::Puzzle
-itemDesc::It's a note that reads: “6 – Orange – Up”.
+itemDesc::It's a note that reads: 6 Orange Up
 itemLocation::
 endItem::

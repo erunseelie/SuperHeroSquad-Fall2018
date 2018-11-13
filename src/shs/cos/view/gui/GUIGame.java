@@ -74,7 +74,7 @@ public class GUIGame implements Observer {
         btnHint,
         btnSubmit,
 
-        btnPickUpItem,
+        btnLookItem,
         btnUseOrEquip,
         btnDropItem;
 
@@ -154,9 +154,9 @@ public class GUIGame implements Observer {
 		pnlChoiceButton1.add(btnLook);
 		buttons.add(btnLook);
 
-		btnPickUpItem = new JButton("Pick Up Item");
-		pnlChoiceButton1.add(btnPickUpItem);
-        buttons.add(btnPickUpItem);
+		btnLookItem = new JButton("Look for Items");
+		pnlChoiceButton1.add(btnLookItem);
+        buttons.add(btnLookItem);
 
 		btnChangeRoom = new JButton("List Rooms");
 		pnlChoiceButton1.add(btnChangeRoom);
@@ -343,7 +343,7 @@ public class GUIGame implements Observer {
         btnExitToStreet.addActionListener(new Command(this,"exit"));
         btnChangeRoom.addActionListener(new Command(this,"list"));
         btnLook.addActionListener(new Command(this,"look"));
-        btnPickUpItem.addActionListener(new Command(this, "pick up"));
+        btnLookItem.addActionListener(new Command(this, "look item"));
         btnSaveGame.addActionListener(a -> {
             GameManager.updateFile();
             addLogText("SAVE:\nSaved the game.");
@@ -366,6 +366,10 @@ public class GUIGame implements Observer {
      * Adds a line of text to the game log and appends 2 newlines.
      * @param s The text to append.
      */
+	///
+	///
+	///
+	///
 	public void addLogText(String s) {
 		gameLog.append(s + "\n\n");
 	}

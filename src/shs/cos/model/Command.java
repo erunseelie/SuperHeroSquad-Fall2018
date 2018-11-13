@@ -1,6 +1,7 @@
 package shs.cos.model;
 
 import shs.cos.model.Room;
+import shs.cos.model.items.Item;
 import shs.cos.view.gui.GUIGame;
 
 import java.awt.event.ActionEvent;
@@ -27,6 +28,9 @@ public class Command implements ActionListener {
                 case "look":
                     s = commandLook();
                     break;
+                case "look item":
+                	s = commandLookItem();
+                	break;
                 case "exit":
                     s = commandExit();
                     break;
@@ -54,6 +58,9 @@ public class Command implements ActionListener {
                 case "look":
                     s = (commandLook());
                     break;
+                case "look item":
+                	s = (commandLookItem());
+                	break;
                 case "exit":
                     s = (commandExit());
                     break;
@@ -77,10 +84,28 @@ public class Command implements ActionListener {
     }
 
 	private TreeMap<String, Room> mapRooms = Room.getMap();
+	
+	//
+	private TreeMap<String, Item> listItems = Item.getItemIDList();
 
-    private String commandLook() {
+    private String commandLook() { 	    	
         return "LOOK: \n" + mapRooms.get(Room.getCurrentRoomKey()).getDesc();
     }
+    
+    @SuppressWarnings("unlikely-arg-type")
+	private String commandLookItem() {
+    	// get the room the player is in
+    	Room.getCurrentRoomKey();
+       	// see if there is an item in the room: go over listItms to find the room id of each item
+    	if (mapRooms.containsValue(listItems)) {
+    		mapRooms.get(listItems);
+    		return "ITEMS: \n" + listItems.get(Item.getLocation()).getItemDesc();
+    	}else {
+    	// if so return its description
+    	return null;
+    //+ listItms.get(Item.getItemLocation()).getItemDesc();
+     }
+   }
     
 	private String commandExit() {
         Room.setCurrentRoom("B0R0");
@@ -120,5 +145,8 @@ public class Command implements ActionListener {
         return mapRooms.get(Room.getCurrentRoomKey()).getConnections();
     } 
 
-    
+//   private ArrayList<String> getLocation(){
+//	   return listItems.get(Item.getLocation());
+//   }
+
 }

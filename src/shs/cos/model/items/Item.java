@@ -2,6 +2,7 @@ package shs.cos.model.items;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.TreeMap;
 
@@ -11,9 +12,9 @@ public class Item {
 	private String itemName;
 	private String itemType;
 	private String itemDesc;
-	private String location;
+	private static ArrayList<String> location = new ArrayList<>();
 	
-	private String itemStat;
+	private int itemStat;
 	
 	private static Scanner input;
 	
@@ -52,13 +53,9 @@ public class Item {
 					if (nextLine[0].equals("itemDesc")){
 						newItem.itemDesc = nextLine[1];
 					}
-			
-					if (nextLine[0].equals("location")){
-						newItem.location = nextLine[1];
-					}
 					
 					if (nextLine[0].equals("itemStat")){
-						newItem.itemStat = nextLine[1];
+						newItem.itemStat = Integer.parseInt(nextLine[1]);
 					}
 					
 					if (nextLine[0].equals("endItem") || nextLine[0].equals("ID")){
@@ -71,7 +68,7 @@ public class Item {
 		}
 	}
 	
-	public TreeMap<String, Item> getItemIDList(){
+	public static TreeMap<String, Item> getItemIDList(){
 		return itemIDList;
 	}
 	
@@ -87,12 +84,16 @@ public class Item {
 		return itemDesc;
 	}
 	
-	public String getItemStat() {
+	public int getItemStat() {
 		return itemStat;
 	}
-		
-	public String getLocation() {
+	
+	public static ArrayList<String> getLocation(){
 		return location;
 	}
+//		
+//	public static String getItemLocation() {
+//		return Room.getCurrentRoomKey();
+//	}
 
 }

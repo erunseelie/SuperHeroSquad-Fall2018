@@ -9,8 +9,8 @@ door::B5R1
 door::B7R1
 endRoom::
 ID::B1R1
-roomName::Police Department
-desc::The jail seems to be clean, aside from its emptiness. The door to the sheriff's office is cracked open, the armory is unlocked, but the jail cell seems to be locked up tight with some sort of intricate puzzle. There is a machete that's been stabbed into a bench.
+roomName::Jail
+desc::The jail seems to be clean, aside from its emptiness. The door to the sheriff's office is cracked open, the jail's armory is unlocked, but the jail cell seems to be locked up tight with some sort of intricate puzzle. There is a machete that's been stabbed into a bench.
 door::B0R0
 door::B1R2
 door::B1R3
@@ -28,7 +28,7 @@ desc::The office seems to have been roughed up a little bit. There is a safe in 
 door::B1R1
 endRoom::
 ID::B1R4
-roomName::Armory
+roomName::Jail Armory
 desc::There are a couple of gun cabinets, all emptied out. The bandits seem to have left a shotgun behind the door.
 door::B1R1
 endRoom::
