@@ -7,6 +7,7 @@ import shs.cos.view.gui.GUIGame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.TreeMap;
 
 // Gets the command entered.
@@ -29,8 +30,8 @@ public class Command implements ActionListener {
                     s = commandLook();
                     break;
                 case "look item":
-                	s = commandLookItem();
-                	break;
+                    s = commandLookItem();
+                    break;
                 case "exit":
                     s = commandExit();
                     break;
@@ -59,8 +60,8 @@ public class Command implements ActionListener {
                     s = (commandLook());
                     break;
                 case "look item":
-                	s = (commandLookItem());
-                	break;
+                    s = (commandLookItem());
+                    break;
                 case "exit":
                     s = (commandExit());
                     break;
@@ -83,31 +84,27 @@ public class Command implements ActionListener {
         }
     }
 
-	private TreeMap<String, Room> mapRooms = Room.getMap();
-	
-	//
-	private TreeMap<String, Item> listItems = Item.getItemIDList();
+    private TreeMap<String, Room> mapRooms = Room.getMap();
 
-    private String commandLook() { 	    	
+    private String commandLook() {
         return "LOOK: \n" + mapRooms.get(Room.getCurrentRoomKey()).getDesc();
     }
-    
-    @SuppressWarnings("unlikely-arg-type")
-	private String commandLookItem() {
-    	// get the room the player is in
-    	Room.getCurrentRoomKey();
-       	// see if there is an item in the room: go over listItms to find the room id of each item
-    	if (mapRooms.containsValue(listItems)) {
-    		mapRooms.get(listItems);
-    		return "ITEMS: \n" + listItems.get(Item.getLocation()).getItemDesc();
-    	}else {
-    	// if so return its description
-    	return null;
-    //+ listItms.get(Item.getItemLocation()).getItemDesc();
-     }
-   }
-    
-	private String commandExit() {
+
+    private String commandLookItem() {
+        String s = "";
+        for (Map.Entry<String, Item> entryItem : Item.getItemIDList().entrySet()) {
+            Item i = entryItem.getValue();
+            if (i.getLocation() != null) {
+                if (i.getLocation().equals(Room.getCurrentRoomKey())) {
+                    s = "ITEMS: \n" + i.getItemName() + ": " + i.getItemDesc();
+                    break;
+                } else s = "There doesn't seem to be anything around.";
+            }
+        }
+        return s;
+    }
+
+    private String commandExit() {
         Room.setCurrentRoom("B0R0");
         return "EXIT: \n" + "You have returned to the street.";
     }
@@ -121,8 +118,8 @@ public class Command implements ActionListener {
             s.append(room.getRoomName()).append(", ");
         }
 
-        s.deleteCharAt(s.length()-1);
-        s.deleteCharAt(s.length()-1);
+        s.deleteCharAt(s.length() - 1);
+        s.deleteCharAt(s.length() - 1);
 
         return "LIST: \n" + s;
     }
@@ -143,7 +140,7 @@ public class Command implements ActionListener {
 
     private ArrayList<String> getRoomConnections() {
         return mapRooms.get(Room.getCurrentRoomKey()).getConnections();
-    } 
+    }
 
 //   private ArrayList<String> getLocation(){
 //	   return listItems.get(Item.getLocation());

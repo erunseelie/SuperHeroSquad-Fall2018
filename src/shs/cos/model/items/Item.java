@@ -12,8 +12,9 @@ public class Item {
 	private String itemName;
 	private String itemType;
 	private String itemDesc;
-	private static ArrayList<String> location = new ArrayList<>();
-	
+//	private static ArrayList<String> location = new ArrayList<>();
+	private String itemLocation;
+
 	private int itemStat;
 	
 	private static Scanner input;
@@ -57,6 +58,11 @@ public class Item {
 					if (nextLine[0].equals("itemStat")){
 						newItem.itemStat = Integer.parseInt(nextLine[1]);
 					}
+
+                    if (nextLine[0].equals("itemLocation")){
+                        if (nextLine.length > 1) newItem.itemLocation = nextLine[1];
+                        else newItem.itemLocation = "invalid";
+                    }
 					
 					if (nextLine[0].equals("endItem") || nextLine[0].equals("ID")){
 						itemIDList.put(newItemID, newItem);
@@ -88,10 +94,13 @@ public class Item {
 		return itemStat;
 	}
 	
-	public static ArrayList<String> getLocation(){
-		return location;
+//	public ArrayList<String> getLocation(){
+//		return location;
+//	}
+	public String getLocation(){
+		return itemLocation;
 	}
-//		
+//
 //	public static String getItemLocation() {
 //		return Room.getCurrentRoomKey();
 //	}

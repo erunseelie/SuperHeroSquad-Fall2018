@@ -16,10 +16,7 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        // Transpose the comments on the following method calls to launch the game
-        // without requiring a login. Useful for development purposes.
         GUILogin.main(null);
-//        loadFinalize();
 
     }
 
