@@ -1,6 +1,5 @@
 package shs.cos.model;
 
-import shs.cos.model.Room;
 import shs.cos.model.items.Item;
 import shs.cos.view.gui.GUIGame;
 
@@ -59,7 +58,7 @@ public class Command implements ActionListener {
                 case "look":
                     s = (commandLook());
                     break;
-                case "look item":
+                case "items":
                     s = (commandLookItem());
                     break;
                 case "exit":
