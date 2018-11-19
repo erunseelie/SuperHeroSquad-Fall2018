@@ -31,7 +31,6 @@ public class Main {
         loadGameData();
 
         gui = new GUIGame();
-//        gui.addObser
     }
 
     /**

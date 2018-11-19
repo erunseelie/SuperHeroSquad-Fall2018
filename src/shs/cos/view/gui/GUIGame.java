@@ -366,10 +366,6 @@ public class GUIGame implements Observer {
      * Adds a line of text to the game log and appends 2 newlines.
      * @param s The text to append.
      */
-	///
-	///
-	///
-	///
 	public void addLogText(String s) {
 		gameLog.append(s + "\n\n");
 	}

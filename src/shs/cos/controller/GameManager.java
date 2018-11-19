@@ -2,12 +2,14 @@ package shs.cos.controller;
 
 import shs.cos.model.Room;
 import shs.cos.model.entities.Player;
+import shs.cos.model.items.Item;
 import shs.cos.view.gui.GUILogin;
 import shs.cos.model.utils.io.IO;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Scanner;
 import java.util.TreeMap;
@@ -26,7 +28,7 @@ public class GameManager extends Observable {
     private final static String idHealth = "hp";
 
     /**
-     * Add to this method as necessary in order to save data to the current file.
+     * TODO: Add to this method as necessary in order to save data to the current file.
      */
     public static void updateFile() {
         updatePlayerData(idRoom, Room.getCurrentRoomKey());
@@ -35,14 +37,18 @@ public class GameManager extends Observable {
     }
 
     /**
-     * Add to this method as necessary in order to load data into memory when
-     * a file has been successfully read.
+     * TODO: Add to this method as necessary in order to load data into memory when a file has been successfully read.
      */
     private static void loadPlayerData() {
         player = new Player();
         Room.setCurrentRoom(mapSaveData.get(idRoom));
         if (mapSaveData.get(idHealth) != null)
             player.applyDamage(Player.healthDefault - Integer.parseInt(mapSaveData.get(idHealth)));
+        for (String s : tempItems) {
+            // TODO: fix this
+//            Item i = new Item(Item.getItemIDList().get(s), );
+//            Item.addPlayerItem(i);
+        }
     }
 
     /**
@@ -72,7 +78,6 @@ public class GameManager extends Observable {
         mapSaveData = new TreeMap<>();
         updatePlayerData(idPassword, currentPassword);
         player = new Player();
-//        updateFile();
     }
 
     public static void createNewSaveFile(String username) {
@@ -103,11 +108,16 @@ public class GameManager extends Observable {
         // attempt successful, read it in
         while (fileIn.hasNextLine()) {
             String[] nextLine = fileIn.nextLine().split(IO.separator);
-            mapSaveData.put(nextLine[0], nextLine[1]);
+            String key = nextLine[0];
+            String val = nextLine[1];
+            // TODO: add any "special" read functionality here
+            if (key.equals("item")) {
+                // create a new Item with only a ID as reference.
+                // we'll create the actual items later if logging in is successful
+                tempItems.add(val);
+            } else mapSaveData.put(key, val);
         }
         fileIn.close();
-
-
 
         // check that passwords match
         if (password.equals(mapSaveData.get(idPassword))) {
@@ -121,4 +131,6 @@ public class GameManager extends Observable {
             return false;
         }
     }
+
+    public static ArrayList<String> tempItems = new ArrayList<>();
 }

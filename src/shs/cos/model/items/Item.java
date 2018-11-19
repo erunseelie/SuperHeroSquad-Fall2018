@@ -12,7 +12,6 @@ public class Item {
 	private String itemName;
 	private String itemType;
 	private String itemDesc;
-//	private static ArrayList<String> location = new ArrayList<>();
 	private String itemLocation;
 
 	private int itemStat;
@@ -24,8 +23,8 @@ public class Item {
 	public Item() {
 		
 	}
-	
-	public static void readItemFile(File f) {
+
+    public static void readItemFile(File f) {
 		try {
 			input = new Scanner(f);
 		}catch (FileNotFoundException e) {
@@ -37,7 +36,7 @@ public class Item {
 			
 			OUTER_LOOP: if(nextLine[0].equals("ID")) {
 				Item newItem = new Item();
-				String newItemID = nextLine[1];
+				newItem.itemID = nextLine[1];
 				
 				while(input.hasNextLine()) {
 					
@@ -65,7 +64,7 @@ public class Item {
                     }
 					
 					if (nextLine[0].equals("endItem") || nextLine[0].equals("ID")){
-						itemIDList.put(newItemID, newItem);
+						itemIDList.put(newItem.itemID, newItem);
 						
 						break OUTER_LOOP;
 					}
@@ -93,16 +92,35 @@ public class Item {
 	public int getItemStat() {
 		return itemStat;
 	}
-	
-//	public ArrayList<String> getLocation(){
-//		return location;
-//	}
+
 	public String getLocation(){
 		return itemLocation;
 	}
-//
-//	public static String getItemLocation() {
-//		return Room.getCurrentRoomKey();
-//	}
 
+	private static ArrayList<Item> playerItems = new ArrayList<>();
+
+    public static ArrayList<Item> getPlayerItems() {
+        return playerItems;
+    }
+
+    public static ArrayList<Item> addPlayerItem(Item i) {
+        playerItems.add(i);
+        return playerItems;
+    }
+
+    public static ArrayList<Item> removePlayerItem(Item i) {
+        playerItems.remove(i);
+        return playerItems;
+    }
+
+    private String itemID;
+
+    public Item(String itemID, String itemName, String itemType, String itemDesc, String itemLocation, int itemStat) {
+    	this.itemID = itemID;
+        this.itemName = itemName;
+        this.itemType = itemType;
+        this.itemDesc = itemDesc;
+        this.itemLocation = itemLocation;
+        this.itemStat = itemStat;
+    }
 }

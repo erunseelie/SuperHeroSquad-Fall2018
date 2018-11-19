@@ -95,12 +95,12 @@ public class Command implements ActionListener {
             Item i = entryItem.getValue();
             if (i.getLocation() != null) {
                 if (i.getLocation().equals(Room.getCurrentRoomKey())) {
-                    s = "ITEMS: \n" + i.getItemName() + ": " + i.getItemDesc();
+                    s = i.getItemName() + ": " + i.getItemDesc();
                     break;
                 } else s = "There doesn't seem to be anything around.";
             }
         }
-        return s;
+        return "ITEMS: \n" + s;
     }
 
     private String commandExit() {
