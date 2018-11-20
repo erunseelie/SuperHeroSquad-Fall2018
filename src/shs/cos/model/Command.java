@@ -1,6 +1,7 @@
 package shs.cos.model;
 
 import shs.cos.model.items.Item;
+import shs.cos.model.puzzles.Puzzle;
 import shs.cos.view.gui.GUIGame;
 
 import java.awt.event.ActionEvent;
@@ -28,7 +29,7 @@ public class Command implements ActionListener {
                 case "look":
                     s = commandLook();
                     break;
-                case "look item":
+                case "items":
                     s = commandLookItem();
                     break;
                 case "exit":
@@ -36,6 +37,9 @@ public class Command implements ActionListener {
                     break;
                 case "list":
                     s = commandList();
+                    break;
+                case "puzzleAccess":
+                    s = commandEnterPuzzle();
                     break;
                 default:
                     s = "You don't know how to do that.";
@@ -75,7 +79,7 @@ public class Command implements ActionListener {
                     s = (commandList());
                     break;
                 default:
-                    s = ("You're unable to do that.");
+                    s = "You're unable to do that.";
                     break;
             }
 
@@ -130,7 +134,7 @@ public class Command implements ActionListener {
         for (String r : rooms) {
             if (mapRooms.get(r).getRoomName().toLowerCase().equals(location)) {
                 Room.setCurrentRoom(r);
-                s = ("You mosey through the dust. You have arrived at your destination...");
+                s = "You mosey through the dust. You have arrived at your destination...";
                 break;
             } else s = "That place doesn't seem to be nearby.";
         }
@@ -141,8 +145,20 @@ public class Command implements ActionListener {
         return mapRooms.get(Room.getCurrentRoomKey()).getConnections();
     }
 
-//   private ArrayList<String> getLocation(){
-//	   return listItems.get(Item.getLocation());
-//   }
+    private String commandEnterPuzzle() {
+        ArrayList<Puzzle> listP = Puzzle.getPuzzles();
+        String curRoom = Room.getCurrentRoomKey();
+        String s = "";
+        for (Puzzle p : listP) {
+            if (p.getLocation().equals(curRoom)) {
+                Puzzle.setAttempting(true);
+                Puzzle.setCurrentPuzzle(p);
+                s = "Something catches your eye...";
+                break;
+            } else s = "There's nothing puzzling around here.";
+        }
+
+        return "PUZZLE: \n" + s;
+    }
 
 }

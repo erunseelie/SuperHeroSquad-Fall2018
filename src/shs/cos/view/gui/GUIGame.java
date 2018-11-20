@@ -70,9 +70,9 @@ public class GUIGame implements Observer {
         btnAttack,
         btnFlee,
 
-        btnPuzzle,
-        btnHint,
-        btnSubmit,
+        btnPuzzleAccess,
+        btnPuzzleHint,
+        btnPuzzleAttempt,
 
         btnLookItem,
         btnUseOrEquip,
@@ -184,13 +184,13 @@ public class GUIGame implements Observer {
 		pnlChoiceButton2.add(btnFlee);
         buttons.add(btnFlee);
 
-		btnPuzzle = new JButton("Puzzle");
-		pnlChoiceButton2.add(btnPuzzle);
-        buttons.add(btnPuzzle);
+		btnPuzzleAccess = new JButton("View Puzzle");
+		pnlChoiceButton2.add(btnPuzzleAccess);
+        buttons.add(btnPuzzleAccess);
 
-		btnHint = new JButton("Hint");
-		pnlChoiceButton2.add(btnHint);
-        buttons.add(btnHint);
+		btnPuzzleHint = new JButton("Hint");
+		pnlChoiceButton2.add(btnPuzzleHint);
+        buttons.add(btnPuzzleHint);
 
 		//puzzle text box
 		pnlPuzzle = new JPanel();
@@ -211,9 +211,9 @@ public class GUIGame implements Observer {
 		inputPuzzle.setFont(fontNormal);
 		pnlPuzzle.add(inputPuzzle);
 
-		btnSubmit = new JButton("Attempt");
-		pnlPuzzle.add(btnSubmit);
-        buttons.add(btnSubmit);
+		btnPuzzleAttempt = new JButton("Attempt");
+		pnlPuzzle.add(btnPuzzleAttempt);
+        buttons.add(btnPuzzleAttempt);
 
 		//player
 		pnlPlayer = new JPanel();
@@ -343,7 +343,8 @@ public class GUIGame implements Observer {
         btnExitToStreet.addActionListener(new Command(this,"exit"));
         btnChangeRoom.addActionListener(new Command(this,"list"));
         btnLook.addActionListener(new Command(this,"look"));
-        btnLookItem.addActionListener(new Command(this, "look item"));
+        btnLookItem.addActionListener(new Command(this, "items"));
+        btnPuzzleAccess.addActionListener(new Command(this, "puzzleAccess"));
         btnSaveGame.addActionListener(a -> {
             GameManager.updateFile();
             addLogText("SAVE:\nSaved the game.");

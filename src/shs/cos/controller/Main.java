@@ -4,6 +4,7 @@ import shs.cos.model.items.Item;
 import shs.cos.model.Room;
 import shs.cos.model.entities.Monster;
 import shs.cos.model.entities.Player;
+import shs.cos.model.puzzles.Puzzle;
 import shs.cos.view.gui.GUIGame;
 import shs.cos.view.gui.GUILogin;
 
@@ -38,11 +39,18 @@ public class Main {
      * Add to this method as necessary as more data is created.
      */
     private static void loadGameData() {
+
+        Room.readRoomFile(new File(selectFile("Rooms")));
+        Monster.readMonsterFile(new File(selectFile("Monsters")));
+        Item.readItemFile(new File(selectFile("Items")));
+        if (!(Puzzle.loadPuzzleFile(new File(selectFile("Puzzles")))))
+            GUILogin.displayWarning("The data file was not found: PUZZLES.TXT");
+
+    }
+
+    private static String selectFile(String s) {
         String dataDirectory = "res/data/";
         String dataExtension = ".txt";
-
-        Room.readRoomFile(new File(dataDirectory + "Rooms" + dataExtension));
-        Monster.readMonsterFile(new File(dataDirectory + "Monsters" + dataExtension));
-        Item.readItemFile(new File(dataDirectory + "Items" + dataExtension));
+        return dataDirectory + s + dataExtension;
     }
 }
