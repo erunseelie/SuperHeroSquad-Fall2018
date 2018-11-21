@@ -1,7 +1,6 @@
 .idea/
-.idea/dictionaries/
-.idea/inspectionProfiles/
 bin/
 lib/
 out/
+res/saves/
 SemesterProject.iml
