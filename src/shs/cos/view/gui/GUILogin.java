@@ -88,11 +88,8 @@ public class GUILogin extends Application {
         primaryStage.setMinHeight(h);
         primaryStage.setScene(scene);
 
-        currentStage = primaryStage;
         primaryStage.show();
     }
-
-    private Stage currentStage;
 
     private String
             styleButtonBlue = "-fx-background-color: #365caf; -fx-text-fill: white;",
@@ -101,7 +98,6 @@ public class GUILogin extends Application {
 
     private void launchGameWindow() {
         Main.loadFinalize();
-//        currentStage.close();
     }
 
     private TextField fldUsername, fldPassword;
@@ -206,7 +202,7 @@ public class GUILogin extends Application {
             if (user.isEmpty() || pw.isEmpty()) return;
 
             GameManager.clearPlayerData();
-            GameManager.createNewSaveFile(user);
+            GameManager.createNewSaveFile(user, pw);
             GameManager.updatePlayerData(GameManager.idPassword, pw);
             GameManager.updateFile();
 

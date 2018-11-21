@@ -19,7 +19,9 @@ public class GameManager {
     public static String currentUser;
     private static String currentPassword;
 
-    private final static String saveDirectory = "res/saves/", saveExtension = ".txt";
+    private final static String
+            saveDirectory = System.getProperty("user.home") + "/Games/CitadelOfStorms/saves/",
+            saveExtension = ".txt";
     public final static String idPassword = "pw";
     private final static String idRoom = "rm";
     private final static String idHealth = "hp";
@@ -86,8 +88,9 @@ public class GameManager {
         player = new Player();
     }
 
-    public static void createNewSaveFile(String username) {
+    public static void createNewSaveFile(String username, String password) {
         currentUser = username;
+        currentPassword = password;
         updateFile();
     }
 

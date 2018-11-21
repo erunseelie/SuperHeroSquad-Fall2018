@@ -43,7 +43,7 @@ end::
 ID::SEQUENCE_1
 location::B1R2
 desc::You see six levers before you, each with a different-colored handle.
-clue::You think you should look around the room for a hint.
+clue::You don't think you'll be able to brute-force this one. Maybe somebody in the town will know what the solution is.
 answer::unimplemented
 boon::unimplemented
 end::

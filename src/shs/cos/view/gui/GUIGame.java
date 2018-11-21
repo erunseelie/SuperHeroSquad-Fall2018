@@ -9,8 +9,10 @@ import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
-public class GUIGame {
+public class GUIGame extends Observable implements Observer {
     private JFrame windowGame;
 
     private Container container;
@@ -369,7 +371,7 @@ public class GUIGame {
         });
     }
 
-    public ArrayList<JComponent> groupPuzzle = new ArrayList<>();
+    private ArrayList<JComponent> groupPuzzle = new ArrayList<>();
 
     /**
      * Returns the entered input in lowercase form and clears the field.
@@ -400,5 +402,10 @@ public class GUIGame {
 
     public String getPuzzleInput() {
         return inputPuzzle.getText();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
 }
