@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 import static shs.cos.model.utils.io.IO.separator;
 
-public class Puzzle {
+public abstract class Puzzle {
     private String
             ID,
             location,
@@ -40,7 +40,11 @@ public class Puzzle {
             String[] nextLine = fileIn.nextLine().split(separator);
             OUTER_LOOP:
             if (nextLine[0].equals("ID")) {
-                Puzzle newPuzzle = new Puzzle();
+                Puzzle newPuzzle = null;
+                if (nextLine[1].contains("SAFE")) newPuzzle = new PuzzleSafe();
+                else if (nextLine[1].contains("BOOK")) newPuzzle = new PuzzleRiddle();
+                else if (nextLine[1].contains("SEQUENCE")) newPuzzle = new PuzzleSequence();
+                else return false;
                 newPuzzle.ID = nextLine[1];
 
                 while (fileIn.hasNextLine()) {
@@ -133,14 +137,6 @@ public class Puzzle {
         this.counter = counter;
     }
 
-    public boolean attempt(String input) {
-        if (input.equals(this.getAnswer())) {
-            this.setCounter(0);
-            return true;
-        } else {
-            this.setCounter(this.getCounter() + 1);
-            return false;
-        }
-    }
+    public abstract boolean attempt(String input);
 
 }

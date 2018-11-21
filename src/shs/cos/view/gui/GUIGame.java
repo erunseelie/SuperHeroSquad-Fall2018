@@ -1,6 +1,5 @@
 package shs.cos.view.gui;
 
-import com.sun.crypto.provider.JceKeyStore;
 import shs.cos.controller.GameManager;
 import shs.cos.controller.Main;
 import shs.cos.controller.Command;
@@ -353,13 +352,17 @@ public class GUIGame {
 
         inputUser.addActionListener(new Command(this, null));
         groupAll.add(inputUser);
-        btnExitToStreet.addActionListener(new Command(this, "exit"));
+
         btnChangeRoom.addActionListener(new Command(this, "list"));
+        btnExitToStreet.addActionListener(new Command(this, "exit"));
         btnLook.addActionListener(new Command(this, "look"));
         btnLookItem.addActionListener(new Command(this, "items"));
+
         btnPuzzleAccess.addActionListener(new Command(this, "puzzleAccess"));
         btnPuzzleExit.addActionListener(new Command(this, "puzzleLeave"));
         btnPuzzleAttempt.addActionListener(new Command(this, "puzzleAttempt"));
+        btnPuzzleHint.addActionListener(new Command(this, "puzzleHint"));
+
         btnSaveGame.addActionListener(a -> {
             GameManager.updateFile();
             addLogText("SAVE:\nSaved the game.");

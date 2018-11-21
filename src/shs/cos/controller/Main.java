@@ -44,8 +44,7 @@ public class Main {
         Monster.readMonsterFile(new File(selectFile("Monsters")));
         Item.readItemFile(new File(selectFile("Items")));
         if (!(Puzzle.loadPuzzleFile(new File(selectFile("Puzzles")))))
-            GUILogin.displayWarning("The data file was not found: PUZZLES.TXT");
-
+            GUILogin.displayWarning("The following data file was not found, or contains invalid data: PUZZLES.TXT");
     }
 
     private static String selectFile(String s) {

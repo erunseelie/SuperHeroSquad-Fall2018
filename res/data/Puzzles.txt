@@ -21,7 +21,6 @@ boon::It_Rifle
 end::
 ID::SAFE_4
 location::B3R3
-type::safe
 desc::It seems to be a metal safe, covered in cobwebs and locked by a four-number combination tumbler.
 clue::There's a piece of paper attached to the safe. It reads: 'stars and stripes'.
 answer::3104
@@ -29,7 +28,6 @@ boon::It_SteelArmor
 end::
 ID::BOOK_1
 location::invalid
-type::book
 desc::You flip through the pages of the book, coming across a strange riddle.\n'From the mightiest oak, underneath, fauna crept. I now reside in a building supporting your steps.'
 clue::invalid
 answer::invalid
@@ -37,7 +35,6 @@ boon::It_FirstAid
 end::
 ID::BOOK_2
 location::invalid
-type::book
 desc::You flip through the pages of the book, coming across a strange riddle.\n'Where the dead sleep and the living are blind, the treasure you seek, lies behind.'
 clue::invalid
 answer::invalid
@@ -45,7 +42,6 @@ boon::It_Morphine
 end::
 ID::SEQUENCE_1
 location::B1R2
-type::sequence
 desc::You see six levers before you, each with a different-colored handle.
 clue::You think you should look around the room for a hint.
 answer::unimplemented

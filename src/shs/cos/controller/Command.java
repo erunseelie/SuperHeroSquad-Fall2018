@@ -29,28 +29,31 @@ public class Command implements ActionListener {
         if (action != null) {
             switch (action) {
                 case "look":
-                    s = commandLook();
+                    s = cmdLook();
                     break;
                 case "items":
-                    s = commandLookItem();
+                    s = cmdItems();
                     break;
                 case "take":
-                    s = commandTake();
+                    s = cmdTake();
                     break;
                 case "exit":
-                    s = commandExit();
+                    s = cmdExit();
                     break;
                 case "list":
-                    s = commandList();
+                    s = cmdList();
                     break;
                 case "puzzleAccess":
-                    s = commandEnterPuzzle(false);
+                    s = cmdPuzzleEnter(false);
                     break;
                 case "puzzleLeave":
-                    s = commandEnterPuzzle(true);
+                    s = cmdPuzzleEnter(true);
                     break;
                 case "puzzleAttempt":
-                    s = commandAttemptPuzzle();
+                    s = cmdPuzzleAttempt();
+                    break;
+                case "puzzleHint":
+                    s = cmdPuzzleHint();
                     break;
                 default:
                     s = "You don't know how to do that.";
@@ -71,13 +74,13 @@ public class Command implements ActionListener {
             // TODO: add full command parsing
             switch (verb) {
                 case "look":
-                    s = commandLook();
+                    s = cmdLook();
                     break;
                 case "items":
-                    s = commandLookItem();
+                    s = cmdItems();
                     break;
                 case "exit":
-                    s = commandExit();
+                    s = cmdExit();
                     break;
                 case "go":
                     StringBuilder location = object == null ? null : new StringBuilder(object);
@@ -85,13 +88,13 @@ public class Command implements ActionListener {
                         location = (location == null ? new StringBuilder("null") : location).append(" ").append(command[i]);
                     }
                     s = commandGo(location == null ? null : location.toString());
-                    s += "\n" + commandLook().substring(6);
+                    s += "\n" + cmdLook().substring(6);
                     break;
                 case "list":
-                    s = commandList();
+                    s = cmdList();
                     break;
                 case "take":
-                    s = commandTake();
+                    s = cmdTake();
                     break;
                 default:
                     s = "You're unable to do that.";
@@ -104,11 +107,11 @@ public class Command implements ActionListener {
 
     private TreeMap<String, Room> mapRooms = Room.getMap();
 
-    private String commandLook() {
+    private String cmdLook() {
         return "LOOK: \n" + mapRooms.get(Room.getCurrentRoomKey()).getDesc();
     }
 
-    private String commandLookItem() {
+    private String cmdItems() {
         String s = "";
 //        Item.getItemIDList().get()
         for (Map.Entry<String, Item> entryItem : Item.getItemIDList().entrySet()) {
@@ -123,13 +126,13 @@ public class Command implements ActionListener {
         return "ITEMS:\n" + s;
     }
 
-    private String commandExit() {
+    private String cmdExit() {
         Room.setCurrentRoom("B0R0");
         gui.enablePuzzleAccess(false);
         return "EXIT:\n" + "You have returned to the street.";
     }
 
-    private String commandList() {
+    private String cmdList() {
         ArrayList<String> rooms = getRoomConnections();
         StringBuilder s = new StringBuilder();
 
@@ -156,6 +159,7 @@ public class Command implements ActionListener {
                 for (Puzzle p : listP) {
                     if (p.getLocation().equals(curRoom)) {
                         gui.enablePuzzleAccess(true);
+                        break;
                     } else
                         gui.enablePuzzleAccess(false);
                 }
@@ -171,7 +175,7 @@ public class Command implements ActionListener {
         return mapRooms.get(Room.getCurrentRoomKey()).getConnections();
     }
 
-    private String commandEnterPuzzle(boolean exit) {
+    private String cmdPuzzleEnter(boolean exit) {
         String s = "";
         if (exit) {
             Puzzle.setAttempting(false);
@@ -196,7 +200,7 @@ public class Command implements ActionListener {
         return "PUZZLE:\n" + s;
     }
 
-    private String commandAttemptPuzzle() {
+    private String cmdPuzzleAttempt() {
         String input = gui.getPuzzleInput();
         AtomicReference<String> s = new AtomicReference<>("");
         Puzzle p = Puzzle.getCurrentPuzzle();
@@ -205,17 +209,23 @@ public class Command implements ActionListener {
             Item.addPlayerItem(i);
             s.set("You solved the puzzle!\nYou found:\n" + i.getItemName());
         } else {
-            s.set("That's not right - best take caution.");
-            p.setCounter(p.getCounter() + 1);
             if (p.getCounter() >= 3) {
                 Main.player.applyDamage(5);
-                s.set(s.get() + "\nOuch! Careful! Something's jabbed you in the finger.");
+                s.set("Ouch! Careful! Something's jabbed you in the finger.");
+            } else {
+                s.set("That's not right - best take caution.");
+                p.setCounter(p.getCounter() + 1);
             }
         }
         return "ATTEMPT:\n" + s;
     }
 
-    private String commandTake() {
+    private String cmdPuzzleHint() {
+        Main.player.applyDamage(10);
+        return "HINT:\n" + Puzzle.getCurrentPuzzle().getClue();
+    }
+
+    private String cmdTake() {
         // TODO: "The player must have already located the item using the CMD_Look." ??? NYI
         AtomicReference<String> s = new AtomicReference<>("");
         AtomicReference<String> i = new AtomicReference<>("");
