@@ -99,6 +99,7 @@ public class GUIGame extends Observable implements Observer {
         windowGame.setVisible(true);
 
         windowGame.setLocationRelativeTo(null);
+        windowGame.setResizable(false);
 
         //container is base that can hold several things
         container = windowGame.getContentPane();
