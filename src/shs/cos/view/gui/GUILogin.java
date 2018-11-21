@@ -101,7 +101,7 @@ public class GUILogin extends Application {
 
     private void launchGameWindow() {
         Main.loadFinalize();
-        currentStage.close();
+//        currentStage.close();
     }
 
     private TextField fldUsername, fldPassword;
@@ -252,5 +252,5 @@ public class GUILogin extends Application {
         alert.setContentText(warning);
         alert.showAndWait();
     }
-    
+
 }

@@ -9,10 +9,7 @@ import shs.cos.model.utils.io.IO;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Scanner;
-import java.util.TreeMap;
+import java.util.*;
 
 import static shs.cos.controller.Main.player;
 
@@ -33,6 +30,11 @@ public class GameManager {
     public static void updateFile() {
         updatePlayerData(idRoom, Room.getCurrentRoomKey());
         updatePlayerData(idHealth, String.valueOf(player.getHealth()));
+        if (!(Item.getPlayerItems().isEmpty())) {
+            for (Item i : Item.getPlayerItems()) {
+                if (i != null) updatePlayerData("ITEM_" + i.getItemID(), "1");
+            }
+        }
         saveToFile(mapSaveData, currentUser);
     }
 
@@ -44,15 +46,19 @@ public class GameManager {
         Room.setCurrentRoom(mapSaveData.get(idRoom));
         if (mapSaveData.get(idHealth) != null)
             player.applyDamage(Player.healthDefault - Integer.parseInt(mapSaveData.get(idHealth)));
-        for (String s : tempItems) {
-            // TODO: fix this
-//            Item i = new Item(Item.getItemIDList().get(s), );
-//            Item.addPlayerItem(i);
+        for (Map.Entry<String, String> entry : mapSaveData.entrySet()) {
+            String key = entry.getKey();
+            if (key.length() >= 5 && key.substring(0, 5).equals("ITEM_")) {
+                Item i = Item.getItemIDList().get(key.substring(5));
+                Item.addPlayerItem(i);
+                // TODO: remove item from the world
+            }
         }
     }
 
     /**
      * Copies all the data from a TreeMap to the designated file.
+     *
      * @param username the name of the file to write to.
      */
     private static void saveToFile(TreeMap<String, String> map, String username) {
@@ -89,6 +95,7 @@ public class GameManager {
      * Attempts to load the save file associated with the given username.
      * If the file is found and the password is correct, the save file's data
      * is copied into this class' TreeMap.
+     *
      * @param username Username
      * @param password Password
      * @return Whether the login attempt was successful.
@@ -99,7 +106,7 @@ public class GameManager {
         // attempt to load the file
         Scanner fileIn;
         try {
-            fileIn = new Scanner(new File( saveDirectory + username + saveExtension));
+            fileIn = new Scanner(new File(saveDirectory + username + saveExtension));
         } catch (FileNotFoundException e) {
             GUILogin.displayWarning("That user doesn't exist.\nTry again, or start a new game.");
             return false;
@@ -111,11 +118,7 @@ public class GameManager {
             String key = nextLine[0];
             String val = nextLine[1];
             // TODO: add any "special" read functionality here
-            if (key.equals("item")) {
-                // create a new Item with only a ID as reference.
-                // we'll create the actual items later if logging in is successful
-                tempItems.add(val);
-            } else mapSaveData.put(key, val);
+            mapSaveData.put(key, val);
         }
         fileIn.close();
 
@@ -131,6 +134,4 @@ public class GameManager {
             return false;
         }
     }
-
-    private static ArrayList<String> tempItems = new ArrayList<>();
 }

@@ -5,12 +5,12 @@ import shs.cos.model.items.Item;
 import shs.cos.model.puzzles.Puzzle;
 import shs.cos.view.gui.GUIGame;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.concurrent.atomic.AtomicReference;
 
 // Gets the command entered.
 public class Command implements ActionListener {
@@ -34,6 +34,9 @@ public class Command implements ActionListener {
                 case "items":
                     s = commandLookItem();
                     break;
+                case "take":
+                    s = commandTake();
+                    break;
                 case "exit":
                     s = commandExit();
                     break;
@@ -45,6 +48,9 @@ public class Command implements ActionListener {
                     break;
                 case "puzzleLeave":
                     s = commandEnterPuzzle(true);
+                    break;
+                case "puzzleAttempt":
+                    s = commandAttemptPuzzle();
                     break;
                 default:
                     s = "You don't know how to do that.";
@@ -65,13 +71,13 @@ public class Command implements ActionListener {
             // TODO: add full command parsing
             switch (verb) {
                 case "look":
-                    s = (commandLook());
+                    s = commandLook();
                     break;
                 case "items":
-                    s = (commandLookItem());
+                    s = commandLookItem();
                     break;
                 case "exit":
-                    s = (commandExit());
+                    s = commandExit();
                     break;
                 case "go":
                     StringBuilder location = object == null ? null : new StringBuilder(object);
@@ -79,9 +85,13 @@ public class Command implements ActionListener {
                         location = (location == null ? new StringBuilder("null") : location).append(" ").append(command[i]);
                     }
                     s = commandGo(location == null ? null : location.toString());
+                    s += "\n" + commandLook().substring(6);
                     break;
                 case "list":
-                    s = (commandList());
+                    s = commandList();
+                    break;
+                case "take":
+                    s = commandTake();
                     break;
                 default:
                     s = "You're unable to do that.";
@@ -100,6 +110,7 @@ public class Command implements ActionListener {
 
     private String commandLookItem() {
         String s = "";
+//        Item.getItemIDList().get()
         for (Map.Entry<String, Item> entryItem : Item.getItemIDList().entrySet()) {
             Item i = entryItem.getValue();
             if (i.getLocation() != null) {
@@ -114,6 +125,7 @@ public class Command implements ActionListener {
 
     private String commandExit() {
         Room.setCurrentRoom("B0R0");
+        gui.enablePuzzleAccess(false);
         return "EXIT:\n" + "You have returned to the street.";
     }
 
@@ -139,51 +151,89 @@ public class Command implements ActionListener {
         for (String r : rooms) {
             if (mapRooms.get(r).getRoomName().toLowerCase().equals(location)) {
                 Room.setCurrentRoom(r);
+                ArrayList<Puzzle> listP = Puzzle.getPuzzles();
+                String curRoom = Room.getCurrentRoomKey();
+                for (Puzzle p : listP) {
+                    if (p.getLocation().equals(curRoom)) {
+                        gui.enablePuzzleAccess(true);
+                    } else
+                        gui.enablePuzzleAccess(false);
+                }
                 s = "You mosey through the dust. You have arrived at your destination...";
+
                 break;
             } else s = "That place doesn't seem to be nearby.";
         }
-        return "GO:\n" + s;
+        return "GO: " + mapRooms.get(Room.getCurrentRoomKey()).getRoomName() + "\n" + s;
     }
 
     private ArrayList<String> getRoomConnections() {
         return mapRooms.get(Room.getCurrentRoomKey()).getConnections();
     }
 
-    private String commandEnterPuzzle(Boolean exit) {
-        ArrayList<Puzzle> listP = Puzzle.getPuzzles();
-        String curRoom = Room.getCurrentRoomKey();
+    private String commandEnterPuzzle(boolean exit) {
         String s = "";
         if (exit) {
             Puzzle.setAttempting(false);
-            // re-enable all components
-            for (JComponent b : gui.groupAll) {
-                b.setEnabled(true);
-            }
+            gui.enterPuzzle(false);
+            gui.enablePuzzleAccess(true);
             s = "You leave the puzzle for now.";
         } else {
+            ArrayList<Puzzle> listP = Puzzle.getPuzzles();
+            String curRoom = Room.getCurrentRoomKey();
             for (Puzzle p : listP) {
                 if (p.getLocation().equals(curRoom)) {
                     Puzzle.setAttempting(true);
-                    // disable everything except puzzle components
-                    for (JComponent b : gui.groupAll) {
-                        if (!(gui.groupPuzzle.contains(b)))
-                            b.setEnabled(false);
-                    }
+                    gui.enterPuzzle(true);
+                    gui.enablePuzzleAccess(false);
                     Puzzle.setCurrentPuzzle(p);
-                    s = "Something catches your eye...";
+                    s = "Something catches your eye...\n";
+                    s += p.getDescription();
                     break;
-                } else {
-                    // re-enable all components
-                    for (JComponent b : gui.groupAll) {
-                        b.setEnabled(true);
-                    }
-                    s = "There's nothing puzzling around here.";
                 }
             }
         }
-
         return "PUZZLE:\n" + s;
+    }
+
+    private String commandAttemptPuzzle() {
+        String input = gui.getPuzzleInput();
+        AtomicReference<String> s = new AtomicReference<>("");
+        Puzzle p = Puzzle.getCurrentPuzzle();
+        if (p.attempt(input)) {
+            Item i = Item.getItemIDList().get(p.getBoon());
+            Item.addPlayerItem(i);
+            s.set("You solved the puzzle!\nYou found:\n" + i.getItemName());
+        } else {
+            s.set("That's not right - best take caution.");
+            p.setCounter(p.getCounter() + 1);
+            if (p.getCounter() >= 3) {
+                Main.player.applyDamage(5);
+                s.set(s.get() + "\nOuch! Careful! Something's jabbed you in the finger.");
+            }
+        }
+        return "ATTEMPT:\n" + s;
+    }
+
+    private String commandTake() {
+        // TODO: "The player must have already located the item using the CMD_Look." ??? NYI
+        AtomicReference<String> s = new AtomicReference<>("");
+        AtomicReference<String> i = new AtomicReference<>("");
+        for (Map.Entry<String, Item> entry : Item.getItemIDList().entrySet()) {
+            String k = entry.getKey();
+            Item v = entry.getValue();
+            if (v.getLocation().equals(Room.getCurrentRoomKey())) {
+                Item.addPlayerItem(v);
+                // TODO: check for multiple instances of one item
+                i.set(k);
+                s.set("You picked up: " + v.getItemName().toLowerCase() + ".");
+                break;
+            } else {
+                s.set("There's nothing around that you can take.");
+            }
+        }
+        Item.getItemIDList().remove(i.toString());
+        return "TAKE:\n" + s;
     }
 
 }

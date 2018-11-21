@@ -1,5 +1,7 @@
 package shs.cos.model.items;
 
+import shs.cos.model.utils.io.IO;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -8,7 +10,8 @@ import java.util.TreeMap;
 
 
 public class Item {
-	private static String separator = "::";
+	private static String separator = IO.separator;
+	private String itemID;
 	private String itemName;
 	private String itemType;
 	private String itemDesc;
@@ -113,14 +116,7 @@ public class Item {
         return playerItems;
     }
 
-    private String itemID;
-
-    public Item(String itemID, String itemName, String itemType, String itemDesc, String itemLocation, int itemStat) {
-    	this.itemID = itemID;
-        this.itemName = itemName;
-        this.itemType = itemType;
-        this.itemDesc = itemDesc;
-        this.itemLocation = itemLocation;
-        this.itemStat = itemStat;
+    public String getItemID() {
+        return itemID;
     }
 }

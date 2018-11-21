@@ -1,5 +1,7 @@
 package shs.cos.model.puzzles;
 
+import shs.cos.controller.Main;
+import shs.cos.model.items.Item;
 import shs.cos.view.gui.GUIGame;
 import shs.cos.view.gui.GUILogin;
 
@@ -13,12 +15,13 @@ import static shs.cos.model.utils.io.IO.separator;
 
 public class Puzzle {
     private String
-        ID,
-        location,
-        description,
-        clue,
-        answer,
-        boon;
+            ID,
+            location,
+            description,
+            clue,
+            answer,
+            boon;
+    private int counter;
 
     private static ArrayList<Puzzle> listPuzzles;
     private static boolean isAttempting = false;
@@ -27,12 +30,16 @@ public class Puzzle {
     public static boolean loadPuzzleFile(File f) {
         listPuzzles = new ArrayList<>();
         Scanner fileIn;
-        try { fileIn = new Scanner(f); }
-        catch (Exception e) { return false; }
+        try {
+            fileIn = new Scanner(f);
+        } catch (Exception e) {
+            return false;
+        }
 
         while (fileIn.hasNextLine()) {
             String[] nextLine = fileIn.nextLine().split(separator);
-            OUTER_LOOP: if (nextLine[0].equals("ID")) {
+            OUTER_LOOP:
+            if (nextLine[0].equals("ID")) {
                 Puzzle newPuzzle = new Puzzle();
                 newPuzzle.ID = nextLine[1];
 
@@ -60,6 +67,7 @@ public class Puzzle {
                     }
 
                     if (nextLine[0].equals("ID") || nextLine[0].equals("end")) {
+                        newPuzzle.counter = 0;
                         listPuzzles.add(newPuzzle);
                         break OUTER_LOOP;
                     }
@@ -116,4 +124,23 @@ public class Puzzle {
     public static void setCurrentPuzzle(Puzzle currentPuzzle) {
         Puzzle.currentPuzzle = currentPuzzle;
     }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+
+    public boolean attempt(String input) {
+        if (input.equals(this.getAnswer())) {
+            this.setCounter(0);
+            return true;
+        } else {
+            this.setCounter(this.getCounter() + 1);
+            return false;
+        }
+    }
+
 }

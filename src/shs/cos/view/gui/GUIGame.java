@@ -1,5 +1,6 @@
 package shs.cos.view.gui;
 
+import com.sun.crypto.provider.JceKeyStore;
 import shs.cos.controller.GameManager;
 import shs.cos.controller.Main;
 import shs.cos.controller.Command;
@@ -95,6 +96,9 @@ public class GUIGame {
         windowGame.setLayout(null);
         //make created window visible
         windowGame.setVisible(true);
+
+        windowGame.setLocationRelativeTo(null);
+
         //container is base that can hold several things
         container = windowGame.getContentPane();
 
@@ -189,9 +193,8 @@ public class GUIGame {
         pnlPuzzle = new JPanel();
         {
             pnlPuzzle.setBounds(170, 450, 150, 150);
-            pnlPuzzle.setBackground(Color.GREEN);
             GridLayout g = new GridLayout(5, 1);
-            g.setVgap(5);
+            g.setVgap(3);
             pnlPuzzle.setLayout(g);
         }
 
@@ -205,7 +208,7 @@ public class GUIGame {
         btnPuzzleExit = new JButton("Leave Puzzle");
         pnlPuzzle.add(btnPuzzleExit);
 
-        inputPuzzle = new JTextField("Enter puzzle answer...");
+        inputPuzzle = new JTextField(" Enter puzzle answer...");
         inputPuzzle.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -213,13 +216,14 @@ public class GUIGame {
             }
             @Override
             public void focusLost(FocusEvent e) {
-                inputPuzzle.setText("Enter puzzle answer...");
+                inputPuzzle.setText(" Enter puzzle answer...");
             }
         });
         pnlPuzzle.add(inputPuzzle);
 
         for (Component c : pnlPuzzle.getComponents()) {
             groupPuzzle.add((JComponent) c);
+            c.setEnabled(false);
         }
         groupAll.addAll(groupPuzzle);
         container.add(pnlPuzzle);
@@ -344,21 +348,18 @@ public class GUIGame {
                 b.setForeground(Color.WHITE);
                 b.setFont(fontNormal);
                 b.setPreferredSize(new Dimension(120, 30));
-//            Field[] fields = GUIGame.class.getFields();
-//            for (Field f : fields) {
-//                f.getName();
-//            }
-//            if (b.getText().length() >= 9 && b.getText().substring(0, 8).equals("btnPuzzle")) groupPuzzle.add(b);
             }
         }
 
         inputUser.addActionListener(new Command(this, null));
+        groupAll.add(inputUser);
         btnExitToStreet.addActionListener(new Command(this, "exit"));
         btnChangeRoom.addActionListener(new Command(this, "list"));
         btnLook.addActionListener(new Command(this, "look"));
         btnLookItem.addActionListener(new Command(this, "items"));
         btnPuzzleAccess.addActionListener(new Command(this, "puzzleAccess"));
         btnPuzzleExit.addActionListener(new Command(this, "puzzleLeave"));
+        btnPuzzleAttempt.addActionListener(new Command(this, "puzzleAttempt"));
         btnSaveGame.addActionListener(a -> {
             GameManager.updateFile();
             addLogText("SAVE:\nSaved the game.");
@@ -369,7 +370,6 @@ public class GUIGame {
 
     /**
      * Returns the entered input in lowercase form and clears the field.
-     *
      * @return A lowercase String, the entered input.
      */
     public String getInput() {
@@ -380,10 +380,22 @@ public class GUIGame {
 
     /**
      * Adds a line of text to the game log and appends 2 newlines.
-     *
      * @param s The text to append.
      */
     public void addLogText(String s) {
         gameLog.append(s + "\n\n");
+    }
+
+    public void enablePuzzleAccess(boolean b) {
+        btnPuzzleAccess.setEnabled(b);
+    }
+
+    public void enterPuzzle(boolean b) {
+        for (JComponent c : groupAll) c.setEnabled(!b);
+        for (JComponent c : groupPuzzle) c.setEnabled(b);
+    }
+
+    public String getPuzzleInput() {
+        return inputPuzzle.getText();
     }
 }
