@@ -1,9 +1,11 @@
-package shs.cos.model;
+package shs.cos.controller;
 
+import shs.cos.model.Room;
 import shs.cos.model.items.Item;
 import shs.cos.model.puzzles.Puzzle;
 import shs.cos.view.gui.GUIGame;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -39,7 +41,10 @@ public class Command implements ActionListener {
                     s = commandList();
                     break;
                 case "puzzleAccess":
-                    s = commandEnterPuzzle();
+                    s = commandEnterPuzzle(false);
+                    break;
+                case "puzzleLeave":
+                    s = commandEnterPuzzle(true);
                     break;
                 default:
                     s = "You don't know how to do that.";
@@ -104,12 +109,12 @@ public class Command implements ActionListener {
                 } else s = "There doesn't seem to be anything around.";
             }
         }
-        return "ITEMS: \n" + s;
+        return "ITEMS:\n" + s;
     }
 
     private String commandExit() {
         Room.setCurrentRoom("B0R0");
-        return "EXIT: \n" + "You have returned to the street.";
+        return "EXIT:\n" + "You have returned to the street.";
     }
 
     private String commandList() {
@@ -138,27 +143,47 @@ public class Command implements ActionListener {
                 break;
             } else s = "That place doesn't seem to be nearby.";
         }
-        return "GO: \n" + s;
+        return "GO:\n" + s;
     }
 
     private ArrayList<String> getRoomConnections() {
         return mapRooms.get(Room.getCurrentRoomKey()).getConnections();
     }
 
-    private String commandEnterPuzzle() {
+    private String commandEnterPuzzle(Boolean exit) {
         ArrayList<Puzzle> listP = Puzzle.getPuzzles();
         String curRoom = Room.getCurrentRoomKey();
         String s = "";
-        for (Puzzle p : listP) {
-            if (p.getLocation().equals(curRoom)) {
-                Puzzle.setAttempting(true);
-                Puzzle.setCurrentPuzzle(p);
-                s = "Something catches your eye...";
-                break;
-            } else s = "There's nothing puzzling around here.";
+        if (exit) {
+            Puzzle.setAttempting(false);
+            // re-enable all components
+            for (JComponent b : gui.groupAll) {
+                b.setEnabled(true);
+            }
+            s = "You leave the puzzle for now.";
+        } else {
+            for (Puzzle p : listP) {
+                if (p.getLocation().equals(curRoom)) {
+                    Puzzle.setAttempting(true);
+                    // disable everything except puzzle components
+                    for (JComponent b : gui.groupAll) {
+                        if (!(gui.groupPuzzle.contains(b)))
+                            b.setEnabled(false);
+                    }
+                    Puzzle.setCurrentPuzzle(p);
+                    s = "Something catches your eye...";
+                    break;
+                } else {
+                    // re-enable all components
+                    for (JComponent b : gui.groupAll) {
+                        b.setEnabled(true);
+                    }
+                    s = "There's nothing puzzling around here.";
+                }
+            }
         }
 
-        return "PUZZLE: \n" + s;
+        return "PUZZLE:\n" + s;
     }
 
 }

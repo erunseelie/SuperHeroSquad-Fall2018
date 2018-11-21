@@ -72,20 +72,27 @@ public class GUILogin extends Application {
 
         // construct the GridPane
 //        grid.add(sceneTitle, 0, 0, 2, 1);
-        grid.add(lblUsername, 0, 1); grid.add(fldUsername, 1, 1);
-        grid.add(lblPassword, 0, 2); grid.add(fldPassword, 1, 2);
+        grid.add(lblUsername, 0, 1);
+        grid.add(fldUsername, 1, 1);
+        grid.add(lblPassword, 0, 2);
+        grid.add(fldPassword, 1, 2);
         grid.add(buttons, 1, 3);
 
         Platform.runLater(fldUsername::requestFocus);
 
         // finalize showing
         primaryStage.setTitle("Lucky Strike Valley");
-        primaryStage.setMaxWidth(w);  primaryStage.setMinWidth(w);
-        primaryStage.setMaxHeight(h); primaryStage.setMinHeight(h);
+        primaryStage.setMaxWidth(w);
+        primaryStage.setMinWidth(w);
+        primaryStage.setMaxHeight(h);
+        primaryStage.setMinHeight(h);
         primaryStage.setScene(scene);
 
+        currentStage = primaryStage;
         primaryStage.show();
     }
+
+    private Stage currentStage;
 
     private String
             styleButtonBlue = "-fx-background-color: #365caf; -fx-text-fill: white;",
@@ -94,6 +101,7 @@ public class GUILogin extends Application {
 
     private void launchGameWindow() {
         Main.loadFinalize();
+        currentStage.close();
     }
 
     private TextField fldUsername, fldPassword;
@@ -244,6 +252,5 @@ public class GUILogin extends Application {
         alert.setContentText(warning);
         alert.showAndWait();
     }
-
-
+    
 }

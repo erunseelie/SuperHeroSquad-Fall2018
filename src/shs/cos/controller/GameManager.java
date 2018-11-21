@@ -16,7 +16,7 @@ import java.util.TreeMap;
 
 import static shs.cos.controller.Main.player;
 
-public class GameManager extends Observable {
+public class GameManager {
 
     private static TreeMap<String, String> mapSaveData;
     public static String currentUser;
@@ -132,5 +132,5 @@ public class GameManager extends Observable {
         }
     }
 
-    public static ArrayList<String> tempItems = new ArrayList<>();
+    private static ArrayList<String> tempItems = new ArrayList<>();
 }
