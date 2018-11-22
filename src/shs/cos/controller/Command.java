@@ -206,7 +206,11 @@ public class Command implements ActionListener {
         Puzzle p = Puzzle.getCurrentPuzzle();
         if (p.attempt(input)) {
             Item i = Item.getItemIDList().get(p.getBoon());
+            if (i == null) i = new Item();
             Item.addPlayerItem(i);
+            Puzzle.clearPuzzle(p);
+            cmdPuzzleEnter(true);
+            gui.enablePuzzleAccess(false);
             s.set("You solved the puzzle!\nYou found:\n" + i.getItemName());
         } else {
             if (p.getCounter() >= 3) {

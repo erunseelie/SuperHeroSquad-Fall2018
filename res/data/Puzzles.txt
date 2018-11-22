@@ -28,14 +28,14 @@ boon::It_SteelArmor
 end::
 ID::BOOK_1
 location::invalid
-desc::You flip through the pages of the book, coming across a strange riddle.\n'From the mightiest oak, underneath, fauna crept. I now reside in a building supporting your steps.'
+desc::You flip through the pages of the book, coming across a strange riddle. 'From the mightiest oak, underneath, fauna crept. I now reside in a building supporting your steps.'
 clue::invalid
 answer::invalid
 boon::It_FirstAid
 end::
 ID::BOOK_2
 location::invalid
-desc::You flip through the pages of the book, coming across a strange riddle.\n'Where the dead sleep and the living are blind, the treasure you seek, lies behind.'
+desc::You flip through the pages of the book, coming across a strange riddle. 'Where the dead sleep and the living are blind, the treasure you seek, lies behind.'
 clue::invalid
 answer::invalid
 boon::It_Morphine
@@ -43,7 +43,7 @@ end::
 ID::SEQUENCE_1
 location::B1R2
 desc::You see six levers before you, each with a different-colored handle.
-clue::You don't think you'll be able to brute-force this one. Maybe somebody in the town will know what the solution is.
-answer::unimplemented
+clue::You don't think you'll be able to brute-force this one. Maybe somebody in the town will know what the solution is. (Enter your guess thus: '[color] [direction], {etc.}'.)
+answer::blue right, red down, green right, yellow left, purple up, orange up
 boon::unimplemented
 end::

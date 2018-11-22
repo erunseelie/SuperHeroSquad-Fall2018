@@ -218,6 +218,7 @@ public class GUIGame extends Observable implements Observer {
                 inputPuzzle.setText(" Enter puzzle answer...");
             }
         });
+        inputPuzzle.addActionListener(new Command(this, "puzzleAttempt"));
         pnlPuzzle.add(inputPuzzle);
 
         for (Component c : pnlPuzzle.getComponents()) {
