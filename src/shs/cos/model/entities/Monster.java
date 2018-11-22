@@ -173,5 +173,9 @@ public class Monster extends Character
 	{
 		return itemDrop;
 	}
+
+	public static Monster getCurrentMonster() { return currentMonster; }
+
+	private static Monster currentMonster;
 	
 }
