@@ -88,7 +88,6 @@ public class Command implements ActionListener {
                         location = (location == null ? new StringBuilder("null") : location).append(" ").append(command[i]);
                     }
                     s = commandGo(location == null ? null : location.toString());
-                    s += "\n" + cmdLook().substring(6);
                     break;
                 case "list":
                     s = cmdList();
@@ -164,6 +163,7 @@ public class Command implements ActionListener {
                         gui.enablePuzzleAccess(false);
                 }
                 s = "You mosey through the dust. You have arrived at your destination...";
+                s += "\n" + cmdLook().substring(6);
 
                 break;
             } else s = "That place doesn't seem to be nearby.";

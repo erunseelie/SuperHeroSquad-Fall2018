@@ -1,8 +1,10 @@
 package shs.cos.view.gui;
 
-import shs.cos.controller.GameManager;
+import shs.cos.controller.SessionManager;
 import shs.cos.controller.Main;
 import shs.cos.controller.Command;
+import shs.cos.model.Room;
+import shs.cos.model.puzzles.Puzzle;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,20 +15,16 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class GUIGame extends Observable implements Observer {
+    public ArrayList<JComponent> groupAll = new ArrayList<>();
+    ArrayList<JPanel> panels = new ArrayList<>();
     private JFrame windowGame;
-
     private Container container;
-
     private Font
             fontNormal = new Font("Times New Roman", Font.PLAIN, 14),
             fontLog = new Font("Times New Roman", Font.BOLD, 14);
-
     private JTextArea gameLog;
     private JScrollPane gameLogScroller;
-
     private JTextField inputUser, inputPuzzle;
-
-    ArrayList<JPanel> panels = new ArrayList<>();
     private JPanel
             pnlGameLog,
             pnlUserInputNavigation,
@@ -41,12 +39,9 @@ public class GUIGame extends Observable implements Observer {
 
     pnlInventory,
             pnlButtonsItem;
-
     private ArrayList<JLabel> labels = new ArrayList<>();
     private JLabel
             lblGoToRoom,
-
-    lblEnterAnswer,
 
     lblPlayerAttributes,
             lblHealth, lblHealthNumber,
@@ -60,8 +55,6 @@ public class GUIGame extends Observable implements Observer {
 
     lblInventory,
             lblInventoryList;
-
-    public ArrayList<JComponent> groupAll = new ArrayList<>();
     private JButton
             btnSaveGame,
 
@@ -80,7 +73,7 @@ public class GUIGame extends Observable implements Observer {
     btnLookItem,
             btnUseOrEquip,
             btnDropItem;
-
+    private ArrayList<JComponent> groupPuzzle = new ArrayList<>();
 
     // window method
     public GUIGame() {
@@ -104,6 +97,8 @@ public class GUIGame extends Observable implements Observer {
         //container is base that can hold several things
         container = windowGame.getContentPane();
 
+        this.addObserver(this);
+
         makeGameWindow();
     }
 
@@ -119,7 +114,7 @@ public class GUIGame extends Observable implements Observer {
         gameLogScroller = new JScrollPane(
                 gameLog,
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
-                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         gameLog.setEditable(false);
         gameLog.setBounds(20, 20, 300, 100);
         gameLog.setBackground(Color.black);
@@ -127,6 +122,7 @@ public class GUIGame extends Observable implements Observer {
         gameLog.setLineWrap(true);
         gameLog.setWrapStyleWord(true);
         gameLog.setFont(fontLog);
+        gameLog.setMaximumSize(new Dimension(300, 100));
         pnlGameLog.add(gameLogScroller);
 
         //user input navigation panel
@@ -216,6 +212,7 @@ public class GUIGame extends Observable implements Observer {
             public void focusGained(FocusEvent e) {
                 inputPuzzle.setText("");
             }
+
             @Override
             public void focusLost(FocusEvent e) {
                 inputPuzzle.setText(" Enter puzzle answer...");
@@ -354,7 +351,22 @@ public class GUIGame extends Observable implements Observer {
         }
 
         inputUser.addActionListener(new Command(this, null));
+        inputUser.addActionListener(a -> {
+            new Command(this, null);
+            setChanged();
+            notifyObservers();
+        });
         groupAll.add(inputUser);
+
+        for (JComponent c : groupAll) {
+            if (c instanceof JButton) {
+                JButton b = (JButton) c;
+                b.addActionListener(a -> {
+                    setChanged();
+                    notifyObservers();
+                });
+            }
+        }
 
         btnChangeRoom.addActionListener(new Command(this, "list"));
         btnExitToStreet.addActionListener(new Command(this, "exit"));
@@ -367,15 +379,24 @@ public class GUIGame extends Observable implements Observer {
         btnPuzzleHint.addActionListener(new Command(this, "puzzleHint"));
 
         btnSaveGame.addActionListener(a -> {
-            GameManager.updateFile();
+            SessionManager.updateFile();
             addLogText("SAVE:\nSaved the game.");
         });
-    }
 
-    private ArrayList<JComponent> groupPuzzle = new ArrayList<>();
+
+        ArrayList<Puzzle> listP = Puzzle.getPuzzles();
+        String curRoom = Room.getCurrentRoomKey();
+        for (Puzzle p : listP) {
+            if (p.getLocation().equals(curRoom)) {
+                enablePuzzleAccess(true);
+                break;
+            }
+        }
+    }
 
     /**
      * Returns the entered input in lowercase form and clears the field.
+     *
      * @return A lowercase String, the entered input.
      */
     public String getInput() {
@@ -386,6 +407,7 @@ public class GUIGame extends Observable implements Observer {
 
     /**
      * Adds a line of text to the game log and appends 2 newlines.
+     *
      * @param s The text to append.
      */
     public void addLogText(String s) {
@@ -407,6 +429,6 @@ public class GUIGame extends Observable implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-
+        lblHealthNumber.setText("" + Main.player.getHealth());
     }
 }

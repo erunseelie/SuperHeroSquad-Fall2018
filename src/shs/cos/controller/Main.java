@@ -21,8 +21,6 @@ public class Main {
 //        loadFinalize();
     }
 
-    private static GUIGame gui;
-
     public static Player player;
 
     /**
@@ -31,7 +29,7 @@ public class Main {
     public static void loadFinalize() {
         loadGameData();
 
-        gui = new GUIGame();
+        new GUIGame();
     }
 
     /**
