@@ -81,6 +81,8 @@ public class GUIGame extends Observable implements Observer {
         JPanel pnlGameLog = new JPanel();
         {
             pnlGameLog.setLayout(new BoxLayout(pnlGameLog, BoxLayout.PAGE_AXIS));
+            pnlGameLog.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+            pnlGameLog.setBackground(Color.BLACK);
             container.add(pnlGameLog, BorderLayout.NORTH);
 
             log = new JTextArea(13, 55);
@@ -134,6 +136,7 @@ public class GUIGame extends Observable implements Observer {
                 GridLayout g = new GridLayout(1, 5);
                 g.setHgap(15);
                 pnlMain.setLayout(g);
+                pnlMain.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
             }
             grpAll.add(pnlMain);
             container.add(pnlMain, BorderLayout.CENTER);
@@ -305,7 +308,7 @@ public class GUIGame extends Observable implements Observer {
                 }
                 pnlMain.add(pnlInventory);
 
-                JButton btnTakeItem = new JButton("Take Item");
+                btnTakeItem = new JButton("Take Item");
                 btnTakeItem.addActionListener(new Command(this, "take"));
                 pnlInventory.add(btnTakeItem);
                 grpAll.add(btnTakeItem);
