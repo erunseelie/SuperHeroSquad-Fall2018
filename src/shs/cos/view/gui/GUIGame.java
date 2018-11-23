@@ -5,7 +5,9 @@ import shs.cos.controller.Main;
 import shs.cos.controller.Command;
 import shs.cos.model.Room;
 import shs.cos.model.entities.Monster;
+import shs.cos.model.items.Item;
 import shs.cos.model.puzzles.Puzzle;
+import sun.plugin.javascript.JSContext;
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,8 +43,9 @@ public class GUIGame extends Observable implements Observer {
     private ArrayList<JComponent> grpAll = new ArrayList<>();
     private ArrayList<JComponent> grpPuzzle = new ArrayList<>();
     private ArrayList<JComponent> grpPlayer = new ArrayList<>();
+    private JList listInventory;
 
-    private int wWidth = 750, wHeight = 700;
+    private int wWidth = 750, wHeight = 550;
 
     public GUIGame() {
 
@@ -63,20 +66,24 @@ public class GUIGame extends Observable implements Observer {
         container = windowGame.getContentPane();
 
         windowGame.setLocationRelativeTo(null);
-        windowGame.setResizable(false);
+//        windowGame.setResizable(false);
         this.addObserver(this);
 
         makeGameWindow();
     }
 
     private void makeGameWindow() {
-        container.setLayout(new BoxLayout(container, BoxLayout.PAGE_AXIS));
+        {
+            BorderLayout b = new BorderLayout();
+            b.setVgap(5);
+            container.setLayout(b);
+        }
 
         // game log panel
         JPanel pnlGameLog = new JPanel();
         {
             pnlGameLog.setLayout(new BoxLayout(pnlGameLog, BoxLayout.PAGE_AXIS));
-            container.add(pnlGameLog);
+            container.add(pnlGameLog, BorderLayout.NORTH);
 
             log = new JTextArea(13, 55);
             {
@@ -125,15 +132,13 @@ public class GUIGame extends Observable implements Observer {
         // main panel
         JPanel pnlMain = new JPanel();
         {
-            FlowLayout f = new FlowLayout();
-            f.setAlignment(FlowLayout.LEFT);
-            pnlMain.setLayout(f);
-//            {
-//                GridLayout g = new GridLayout(1, 5);
-//                pnlMain.setLayout(g);
-//            }
+            {
+                GridLayout g = new GridLayout(1, 5);
+                g.setHgap(15);
+                pnlMain.setLayout(g);
+            }
             grpAll.add(pnlMain);
-            container.add(pnlMain);
+            container.add(pnlMain, BorderLayout.CENTER);
 
             // navigation panel
             JPanel pnlNavigation = new JPanel();
@@ -304,8 +309,13 @@ public class GUIGame extends Observable implements Observer {
             // inventory panel
             JPanel pnlInventory = new JPanel();
             {
-                pnlInventory.setBounds(490, 280, 200, 190);
                 pnlInventory.setBackground(Color.black);
+                {
+                    GridLayout g = new GridLayout(3, 1);
+                    g.setVgap(3);
+//                    BoxLayout b = new BoxLayout(pnlInventory, BoxLayout.PAGE_AXIS);
+                    pnlInventory.setLayout(g);
+                }
                 pnlMain.add(pnlInventory);
 
                 JLabel lblInventory = new JLabel("Inventory/Equipped Items");
@@ -313,11 +323,23 @@ public class GUIGame extends Observable implements Observer {
                 lblInventory.setForeground(Color.white);
                 pnlInventory.add(lblInventory);
 
+                listInventory = new JList<>();
+                {
+                    listInventory.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+                    listInventory.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+                    JScrollPane listScroller = new JScrollPane(listInventory);
+                    listScroller.setPreferredSize(new Dimension(250, 80));
+
+                    pnlInventory.add(listInventory);
+                    grpAll.add(listInventory);
+                }
+
                 JPanel pnlButtonsItem = new JPanel();
                 {
-                    pnlButtonsItem.setBounds(490, 480, 200, 40);
+                    GridLayout g = new GridLayout(2, 1);
+                    g.setVgap(3);
+                    pnlButtonsItem.setLayout(g);
                     pnlButtonsItem.setBackground(Color.black);
-                    pnlButtonsItem.setLayout(new FlowLayout());
                     pnlInventory.add(pnlButtonsItem);
 
                     btnUseOrEquip = new JButton("Use/Equip");
@@ -344,6 +366,9 @@ public class GUIGame extends Observable implements Observer {
             if (c instanceof JPanel) {
                 JPanel p = (JPanel) c;
                 p.setBackground(Color.BLACK);
+            }
+            if (c instanceof JTextField) {
+                ((JTextField) c).addActionListener(a -> updateGUI());
             }
         }
 
@@ -398,13 +423,24 @@ public class GUIGame extends Observable implements Observer {
         lblDefense.setText("Defense: " + Main.player.getCurrentArmor());
         lblWeapon.setText("Weapon: " + Main.player.getCurrentWeapon());
 
-        lblEnemyHealth.setText("Health: " + Monster.getCurrentMonster().getHealth());
-        lblEnemyDefense.setText("Defense: " + Monster.getCurrentMonster().getMonDefense());
-        lblEnemyWeapon.setText("Weapon: " + Monster.getCurrentMonster().getMonAtkValue());
+        lblEnemyHealth.setText("Health: "); // + Monster.getCurrentMonster().getHealth());
+        lblEnemyDefense.setText("Defense: "); // + Monster.getCurrentMonster().getMonDefense());
+        lblEnemyWeapon.setText("Weapon: "); // + Monster.getCurrentMonster().getMonAtkValue());
+
+        // send to the GUI
+        addItems(Item.getPlayerItems());
     }
 
     private void updateGUI() {
         setChanged();
         notifyObservers();
+    }
+
+    private void addItems(ArrayList<Item> a) {
+        DefaultListModel l = new DefaultListModel();
+        for (Item i : a) {
+            l.addElement(i.getItemName());
+        }
+        listInventory = new JList<>(l);
     }
 }

@@ -16,12 +16,13 @@ public class Main {
      * The loading process is then tossed off to GUILogin to handle logging into the game properly.
      */
     public static void main(String[] args) {
-//        GUILogin.main(null);
-        player = new Player();
-        loadFinalize();
+        GUILogin.main(null);
+//        player = new Player();
+//        loadFinalize();
     }
 
     public static Player player;
+//    public static GUIGame gui;
 
     /**
      * GUILogin calls this method after successfully logging in.
