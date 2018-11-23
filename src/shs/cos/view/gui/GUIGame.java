@@ -319,7 +319,7 @@ public class GUIGame extends Observable implements Observer {
                 pnlMain.add(pnlInventory);
                 
                 JButton btnTakeItem = new JButton("Take Item");
-                btnLook.addActionListener(new Command(this, "take"));
+                btnTakeItem.addActionListener(new Command(this, "take"));
                 pnlInventory.add(btnTakeItem);
                 grpAll.add(btnTakeItem);
 

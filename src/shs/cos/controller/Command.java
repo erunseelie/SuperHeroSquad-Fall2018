@@ -79,6 +79,9 @@ public class Command implements ActionListener {
                 case "items":
                     s = cmdItems();
                     break;
+                case "take":
+                    s = cmdTake();
+                    break;
                 case "exit":
                     s = cmdExit();
                     break;
@@ -91,9 +94,6 @@ public class Command implements ActionListener {
                     break;
                 case "list":
                     s = cmdList();
-                    break;
-                case "take":
-                    s = cmdTake();
                     break;
                 default:
                     s = "You're unable to do that.";
