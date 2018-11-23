@@ -29,6 +29,7 @@ public class Monster extends Character
 
 	private static TreeMap<String, Monster> monsterList = new TreeMap<>();
 
+	//TODO: commentary 
 	public Monster()
 	{
 
