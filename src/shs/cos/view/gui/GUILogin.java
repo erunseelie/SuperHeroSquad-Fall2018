@@ -38,7 +38,7 @@ public class GUILogin extends Application {
         Scene scene = new Scene(grid, w, h);
 
         // https://www.pexels.com/photo/brown-mountain-under-blue-and-white-sky-974091/
-        grid.setStyle("-fx-background-image: url('images/GUILogin.jpg');");
+        grid.setStyle("-fx-background-image: url('resources/images/GUILogin.jpg');");
         grid.setPrefSize(w, h);
 
         // create labels and fields

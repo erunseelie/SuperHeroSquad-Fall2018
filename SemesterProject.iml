@@ -13,5 +13,6 @@
     <content url="file://$MODULE_DIR$/out/artifacts/SemesterProject_jar" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="org.apache.directory.studio:org.apache.commons.io:2.4" level="project" />
   </component>
 </module>

@@ -232,7 +232,6 @@ public class GUIGame extends Observable implements Observer {
 
                 // player attributes
                 JPanel pnlPlayer = new JPanel();
-                JLabel lblPlayerAttributes;
                 {
                     GridLayout g = new GridLayout(4, 1);
                     g.setVgap(3);
@@ -240,7 +239,7 @@ public class GUIGame extends Observable implements Observer {
                     grpAll.add(pnlPlayer);
                     pnlCombat.add(pnlPlayer);
 
-                    lblPlayerAttributes = new JLabel("Player Attributes");
+                    JLabel lblPlayerAttributes = new JLabel("Player Attributes");
                     pnlPlayer.add(lblPlayerAttributes);
                     lblHealth = new JLabel();
                     pnlPlayer.add(lblHealth);
@@ -248,15 +247,10 @@ public class GUIGame extends Observable implements Observer {
                     pnlPlayer.add(lblDefense);
                     lblWeapon = new JLabel();
                     pnlPlayer.add(lblWeapon);
-                }
 
-                for (Component c : pnlPlayer.getComponents()) {
-                    c.setFont(fontNormal);
-                    c.setForeground(Color.WHITE);
-                    c.setBackground(Color.BLACK);
-                    grpPlayer.add((JComponent) c);
+                    quicksetPanelStyle(pnlPlayer, grpPlayer);
+                    lblPlayerAttributes.setFont(fontLog);
                 }
-                lblPlayerAttributes.setFont(fontLog);
 
                 // enemy attributes
                 JPanel pnlEnemy = new JPanel();
@@ -276,14 +270,10 @@ public class GUIGame extends Observable implements Observer {
                     lblEnemyWeapon = new JLabel();
                     pnlEnemy.add(lblEnemyWeapon);
 
-                    for (Component c : pnlEnemy.getComponents()) {
-                        c.setFont(fontNormal);
-                        c.setForeground(Color.WHITE);
-                        c.setBackground(Color.BLACK);
-//                    grpPlayer.add((JComponent) c);
-                    }
+                    quicksetPanelStyle(pnlEnemy, grpAll);
                     lblEnemyAttributes.setFont(fontLog);
                 }
+
 
                 // monster buttons
                 JPanel pnlButtonsMonster = new JPanel();
@@ -311,7 +301,6 @@ public class GUIGame extends Observable implements Observer {
                 {
                     GridLayout g = new GridLayout(4, 1);
                     g.setVgap(4);
-//                    BoxLayout b = new BoxLayout(pnlInventory, BoxLayout.PAGE_AXIS);
                     pnlInventory.setLayout(g);
                 }
                 pnlMain.add(pnlInventory);
@@ -385,6 +374,20 @@ public class GUIGame extends Observable implements Observer {
         }
 
         updateGUI();
+    }
+
+    /**
+     * Unifies the panel's component style, and adds them to the specified group.
+     * @param p Panel holding desired components
+     * @param a List of components
+     */
+    private void quicksetPanelStyle(JPanel p, ArrayList<JComponent> a) {
+        for (Component c : p.getComponents()) {
+            c.setFont(fontNormal);
+            c.setForeground(Color.WHITE);
+            c.setBackground(Color.BLACK);
+            a.add((JComponent) c);
+        }
     }
 
     /**

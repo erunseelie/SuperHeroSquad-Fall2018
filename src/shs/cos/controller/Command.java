@@ -112,7 +112,6 @@ public class Command implements ActionListener {
 
     private String cmdItems() {
         String s = "";
-//        Item.getItemIDList().get()
         for (Map.Entry<String, Item> entryItem : Item.getItemIDList().entrySet()) {
             Item i = entryItem.getValue();
             if (i.getLocation() != null) {

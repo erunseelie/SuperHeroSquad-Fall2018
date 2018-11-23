@@ -3,4 +3,5 @@ bin/
 lib/
 out/
 res/saves/
-SemesterProject.iml.idea
+SemesterProject.iml
+.idea

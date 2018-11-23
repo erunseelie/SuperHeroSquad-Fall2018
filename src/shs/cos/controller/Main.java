@@ -1,5 +1,6 @@
 package shs.cos.controller;
 
+import org.apache.commons.io.FileUtils;
 import shs.cos.model.items.Item;
 import shs.cos.model.Room;
 import shs.cos.model.entities.Monster;
@@ -8,9 +9,11 @@ import shs.cos.model.puzzles.Puzzle;
 import shs.cos.view.gui.GUIGame;
 import shs.cos.view.gui.GUILogin;
 
-import java.io.File;
+import java.io.*;
 
 public class Main {
+    public static Player player;
+
     /**
      * This is what we call to run the game.
      * The loading process is then tossed off to GUILogin to handle logging into the game properly.
@@ -20,9 +23,6 @@ public class Main {
 //        player = new Player();
 //        loadFinalize();
     }
-
-    public static Player player;
-//    public static GUIGame gui;
 
     /**
      * GUILogin calls this method after successfully logging in.
@@ -37,21 +37,29 @@ public class Main {
      * Add to this method as necessary as more data is created.
      */
     private static void loadGameData() {
-
-        if (!(Room.readRoomFile(new File(selectFile("Rooms")))))
+        if (!(Room.readRoomFile(selectFile("Rooms"))))
             GUILogin.displayWarning("The following data file was not found, or contains invalid data: Rooms.txt");
-        if (!(Monster.readMonsterFile(new File(selectFile("Monsters")))))
+        if (!(Monster.readMonsterFile(selectFile("Monsters"))))
             GUILogin.displayWarning("The following data file was not found, or contains invalid data: Monsters.txt");
-        if (!(Item.readItemFile(new File(selectFile("Items")))))
+        if (!(Item.readItemFile(selectFile("Items"))))
             GUILogin.displayWarning("The following data file was not found, or contains invalid data: Items.txt");
-        if (!(Puzzle.loadPuzzleFile(new File(selectFile("Puzzles")))))
+        if (!(Puzzle.loadPuzzleFile(selectFile("Puzzles"))))
             GUILogin.displayWarning("The following data file was not found, or contains invalid data: Puzzles.txt");
     }
 
-    private static String selectFile(String s) {
-        String dataDirectory = "res/data/";
-//        String dataDirectory = "data/";
+    private static File selectFile(String s) {
+        String dataDirectory = "/resources/data/";
         String dataExtension = ".txt";
-        return dataDirectory + s + dataExtension;
+        try {
+            File f = File.createTempFile(s, "temp");
+            f.deleteOnExit();
+            InputStream streamIn = Main.class.getResourceAsStream(dataDirectory + s + dataExtension);
+            FileUtils.copyInputStreamToFile(streamIn, f);
+            streamIn.close();
+            return f;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
