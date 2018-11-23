@@ -21,17 +21,15 @@ public class Main {
 //        loadFinalize();
     }
 
-    private static GUIGame gui;
-
     public static Player player;
+//    public static GUIGame gui;
 
     /**
      * GUILogin calls this method after successfully logging in.
      */
     public static void loadFinalize() {
         loadGameData();
-
-        gui = new GUIGame();
+        new GUIGame();
     }
 
     /**

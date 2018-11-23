@@ -3,6 +3,8 @@ package shs.cos.controller;
 import shs.cos.model.Room;
 import shs.cos.model.entities.Player;
 import shs.cos.model.items.Item;
+import shs.cos.model.puzzles.Puzzle;
+import shs.cos.view.gui.GUIGame;
 import shs.cos.view.gui.GUILogin;
 import shs.cos.model.utils.io.IO;
 
@@ -13,7 +15,7 @@ import java.util.*;
 
 import static shs.cos.controller.Main.player;
 
-public class GameManager {
+public class SessionManager {
 
     private static TreeMap<String, String> mapSaveData;
     public static String currentUser;

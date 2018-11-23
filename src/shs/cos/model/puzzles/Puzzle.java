@@ -139,4 +139,8 @@ public abstract class Puzzle {
 
     public abstract boolean attempt(String input);
 
+    public static void clearPuzzle(Puzzle p) {
+        listPuzzles.remove(p);
+    }
+
 }

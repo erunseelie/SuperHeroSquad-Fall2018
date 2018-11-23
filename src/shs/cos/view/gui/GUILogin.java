@@ -17,7 +17,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import shs.cos.controller.Main;
-import shs.cos.controller.GameManager;
+import shs.cos.controller.SessionManager;
 
 public class GUILogin extends Application {
 
@@ -38,7 +38,7 @@ public class GUILogin extends Application {
         Scene scene = new Scene(grid, w, h);
 
         // https://www.pexels.com/photo/brown-mountain-under-blue-and-white-sky-974091/
-        grid.setStyle("-fx-background-image: url('shs/cos/view/gui/GUILogin.jpg');");
+        grid.setStyle("-fx-background-image: url('images/GUILogin.jpg');");
         grid.setPrefSize(w, h);
 
         // create labels and fields
@@ -109,7 +109,7 @@ public class GUILogin extends Application {
      * Handles everything that happens after the user hits the "log in" button.
      */
     private void createDialogueLogin(String username, String password, boolean hasLogged) {
-        if (!(hasLogged)) hasLogged = GameManager.attemptLogIn(username, password);
+        if (!(hasLogged)) hasLogged = SessionManager.attemptLogIn(username, password);
 
         if (hasLogged) {
             Stage dialogue = new Stage();
@@ -125,7 +125,7 @@ public class GUILogin extends Application {
             HBox hbWelcome = new HBox(10);
             hbWelcome.setAlignment(Pos.BASELINE_CENTER);
 
-            Text textWelcome = new Text("Welcome, " + GameManager.currentUser + "!");
+            Text textWelcome = new Text("Welcome, " + SessionManager.currentUser + "!");
             textWelcome.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
             hbWelcome.getChildren().add(textWelcome);
             grid.add(hbWelcome, 1, 0);
@@ -144,7 +144,7 @@ public class GUILogin extends Application {
             btnNewGame.setStyle(styleButtonBlue);
             btnNewGame.setOnAction(arg0 -> {
                 dialogue.close();
-                GameManager.clearPlayerData();
+                SessionManager.clearPlayerData();
                 launchGameWindow();
             });
 
@@ -170,6 +170,7 @@ public class GUILogin extends Application {
     private void clearLoginFields() {
         fldUsername.clear();
         fldPassword.clear();
+        fldUsername.requestFocus();
     }
 
     private EventHandler<ActionEvent> eventCreateNewUser = e -> createNewUser();
@@ -201,10 +202,10 @@ public class GUILogin extends Application {
 
             if (user.isEmpty() || pw.isEmpty()) return;
 
-            GameManager.clearPlayerData();
-            GameManager.createNewSaveFile(user, pw);
-            GameManager.updatePlayerData(GameManager.idPassword, pw);
-            GameManager.updateFile();
+            SessionManager.clearPlayerData();
+            SessionManager.createNewSaveFile(user, pw);
+            SessionManager.updatePlayerData(SessionManager.idPassword, pw);
+            SessionManager.updateFile();
 
             dialog.close();
             createDialogueLogin(user, pw, true);
