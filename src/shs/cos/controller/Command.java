@@ -240,7 +240,9 @@ public class Command implements ActionListener {
                 Item.addPlayerItem(v);
                 // TODO: check for multiple instances of one item
                 i.set(k);
-                s.set("You picked up: " + v.getItemName().toLowerCase() + ".");
+                s.set("You picked up: " + v.getItemName().toLowerCase() + " " 
+                	  + "::" + " "
+                   	  + "Item Type: " + v.getItemType().toLowerCase() + ".");
                 break;
             } else {
                 s.set("There's nothing around that you can take.");

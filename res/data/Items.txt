@@ -2,6 +2,7 @@
 itemName::Shotgun
 itemType::Weapon
 itemDesc::A shotgun. Not very accurate, but decent reload speed and wide shot spread.
+itemStat::35
 itemLocation::B1R4
 endItem::
 ID::It_Revolver
@@ -50,6 +51,7 @@ ID::It_FirstAid
 itemName::First Aid Kit
 itemType::Consumable
 itemDesc::A first-aid kit. This can be used to heal wounds significantly.
+itemStat::100
 itemLocation::B4R8
 endItem::
 ID::It_Pan
@@ -84,6 +86,7 @@ ID::It_Moonshine
 itemName::Moonshine
 itemType::Consumable
 itemDesc::This moonshine looks like it might be a little rough going down but, it could be used to reduce pain.
+itemStat::10
 itemLocation::B2R1
 endItem::
 ID::It_WaterBucket
@@ -120,12 +123,14 @@ ID::It_Morphine
 itemName::Morphine Syringe
 itemType::Consumable
 itemDesc::This morphine isn't legal, no wonder they were hiding it. This could probably be used to ease pain. This would slow you down real nicely.
+itemStat::100
 itemLocation::B7R2
 endItem::
 ID::It_Bandages
 itemName::Bandages
 itemType::Consumable
 itemDesc::Sown bandages. This can be used to heal wounds.
+itemStat::30
 itemLocation::B2R5
 endItem::
 ID::It_Hammer
@@ -139,36 +144,42 @@ ID::It_BuffaloArmor
 itemName::Leather Armor(Buffalo)
 itemType::Defense
 itemDesc::This buffalo-skin armor feels very strong. This would offer a good amount of protection.
+itemStat::30
 itemLocation::B5R1
 endItem::
 ID::It_ElkArmor
 itemName::Leather Armor(Elk)
 itemType::Defense
 itemDesc::This elk-skin armor is hefty. protection from this is probably pretty good.
+itemStat::25
 itemLocation::B4R7
 endItem::
 ID::It_DeerArmor
 itemName::Leather Armor(Deer) 
 itemType::Defense
 itemDesc::This deer-skin armor isn't much, but it could add some protection.
+itemStat::15
 itemLocation::B3R1
 endItem::
 ID::It_SteelArmor
 itemName::Leather Armor(Steel Plated) 
 itemType::Defense
 itemDesc::This armor has a steel plat inside. Taking damage would be an afterthought while wearing this.
+itemStat::40
 itemLocation::B3R3
 endItem::
 ID::It_BluePills
 itemName::Blue Pills
 itemType::Consumable
 itemDesc::These blue pills have a weird smell but, it kind of makes you feel a little amped up.
+itemStat::10
 itemLocation::B4R3
 endItem::
 ID::It_RedPills
 itemName::Red Pills
 itemType::Consumable
 itemDesc::These red pills have a weird smell but, it kind of makes you feel very steadfast.
+itemStat::10
 itemLocation::B4R5
 endItem::
 ID::It_PitchFork

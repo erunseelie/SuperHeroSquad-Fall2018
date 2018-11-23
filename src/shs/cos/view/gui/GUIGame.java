@@ -7,7 +7,7 @@ import shs.cos.model.Room;
 import shs.cos.model.entities.Monster;
 import shs.cos.model.items.Item;
 import shs.cos.model.puzzles.Puzzle;
-import sun.plugin.javascript.JSContext;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -38,7 +38,7 @@ public class GUIGame extends Observable implements Observer {
     // puzzles
     private JButton btnPuzzleAccess, btnPuzzleHint, btnPuzzleAttempt, btnPuzzleExit;
     // inventory
-    private JButton btnUseOrEquip, btnDropItem;
+    private JButton btnTakeItem, btnUseOrEquip, btnDropItem;
 
     private ArrayList<JComponent> grpAll = new ArrayList<>();
     private ArrayList<JComponent> grpPuzzle = new ArrayList<>();
@@ -311,12 +311,17 @@ public class GUIGame extends Observable implements Observer {
             {
                 pnlInventory.setBackground(Color.black);
                 {
-                    GridLayout g = new GridLayout(3, 1);
-                    g.setVgap(3);
+                    GridLayout g = new GridLayout(4, 1);
+                    g.setVgap(4);
 //                    BoxLayout b = new BoxLayout(pnlInventory, BoxLayout.PAGE_AXIS);
                     pnlInventory.setLayout(g);
                 }
                 pnlMain.add(pnlInventory);
+                
+                JButton btnTakeItem = new JButton("Take Item");
+                btnLook.addActionListener(new Command(this, "take"));
+                pnlInventory.add(btnTakeItem);
+                grpAll.add(btnTakeItem);
 
                 JLabel lblInventory = new JLabel("Inventory/Equipped Items");
                 lblInventory.setFont(fontNormal);
