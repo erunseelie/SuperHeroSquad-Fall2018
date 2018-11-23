@@ -4,10 +4,8 @@ import shs.cos.controller.SessionManager;
 import shs.cos.controller.Main;
 import shs.cos.controller.Command;
 import shs.cos.model.Room;
-import shs.cos.model.entities.Monster;
 import shs.cos.model.items.Item;
 import shs.cos.model.puzzles.Puzzle;
-
 
 import javax.swing.*;
 import java.awt.*;
@@ -317,7 +315,7 @@ public class GUIGame extends Observable implements Observer {
                     pnlInventory.setLayout(g);
                 }
                 pnlMain.add(pnlInventory);
-                
+
                 JButton btnTakeItem = new JButton("Take Item");
                 btnTakeItem.addActionListener(new Command(this, "take"));
                 pnlInventory.add(btnTakeItem);
@@ -325,7 +323,7 @@ public class GUIGame extends Observable implements Observer {
 
                 JLabel lblInventory = new JLabel("Inventory/Equipped Items");
                 lblInventory.setFont(fontNormal);
-                lblInventory.setForeground(Color.white);
+                lblInventory.setForeground(Color.WHITE);
                 pnlInventory.add(lblInventory);
 
                 listInventory = new JList<>();
@@ -344,7 +342,7 @@ public class GUIGame extends Observable implements Observer {
                     GridLayout g = new GridLayout(2, 1);
                     g.setVgap(3);
                     pnlButtonsItem.setLayout(g);
-                    pnlButtonsItem.setBackground(Color.black);
+                    pnlButtonsItem.setBackground(Color.BLACK);
                     pnlInventory.add(pnlButtonsItem);
 
                     btnUseOrEquip = new JButton("Use/Equip");

@@ -14,6 +14,9 @@ import java.util.Scanner;
 import static shs.cos.model.utils.io.IO.separator;
 
 public abstract class Puzzle {
+    private static ArrayList<Puzzle> listPuzzles;
+    private static boolean isAttempting = false;
+    private static Puzzle currentPuzzle = null;
     private String
             ID,
             location,
@@ -22,10 +25,6 @@ public abstract class Puzzle {
             answer,
             boon;
     private int counter;
-
-    private static ArrayList<Puzzle> listPuzzles;
-    private static boolean isAttempting = false;
-    private static Puzzle currentPuzzle = null;
 
     public static boolean loadPuzzleFile(File f) {
         listPuzzles = new ArrayList<>();
@@ -89,6 +88,26 @@ public abstract class Puzzle {
         listPuzzles.remove(p);
     }
 
+    public static boolean isAttempting() {
+        return isAttempting;
+    }
+
+    public static void setAttempting(boolean attempting) {
+        isAttempting = attempting;
+    }
+
+    public static Puzzle getCurrentPuzzle() {
+        return currentPuzzle;
+    }
+
+    public static void setCurrentPuzzle(Puzzle currentPuzzle) {
+        Puzzle.currentPuzzle = currentPuzzle;
+    }
+
+    public static void clearPuzzle(Puzzle p) {
+        listPuzzles.remove(p);
+    }
+
     public String getID() {
         return ID;
     }
@@ -113,22 +132,6 @@ public abstract class Puzzle {
         return boon;
     }
 
-    public static void setAttempting(boolean attempting) {
-        isAttempting = attempting;
-    }
-
-    public static boolean isAttempting() {
-        return isAttempting;
-    }
-
-    public static Puzzle getCurrentPuzzle() {
-        return currentPuzzle;
-    }
-
-    public static void setCurrentPuzzle(Puzzle currentPuzzle) {
-        Puzzle.currentPuzzle = currentPuzzle;
-    }
-
     public int getCounter() {
         return counter;
     }
@@ -138,9 +141,5 @@ public abstract class Puzzle {
     }
 
     public abstract boolean attempt(String input);
-
-    public static void clearPuzzle(Puzzle p) {
-        listPuzzles.remove(p);
-    }
 
 }

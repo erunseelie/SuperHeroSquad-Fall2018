@@ -1,5 +1,5 @@
 package shs.cos.model.items;
 
-public class ItemDefense {
+public class ItemDefense extends Item {
 	
 }

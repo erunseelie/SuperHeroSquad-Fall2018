@@ -1,4 +1,4 @@
-﻿ID::It_Shotgun
+ID::It_Shotgun
 itemName::Shotgun
 itemType::Weapon
 itemDesc::A shotgun. Not very accurate, but decent reload speed and wide shot spread.
@@ -98,7 +98,7 @@ endItem::
 ID::It_BlueBook
 itemName::Blue book
 itemType::Puzzle
-itemDesc::It's a small blue book that reads: â€œFrom the mightiest oak, underneath, fauna crept. I now reside in a building supporting your steps.â€�
+itemDesc::It's a small blue book that reads: â€œFrom the mightiest oak, underneath, fauna crept. I now reside in a building supporting your steps.â€?
 itemLocation::B3R2
 endItem::
 ID::It_BrownBook

@@ -1,4 +1,4 @@
 package shs.cos.model.items;
 
-public class ItemWeapon {
+public class ItemWeapon extends Item {
 }

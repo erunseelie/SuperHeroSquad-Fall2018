@@ -38,15 +38,19 @@ public class Main {
      */
     private static void loadGameData() {
 
-        Room.readRoomFile(new File(selectFile("Rooms")));
-        Monster.readMonsterFile(new File(selectFile("Monsters")));
-        Item.readItemFile(new File(selectFile("Items")));
+        if (!(Room.readRoomFile(new File(selectFile("Rooms")))))
+            GUILogin.displayWarning("The following data file was not found, or contains invalid data: Rooms.txt");
+        if (!(Monster.readMonsterFile(new File(selectFile("Monsters")))))
+            GUILogin.displayWarning("The following data file was not found, or contains invalid data: Monsters.txt");
+        if (!(Item.readItemFile(new File(selectFile("Items")))))
+            GUILogin.displayWarning("The following data file was not found, or contains invalid data: Items.txt");
         if (!(Puzzle.loadPuzzleFile(new File(selectFile("Puzzles")))))
-            GUILogin.displayWarning("The following data file was not found, or contains invalid data: PUZZLES.TXT");
+            GUILogin.displayWarning("The following data file was not found, or contains invalid data: Puzzles.txt");
     }
 
     private static String selectFile(String s) {
         String dataDirectory = "res/data/";
+//        String dataDirectory = "data/";
         String dataExtension = ".txt";
         return dataDirectory + s + dataExtension;
     }
