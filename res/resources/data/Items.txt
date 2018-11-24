@@ -98,13 +98,13 @@ endItem::
 ID::It_BlueBook
 itemName::Blue book
 itemType::Puzzle
-itemDesc::It's a small blue book that reads: â€œFrom the mightiest oak, underneath, fauna crept. I now reside in a building supporting your steps.â€?
+itemDesc::It's a small blue book that reads: ???From the mightiest oak, underneath, fauna crept. I now reside in a building supporting your steps.???
 itemLocation::B3R2
 endItem::
 ID::It_BrownBook
 itemName::Brown Book
 itemType::Puzzle
-itemDesc::A small, brown, leather book that reads: â€œWhere the dead sleep and the living are blind, the treasure you seek, lies behind."
+itemDesc::A small, brown, leather book that reads: ???Where the dead sleep and the living are blind, the treasure you seek, lies behind."
 itemLocation::B5R2
 endItem::
 ID::It_OilCan

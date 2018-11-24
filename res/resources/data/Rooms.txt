@@ -107,7 +107,7 @@ monster::En_Birddog
 endRoom::
 ID::B4R2
 roomName::Bedroom 1
-desc::You can see the saloon through the window. There is a bed that’s been made recently, a dresser with a couple pictures and a knife on it, and a closet on the other side of the room. There is are doors to a bathroom and a closet.
+desc::You can see the saloon through the window. There is a bed that's been made recently, a dresser with a couple pictures and a knife on it, and a closet on the other side of the room. There are doors to a bathroom and a closet.
 door::B4R1
 door::B4R3
 door::B4R4
@@ -127,7 +127,7 @@ item::It_OilCan
 endRoom::
 ID::B4R5
 roomName::Bedroom 2
-desc::The window is cracked so it’s difficult to see out of. There is no mattress just a bed frame and the dresser are knocked over with some shattered picture frames. The closet and bathroom doors have been left wide open. There is a bottle of red pills on the floor.
+desc::The window is cracked so it's difficult to see out of. There is no mattress, just a bed frame and the dresser are knocked over with some shattered picture frames. The closet and bathroom doors have been left wide open. There is a bottle of red pills on the floor.
 door::B4R1
 door::B4R6
 door::B4R7
@@ -156,7 +156,7 @@ puzzle::BOOK_1
 endRoom::
 ID::B4R9
 roomName::Bathroom 3
-desc::There’s a mirror pointed at the door way. The sink is very dirty, like someone left in a rush. There seems to be some odd black powder on the countertop, it looks like it's gunpowder.
+desc::There's a mirror pointed at the door way. The sink is very dirty, like someone left in a rush. There seems to be some odd black powder on the countertop, it looks like it's gunpowder.
 door::B4R8
 item::It_FlashBomb
 endRoom::
