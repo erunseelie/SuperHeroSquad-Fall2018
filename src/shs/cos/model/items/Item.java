@@ -3,7 +3,6 @@ package shs.cos.model.items;
 import shs.cos.model.utils.io.IO;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.TreeMap;

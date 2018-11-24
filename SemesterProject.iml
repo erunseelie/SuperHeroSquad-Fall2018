@@ -8,7 +8,6 @@
       <excludeFolder url="file://$MODULE_DIR$/.idea" />
       <excludeFolder url="file://$MODULE_DIR$/.settings" />
       <excludeFolder url="file://$MODULE_DIR$/dev" />
-      <excludeFolder url="file://$MODULE_DIR$/lib" />
     </content>
     <content url="file://$MODULE_DIR$/out/artifacts/SemesterProject_jar" />
     <orderEntry type="inheritedJdk" />

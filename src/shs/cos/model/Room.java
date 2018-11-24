@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.TreeMap;
 import java.io.File;
-import java.io.FileNotFoundException;
 
 public class Room {
     //indicator used to seperate data type indicator and the actual data to be added

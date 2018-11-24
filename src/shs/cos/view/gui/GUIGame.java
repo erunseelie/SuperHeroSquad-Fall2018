@@ -318,7 +318,8 @@ public class GUIGame extends Observable implements Observer {
                 lblInventory.setForeground(Color.WHITE);
                 pnlInventory.add(lblInventory);
 
-                listInventory = new JList<>();
+                DefaultListModel l = new DefaultListModel();
+                listInventory = new JList<Item>(l);
                 {
                     listInventory.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
                     listInventory.setLayoutOrientation(JList.HORIZONTAL_WRAP);
@@ -450,6 +451,8 @@ public class GUIGame extends Observable implements Observer {
         for (Item i : a) {
             l.addElement(i.getItemName());
         }
-        listInventory = new JList<>(l);
+        listInventory = new JList<Item>(l);
+        listInventory.setSelectedIndex(0);
+        listInventory.ensureIndexIsVisible(0);
     }
 }

@@ -1,14 +1,7 @@
 package shs.cos.model.puzzles;
 
-import shs.cos.controller.Main;
-import shs.cos.model.items.Item;
-import shs.cos.view.gui.GUIGame;
-import shs.cos.view.gui.GUILogin;
-
-import javax.swing.*;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Scanner;
 
 import static shs.cos.model.utils.io.IO.separator;
@@ -77,6 +70,7 @@ public abstract class Puzzle {
                 }
             }
         }
+        fileIn.close();
         return true;
     }
 
