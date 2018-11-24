@@ -288,6 +288,7 @@ public class GUIGame extends Observable implements Observer {
                     pnlCombat.add(pnlButtonsMonster);
 
                     btnAttack = new JButton("Attack");
+                    btnPuzzleExit.addActionListener(new Command(this, "attack"));
                     pnlButtonsMonster.add(btnAttack);
                     grpAll.add(btnAttack);
 
