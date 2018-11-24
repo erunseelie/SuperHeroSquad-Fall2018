@@ -16,6 +16,7 @@ import java.util.concurrent.atomic.AtomicReference;
 // Gets the command entered.
 public class Command implements ActionListener
 {
+	private int turnCount;
 	private GUIGame gui;
 	private String action;
 
@@ -61,6 +62,8 @@ public class Command implements ActionListener
 			case "puzzleHint":
 				s = cmdPuzzleHint();
 				break;
+			case "attack":
+				s = cmdAttack();
 			default:
 				s = "You don't know how to do that.";
 				break;
@@ -112,26 +115,33 @@ public class Command implements ActionListener
 
 			gui.addLogText(s);
 		}
+		
 		// check for inCombat, and if so, give monster a turn to deal damage. If there
 		// is no monster, will set inCombat to false
-
 		Room currentRoom = mapRooms.get(Room.getCurrentRoomKey());
 		if (!currentRoom.getMonsters().isEmpty())
 		{
+			turnCount++;
 			Main.player.setInCombat(true);
 			Monster currentMonster = mapMonsters.get(currentRoom.getMonsters().get(0));
-			Main.player.applyDamage(currentMonster.getMonAtkValue());
-
-			int damageTaken = currentMonster.getMonAtkValue();
-
-			if (Main.player.getHealth() >= 0)
+			
+			if (turnCount > 0)
 			{
-				// player loses game at this point. Should exit game, or reset or whatever needs
-				// to happen.
-				s = "You have died. Later nerd";
-			}
+				Main.player.applyDamage(currentMonster.getMonAtkValue());
 
-			s = "You have taken " + damageTaken + " damage.";
+				int damageTaken = currentMonster.getMonAtkValue();
+
+				if (Main.player.getHealth() >= 0)
+				{
+					// player loses game at this point. Should exit game, or reset or whatever needs
+					// to happen.
+					s = "You have died. Later nerd";
+				}
+
+				s = "You have taken " + damageTaken + " damage from " + currentMonster.getName() + "'s " + currentMonster.getAtkName();
+				
+				gui.addLogText(s);
+			}
 		}
 
 		else
@@ -141,8 +151,19 @@ public class Command implements ActionListener
 
 	}
 
+	private String cmdAttack()
+	{
+		Monster currentMonster = mapMonsters.get(mapRooms.get(Room.getCurrentRoomKey()).getMonsters().get(0));
+	
+		int damageToDeal = mapItems.get(Main.player.getCurrentWeapon()).getItemStat();
+		currentMonster.applyDamage(damageToDeal);
+		
+		return "ATTACK: \n" + "You dealt " + damageToDeal + " damage to " + currentMonster.getName();
+	}
+
 	private TreeMap<String, Room> mapRooms = Room.getMap();
 	private TreeMap<String, Monster> mapMonsters = Monster.getMonsterList();
+	private TreeMap<String, Item> mapItems = Item.getItemIDList();
 
 	private String cmdLook()
 	{
@@ -213,6 +234,7 @@ public class Command implements ActionListener
 					} else
 						gui.enablePuzzleAccess(false);
 				}
+				turnCount = -1;
 				s = "You mosey through the dust. You have arrived at your destination...";
 				s += "\n" + cmdLook().substring(6);
 
