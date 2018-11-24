@@ -9,7 +9,6 @@ weakness::oil canister //-----------------idnotname-------------------
 location::B6R2
 monSpeed::2
 endMon::
-
 ID::En_Gordo
 monName::Gordo
 monDesc::This guy is big. What a unit he is, maybe I should keep my distance.
@@ -18,10 +17,9 @@ monDefense::50
 monAtkValue::40
 atkName::Body Slam
 weakness::Guns = extra turn //-----------------idnotname-------------------
-location::B6R2
+location::B1R2
 monSpeed::0
 endMon::
-
 ID::En_Larry
 monName::Larry The Lasso
 monDesc::This guy got a las-so? Maybe I should keep my distance.
@@ -34,7 +32,6 @@ location::B5R1
 monSpeed::2
 itemDrop::IT_Note6
 endMon::
-
 ID::En_RedEye
 monName::Red Eye
 monDesc::This looks to be something wrong with this one. He looks like a maniac, possibly drugged out. He's all over the place, maybe if I had something to slow him down.

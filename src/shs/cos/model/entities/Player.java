@@ -4,11 +4,12 @@ public class Player extends Character
 {
 	//starting weapon is revolver
 	private String currentWeaponID;
-	
 	//no starting armor, defaults to 0
 	private String currentArmorID;
 
 	public static int healthDefault = 100;
+	
+	private boolean inCombat = false;
 
 	public Player()
 	{
@@ -34,6 +35,16 @@ public class Player extends Character
 	public void setCurrentArmor(String newArmor)
 	{
 		currentArmorID = newArmor;
+	}
+	
+	public boolean getInCombat()
+	{
+		return inCombat;
+	}
+	
+	public void setInCombat(boolean status)
+	{
+		inCombat = status;
 	}
 
 }
