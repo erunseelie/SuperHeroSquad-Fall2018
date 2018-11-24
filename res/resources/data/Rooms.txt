@@ -21,16 +21,21 @@ roomName::Jail Cell
 desc::There seems to be some sort of hole under one of the beds. The locks on the jail cell seem to have been protecting some sort of tunnel. This must lead to the gold mine you've heard so much about.
 door::B1R1
 door::B6R1
+puzzle::SEQUENCE_1
+monster::En_Gordo
 endRoom::
 ID::B1R3
 roomName::Sheriff's Office
 desc::The office seems to have been roughed up a little bit. There is a safe in the corner, and a first aid kit on a shelf. There is a plaque the wall with the writing "Lucky Strike Valley Est. 1832"
 door::B1R1
+item::It_Bandages
+puzzle::SAFE_1
 endRoom::
 ID::B1R4
 roomName::Jail Armory
 desc::There are a couple of gun cabinets, all emptied out. The bandits seem to have left a shotgun behind the door.
 door::B1R1
+item::It_Shotgun
 endRoom::
 ID::B2R1
 roomName::Saloon
@@ -40,26 +45,32 @@ door::B2R2
 door::B2R3
 door::B2R4
 door::B2R5
+item::It_Moonshine
+monster::En_Greasy
 endRoom::
 ID::B2R2
 roomName::Kitchen
 desc::The kitchen is a mess, food strewn all over the place. There are pots and pans all over the place, and shattered dishes all over the floor.
 door::B2R1
+item::It_Pan
 endRoom::
 ID::B2R3
 roomName::Basement
 desc::A large mostly empty room with some shelves in the back and barrels of whiskey lined up along the walls. There's a shovel propped up in the back corner.
 door::B2R1
+item::It_Shovel
 endRoom::
 ID::B2R4
 roomName::Storage Room
 desc::There are some cleaning supplies on a shelf and what seems to be a bottle of aged whiskey on display. It has a description under it that reads "Smooth 1734 swill". There also seems to be a safe in the cor-ner of the room.
 door::B2R1
+puzzle::SAFE_2
 endRoom::
 ID::B2R5
 roomName::Bathroom
 desc::It looks like a typical bathroom. A sink with a mirror on the wall, a toilet in the back, and a spit bucket in the corner. Someone left some bandages sitting on the edge of the tub.
 door::B2R1
+item::It_Bandages
 endRoom::
 ID::B3R1
 roomName::General Store
@@ -67,16 +78,21 @@ desc::The shelves are all tipped over, merchandise all over the floor. There is 
 door::B0R0
 door::B3R2
 door::B3R3
+item::It_DeerArmor
 endRoom::
 ID::B3R2
 roomName::StorageRoom
 desc::There are crates of merchandise that look like they were stacked up, now they're all knocked over onto the floor. There's a book on top of one of the boxes.
 door::B3R1
+item::It_Bandages
+item::It_BlueBook
+monster::En_Smokey
 endRoom::
 ID::B3R3
 roomName::Basement
 desc::The basement is oddly empty. There are cobwebs decorating the ceil-ing and a large American flag draped across the wall. It's dark but you can see there is a safe in the far back.
 door::B3R1
+puzzle::SAFE_4
 endRoom::
 ID::B4R1
 roomName::The Inn
@@ -86,6 +102,8 @@ door::B4R2
 door::B4R5
 door::B4R8
 door::B4R11
+item::It_Hammer
+monster::En_Birddog
 endRoom::
 ID::B4R2
 roomName::Bedroom 1
@@ -93,16 +111,19 @@ desc::You can see the saloon through the window. There is a bed that’s been ma
 door::B4R1
 door::B4R3
 door::B4R4
+item::It_Knife
 endRoom::
 ID::B4R3
 roomName::Bathroom 1
 desc::It's just a simple bathroom. A tub, a sink, and a toilet. There's a bottle of blue pills on the sink.
 door::B4R2
+item::It_BluePills
 endRoom::
 ID::B4R4
 roomName::Closet 1
 desc::There are a few coats hanging up and some boxes stacked up in the corner and an oil canister up against the wall.
 door::B4R2
+item::It_OilCan
 endRoom::
 ID::B4R5
 roomName::Bedroom 2
@@ -110,16 +131,19 @@ desc::The window is cracked so it’s difficult to see out of. There is no mattr
 door::B4R1
 door::B4R6
 door::B4R7
+item::It_RedPills
 endRoom::
 ID::B4R6
 roomName::Bathroom 2
 desc::The sink is busted and there is no toilet, just a pipe sticking out of the floor.
 door::B4R5
+item::It_Machete
 endRoom::
 ID::B4R7
 roomName::Closet 2
 desc::The coat rack is missing but, there is a leather tunic that looks to be made of elk hide lying on the floor.
 door::B4R5
+item::It_ElkArmor
 endRoom::
 ID::B4R8
 roomName::Bedroom 3
@@ -127,21 +151,26 @@ desc::The wallpaper in the closet is peeling and one of the floorboards is loose
 door::B4R1
 door::B4R9
 door::B4R10
+item::It_FirstAid
+puzzle::BOOK_1
 endRoom::
 ID::B4R9
 roomName::Bathroom 3
 desc::There’s a mirror pointed at the door way. The sink is very dirty, like someone left in a rush. There seems to be some odd black powder on the countertop, it looks like it's gunpowder.
 door::B4R8
+item::It_FlashBomb
 endRoom::
 ID::B4R10
 roomName::Closet 3
 desc::There is a shelf with an axe on top of it. Other than that, there is just a few empty coat hangers.
 door::B4R8
+item::It_Axe
 endRoom::
 ID::B4R11
 roomName::Storage Room
 desc::There are piles of unfolded sheets bedsheets and pillow cases scat-tered all around the room. The is a pickaxe down here for some odd reason as well.
 door::B4R1
+item::It_Pickaxe
 endRoom::
 ID::B5R1
 roomName::Barn
@@ -150,41 +179,53 @@ door::B0R0
 door::B5R2
 door::B5R3
 door::B5R4
+item::It_BuffaloArmor
+monster::En_Larry
 endRoom::
 ID::B5R2
 roomName::Stables
 desc::There are a few large bales of hay and one giant stack of hay in the corner of the barn with a pitchfork stuck in it. There is a book on top one of the haybales.
 door::B5R1
+item::It_Pitchfork
+item::It_BrownBook
 endRoom::
 ID::B5R3
 roomName::Wash Stall
 desc::The stall looks empty aside from a water tap and a bucket of water.
 door::B5R1
+item::It_WaterBucket
 endRoom::
 ID::B5R4
 roomName::Storage Room
 desc::There are a few saddles and horseshoes lying around. There is a safe up against the wall.
 door::B5R1
+puzzle::SAFE_3
 endRoom::
 ID::B6R1
 roomName::Mine Shaft
 desc::There are loads of rocks piled up everywhere and a few minecarts around. There is a door at the end of the mineshaft.
 door::B0R0
 door::B6R2
+monster::En_Quick-Draw
 endRoom::
 ID::B6R2
 roomName::Gold Mine
 desc::The room is filled with gold. This stockpile could be worth enough to live 100 lifetimes.
 door::B6R1
+monster::En_Harley
 endRoom::
 ID::B7R1
 roomName::The Church
 desc::There are benches for attendees to sit during service and a big stage with a podium the podium seems to have been vandalized and there is a wooden board hanging off it. There is a doorway at the side of the stage that leads to the crypts.
 door::B0R0
 door::B7R2
+item::It_Woodboard
+monster::En_RedEye
 endRoom::
 ID::B7R2
 roomName::Crypt
 desc::The room has an odd smell. There are coffins lining the walls. One of the coffins seems to have been tampered with.
 door::B7R1
+item::It_Morphine
+puzzle::BOOK_2
 endRoom::
