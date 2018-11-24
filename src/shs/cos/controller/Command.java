@@ -114,32 +114,31 @@ public class Command implements ActionListener
 		}
 		// check for inCombat, and if so, give monster a turn to deal damage. If there
 		// is no monster, will set inCombat to false
-		if (Main.player.getInCombat())
+
+		Room currentRoom = mapRooms.get(Room.getCurrentRoomKey());
+		if (!currentRoom.getMonsters().isEmpty())
 		{
-			Room currentRoom = mapRooms.get(Room.getCurrentRoomKey());
-			// check to see if monster still exists
-			if (currentRoom.getMonsters().equals(null))
+			Main.player.setInCombat(true);
+			Monster currentMonster = mapMonsters.get(currentRoom.getMonsters().get(0));
+			Main.player.applyDamage(currentMonster.getMonAtkValue());
+
+			int damageTaken = currentMonster.getMonAtkValue();
+
+			if (Main.player.getHealth() >= 0)
 			{
-				Main.player.setInCombat(false);
+				// player loses game at this point. Should exit game, or reset or whatever needs
+				// to happen.
+				s = "You have died. Later nerd";
 			}
 
-			else
-			{
-				Monster currentMonster = mapMonsters.get(currentRoom.getMonsters().get(0));
-				Main.player.applyDamage(currentMonster.getMonAtkValue());
-
-				int damageTaken = currentMonster.getMonAtkValue();
-
-				if (Main.player.getHealth() >= 0)
-				{
-					// player loses game at this point. Should exit game, or reset or whatever needs
-					// to happen.
-					s = "You have died. Later nerd";
-				}
-
-				s = "You have taken " + damageTaken + " damage.";
-			}
+			s = "You have taken " + damageTaken + " damage.";
 		}
+
+		else
+		{
+			Main.player.setInCombat(false);
+		}
+
 	}
 
 	private TreeMap<String, Room> mapRooms = Room.getMap();
