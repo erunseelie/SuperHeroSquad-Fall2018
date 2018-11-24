@@ -108,7 +108,7 @@ public class Monster extends Character {
         return currentMonster;
     }
 
-    public TreeMap<String, Monster> getMonsterList() {
+    public static TreeMap<String, Monster> getMonsterList() {
         return monsterList;
     }
 
