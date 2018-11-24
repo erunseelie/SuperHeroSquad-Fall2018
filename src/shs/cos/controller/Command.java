@@ -31,7 +31,7 @@ public class Command implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		String s;
-		if (action != null)
+		if (action != null && Main.player.getHealth() > 0)
 		{
 			switch (action)
 			{
@@ -70,7 +70,7 @@ public class Command implements ActionListener
 				break;
 			}
 			gui.addLogText(s);
-		} else
+		} else if (Main.player.getHealth() > 0)
 		{
 			// textual commands
 			String[] command = gui.getInput().split(" ");
@@ -117,16 +117,23 @@ public class Command implements ActionListener
 			gui.addLogText(s);
 		}
 
+		else
+		{
+			s = "You are too dead to do that. Please start a new game";
+			gui.addLogText(s);
+		}
+
 		// check for inCombat, and if so, give monster a turn to deal damage. If there
 		// is no monster, will set inCombat to false
 		Room currentRoom = mapRooms.get(Room.getCurrentRoomKey());
-		if (!currentRoom.getMonsters().isEmpty())
+		if (!currentRoom.getMonsters().isEmpty() && Main.player.getHealth() > 0)
 		{
 			turnCount++;
+
 			Main.player.setInCombat(true);
 			Monster currentMonster = mapMonsters.get(currentRoom.getMonsters().get(0));
 
-			if (turnCount > 0)
+			if (turnCount > 0 && currentMonster.getHealth() > 0)
 			{
 				int currentArmor;
 
@@ -185,30 +192,38 @@ public class Command implements ActionListener
 
 	private String cmdAttack()
 	{
-		if(!(mapRooms.get(Room.getCurrentRoomKey()).getMonsters().isEmpty()))
+		if (!(mapRooms.get(Room.getCurrentRoomKey()).getMonsters().isEmpty()))
 		{
 			Monster currentMonster = mapMonsters.get(mapRooms.get(Room.getCurrentRoomKey()).getMonsters().get(0));
 
-			int damageToDeal = (int) (mapItems.get(Main.player.getCurrentWeapon()).getItemStat()
-					* (100 - currentMonster.getMonDefense()) / 100);
-
-			// if
-			// (Item.getPlayerItems().contains(mapItems.get(currentMonster.getMonWeakness())));
-			// {
-			// damageToDeal = damageToDeal * 2;
-			// gui.addLogText("Critical!");
-			// }
-
-			if (currentMonster.getMonSpeed() == 0)
+			if (currentMonster.getHealth() > 0)
 			{
-				damageToDeal = damageToDeal * 2;
-				gui.addLogText("He's so slow you hit him twice!");
+				int damageToDeal = (int) (mapItems.get(Main.player.getCurrentWeapon()).getItemStat()
+						* (100 - currentMonster.getMonDefense()) / 100);
+
+				// if
+				// (Item.getPlayerItems().contains(mapItems.get(currentMonster.getMonWeakness())));
+				// {
+				// damageToDeal = damageToDeal * 2;
+				// gui.addLogText("Critical!");
+				// }
+
+				if (currentMonster.getMonSpeed() == 0)
+				{
+					damageToDeal = damageToDeal * 2;
+					gui.addLogText("He's so slow you hit him twice!");
+				}
+
+				currentMonster.applyDamage(damageToDeal);
+
+				return "ATTACK: \n" + "You dealt " + damageToDeal + " damage to " + currentMonster.getName() + "\n"
+						+ currentMonster.getName() + " has " + currentMonster.getHealth() + " health left.";
 			}
 
-			currentMonster.applyDamage(damageToDeal);
-
-			return "ATTACK: \n" + "You dealt " + damageToDeal + " damage to " + currentMonster.getName() + "\n"
-					+ currentMonster.getName() + " has " + currentMonster.getHealth() + " health left.";
+			else
+			{
+				return "Stop! Stop! He's already dead!";
+			}
 		}
 		return "There is no one here to fight.";
 	}
