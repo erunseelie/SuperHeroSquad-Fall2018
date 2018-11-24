@@ -5,7 +5,7 @@ monHealth::75
 monDefense::15
 monAtkValue::10
 atkName::Dagger Flurry
-weakness::oil canister //-----------------idnotname-------------------
+weakness::It_OilCan
 location::B6R2
 monSpeed::2
 endMon::
@@ -16,7 +16,7 @@ monHealth::100
 monDefense::50
 monAtkValue::40
 atkName::Body Slam
-weakness::Guns = extra turn //-----------------idnotname-------------------
+weakness::It_Shotgun
 location::B1R2
 monSpeed::0
 endMon::
@@ -27,7 +27,7 @@ monHealth::50
 monDefense::25
 monAtkValue::20
 atkName::Lasso Choke
-weakness::Guns do double damage //-----------------idnotname-------------------
+weakness::It_Rifle
 location::B5R1
 monSpeed::2
 itemDrop::IT_Note6
@@ -39,7 +39,7 @@ monHealth::50
 monDefense::10
 monAtkValue::35
 atkName::Maul
-weakness::Morphine //-----------------idnotname-------------------
+weakness::It_Morphine
 location::B7R1
 monSpeed::1
 itemDrop::IT_Note4
@@ -51,7 +51,7 @@ monHealth::50
 monDefense::70
 monAtkValue::40
 atkName::Spatula Slap
-weakness::Gun equipped = 0 dmg //-----------------idnotname-------------------
+weakness::It_Revolver
 location::B2R1
 monSpeed::1
 itemDrop::IT_Note1
@@ -63,7 +63,7 @@ monHealth::80
 monDefense::10
 monAtkValue::40
 atkName::Revolver Shot
-weakness::flash bomb = extra turn //-----------------idnotname-------------------
+weakness::It_FlashBomb
 location::B6R1
 monSpeed::1
 itemDrop::IT_Note2
@@ -75,7 +75,7 @@ monHealth::50
 monDefense::10
 monAtkValue::40
 atkName::Flare
-weakness::bucket of water = extra turn //-----------------idnotname-------------------
+weakness::It_WaterBucket
 location::B3R1
 monSpeed::1
 itemDrop::IT_Note3
@@ -87,7 +87,7 @@ monHealth::7
 monDefense::7
 monAtkValue::5
 atkName::Hay-Maker
-weakness::gun = double damage //-----------------idnotname-------------------
+weakness::It_Axe
 location::B4R1
 monSpeed::1
 itemDrop::IT_Note5

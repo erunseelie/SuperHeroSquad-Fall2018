@@ -141,7 +141,12 @@ public class Command implements ActionListener
 				}
 
 				int damageTaken = currentMonster.getMonAtkValue() - currentArmor;
-				
+
+				if (currentMonster.getMonSpeed() == 2)
+				{
+					damageTaken = damageTaken * 2;
+				}
+
 				if (damageTaken < 0)
 				{
 					damageTaken = 0;
@@ -156,8 +161,15 @@ public class Command implements ActionListener
 					s = "You have died. Later nerd";
 				}
 
-				s = "You have taken " + damageTaken + " damage from " + currentMonster.getName() + "'s "
-						+ currentMonster.getAtkName();
+				if (currentMonster.getMonSpeed() == 2)
+				{
+					s = "You have taken " + damageTaken + " damage from " + currentMonster.getName() + "'s "
+							+ currentMonster.getAtkName() + "\n He's so quick, he hit you twice!";
+				} else
+				{
+					s = "You have taken " + damageTaken + " damage from " + currentMonster.getName() + "'s "
+							+ currentMonster.getAtkName();
+				}
 
 				gui.addLogText(s);
 				gui.update(gui, action);
@@ -177,9 +189,20 @@ public class Command implements ActionListener
 
 		int damageToDeal = (int) (mapItems.get(Main.player.getCurrentWeapon()).getItemStat()
 				* (100 - currentMonster.getMonDefense()) / 100);
-		currentMonster.applyDamage(damageToDeal);
 
-		System.out.println(currentMonster.getHealth());
+//		if (Item.getPlayerItems().contains(mapItems.get(currentMonster.getMonWeakness())));
+//		{
+//			damageToDeal = damageToDeal * 2;
+//			gui.addLogText("Critical!");
+//		}
+
+		if (currentMonster.getMonSpeed() == 0)
+		{
+			damageToDeal = damageToDeal * 2;
+			gui.addLogText("He's so slow you hit him twice!");
+		}
+
+		currentMonster.applyDamage(damageToDeal);
 
 		return "ATTACK: \n" + "You dealt " + damageToDeal + " damage to " + currentMonster.getName() + "\n"
 				+ currentMonster.getName() + " has " + currentMonster.getHealth() + " health left.";
@@ -225,24 +248,24 @@ public class Command implements ActionListener
 	{
 		StringBuilder s = new StringBuilder();
 
-		if (!Main.player.getInCombat())
+		// if (!Main.player.getInCombat())
+		// {
+		ArrayList<String> rooms = getRoomConnections();
+
+		for (String r : rooms)
 		{
-			ArrayList<String> rooms = getRoomConnections();
-
-			for (String r : rooms)
-			{
-				Room room = mapRooms.get(r);
-				s.append(room.getRoomName()).append(", ");
-			}
-
-			s.deleteCharAt(s.length() - 1);
-			s.deleteCharAt(s.length() - 1);
+			Room room = mapRooms.get(r);
+			s.append(room.getRoomName()).append(", ");
 		}
 
-		else
-		{
-			s.append("You're a little busy fighting right now");
-		}
+		s.deleteCharAt(s.length() - 1);
+		s.deleteCharAt(s.length() - 1);
+		// }
+
+		// else
+		// {
+		// s.append("You're a little busy fighting right now");
+		// }
 
 		return "LIST: \n" + s;
 

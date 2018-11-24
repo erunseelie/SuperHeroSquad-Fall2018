@@ -2,18 +2,18 @@ package shs.cos.model.entities;
 
 public class Player extends Character
 {
-	//starting weapon is revolver
+	// starting weapon is revolver
 	private String currentWeaponID = "It_Revolver";
-	//no starting armor, defaults to 0
+	// no starting armor, defaults to 0
 	private String currentArmorID = "";
 
 	public static int healthDefault = 100;
-	
+
 	private boolean inCombat = false;
 
 	public Player()
 	{
-		//check for balance
+		// check for balance
 		enHealth = healthDefault;
 	}
 
@@ -36,12 +36,12 @@ public class Player extends Character
 	{
 		currentArmorID = newArmor;
 	}
-	
+
 	public boolean getInCombat()
 	{
 		return inCombat;
 	}
-	
+
 	public void setInCombat(boolean status)
 	{
 		inCombat = status;
