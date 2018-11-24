@@ -185,27 +185,32 @@ public class Command implements ActionListener
 
 	private String cmdAttack()
 	{
-		Monster currentMonster = mapMonsters.get(mapRooms.get(Room.getCurrentRoomKey()).getMonsters().get(0));
-
-		int damageToDeal = (int) (mapItems.get(Main.player.getCurrentWeapon()).getItemStat()
-				* (100 - currentMonster.getMonDefense()) / 100);
-
-//		if (Item.getPlayerItems().contains(mapItems.get(currentMonster.getMonWeakness())));
-//		{
-//			damageToDeal = damageToDeal * 2;
-//			gui.addLogText("Critical!");
-//		}
-
-		if (currentMonster.getMonSpeed() == 0)
+		if(!(mapRooms.get(Room.getCurrentRoomKey()).getMonsters().isEmpty()))
 		{
-			damageToDeal = damageToDeal * 2;
-			gui.addLogText("He's so slow you hit him twice!");
+			Monster currentMonster = mapMonsters.get(mapRooms.get(Room.getCurrentRoomKey()).getMonsters().get(0));
+
+			int damageToDeal = (int) (mapItems.get(Main.player.getCurrentWeapon()).getItemStat()
+					* (100 - currentMonster.getMonDefense()) / 100);
+
+			// if
+			// (Item.getPlayerItems().contains(mapItems.get(currentMonster.getMonWeakness())));
+			// {
+			// damageToDeal = damageToDeal * 2;
+			// gui.addLogText("Critical!");
+			// }
+
+			if (currentMonster.getMonSpeed() == 0)
+			{
+				damageToDeal = damageToDeal * 2;
+				gui.addLogText("He's so slow you hit him twice!");
+			}
+
+			currentMonster.applyDamage(damageToDeal);
+
+			return "ATTACK: \n" + "You dealt " + damageToDeal + " damage to " + currentMonster.getName() + "\n"
+					+ currentMonster.getName() + " has " + currentMonster.getHealth() + " health left.";
 		}
-
-		currentMonster.applyDamage(damageToDeal);
-
-		return "ATTACK: \n" + "You dealt " + damageToDeal + " damage to " + currentMonster.getName() + "\n"
-				+ currentMonster.getName() + " has " + currentMonster.getHealth() + " health left.";
+		return "There is no one here to fight.";
 	}
 
 	private TreeMap<String, Room> mapRooms = Room.getMap();
