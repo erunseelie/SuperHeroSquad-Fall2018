@@ -78,10 +78,6 @@ public abstract class Puzzle {
         return listPuzzles;
     }
 
-    public static void solvePuzzle(Puzzle p) {
-        listPuzzles.remove(p);
-    }
-
     public static boolean isAttempting() {
         return isAttempting;
     }

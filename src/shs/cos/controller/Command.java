@@ -168,7 +168,7 @@ public class Command implements ActionListener
 					s = "You have died. Later nerd";
 				}
 
-				if (currentMonster.getMonSpeed() == 2)
+				else if (currentMonster.getMonSpeed() == 2)
 				{
 					s = "You have taken " + damageTaken + " damage from " + currentMonster.getName() + "'s "
 							+ currentMonster.getAtkName() + "\n He's so quick, he hit you twice!";
@@ -198,7 +198,7 @@ public class Command implements ActionListener
 
 			if (currentMonster.getHealth() > 0)
 			{
-				int damageToDeal = (int) (mapItems.get(Main.player.getCurrentWeapon()).getItemStat()
+				int damageToDeal = (mapItems.get(Main.player.getCurrentWeapon()).getItemStat()
 						* (100 - currentMonster.getMonDefense()) / 100);
 
 				// if
@@ -320,6 +320,11 @@ public class Command implements ActionListener
 			} else
 				s = "That place doesn't seem to be nearby.";
 		}
+
+		if (!(mapRooms.get(Room.getCurrentRoomKey()).getMonsters().isEmpty())) {
+            Monster currentMonster = mapMonsters.get(mapRooms.get(Room.getCurrentRoomKey()).getMonsters().get(0));
+            s += "\n\nThere's somebody in the room! It's " + currentMonster.getName() + "!";
+        }
 		return "GO: " + mapRooms.get(Room.getCurrentRoomKey()).getRoomName() + "\n" + s;
 	}
 
@@ -396,8 +401,7 @@ public class Command implements ActionListener
 
 	private String cmdTake()
 	{
-		// TODO: "The player must have already located the item using the CMD_Look." ???
-		// NYI
+		// TODO: "The player must have already located the item using the CMD_Look."
 		AtomicReference<String> s = new AtomicReference<>("");
 		AtomicReference<String> i = new AtomicReference<>("");
 		for (Map.Entry<String, Item> entry : Item.getItemIDList().entrySet())
@@ -408,6 +412,7 @@ public class Command implements ActionListener
 			{
 				Item.addPlayerItem(v);
 				// TODO: check for multiple instances of one item
+
 				i.set(k);
 				s.set("You picked up: " + v.getItemName().toLowerCase() + ". It can be used as: "
 						+ v.getItemType().toLowerCase() + ".");
