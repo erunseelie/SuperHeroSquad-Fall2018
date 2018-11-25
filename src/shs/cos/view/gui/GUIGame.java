@@ -51,6 +51,7 @@ public class GUIGame extends Observable implements Observer {
     private ArrayList<JComponent> grpAll = new ArrayList<>();
     private ArrayList<JComponent> grpPuzzle = new ArrayList<>();
     private ArrayList<JComponent> grpPlayer = new ArrayList<>();
+    private ArrayList<JComponent> grpCombat = new ArrayList<>();
     private JList listInventory;
 
     private int wWidth = 850, wHeight = 700;
@@ -302,10 +303,12 @@ public class GUIGame extends Observable implements Observer {
                     btnAttack.addActionListener(new Command(this, "attack"));
                     pnlButtonsMonster.add(btnAttack);
                     grpAll.add(btnAttack);
+                    grpCombat.add(btnAttack);
 
                     btnFlee = new JButton("Flee");
                     pnlButtonsMonster.add(btnFlee);
                     grpAll.add(btnFlee);
+                    grpCombat.add(btnFlee);
                 }
             }
 
@@ -465,6 +468,11 @@ public class GUIGame extends Observable implements Observer {
     public void enterPuzzle(boolean b) {
         for (JComponent c : grpAll) c.setEnabled(!b);
         for (JComponent c : grpPuzzle) c.setEnabled(b);
+    }
+
+    public void enterCombat(boolean b) {
+        for (JComponent c : grpAll) c.setEnabled(!b);
+        for (JComponent c : grpCombat) c.setEnabled(b);
     }
 
     public String getPuzzleInput() {
