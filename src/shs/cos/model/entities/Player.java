@@ -3,7 +3,7 @@ package shs.cos.model.entities;
 public class Player extends Character
 {
 	// starting weapon is revolver
-	private String currentWeaponID = "It_Revolver";
+	private String currentWeaponID = "It_Shotgun";
 	// no starting armor, defaults to 0
 	private String currentArmorID = "";
 
