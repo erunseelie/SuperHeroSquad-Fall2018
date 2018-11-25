@@ -47,19 +47,13 @@ public class GUIGame extends Observable implements Observer {
     // puzzles
     private JButton btnPuzzleAccess, btnPuzzleHint, btnPuzzleAttempt, btnPuzzleExit;
     // inventory
-    private JButton btnMap, btnTakeItem, btnUseOrEquip, btnDropItem;
+    private JButton btnMap, btnTakeItem, btnPrintInv, btnUseOrEquip, btnDropItem;
 
     private ArrayList<JComponent> grpAll = new ArrayList<>();
     private ArrayList<JComponent> grpPuzzle = new ArrayList<>();
     private ArrayList<JComponent> grpPlayer = new ArrayList<>();
-<<<<<<< HEAD
-   // private JList listInventory;
-    
-    private JComboBox comboBox;
-=======
     private ArrayList<JComponent> grpCombat = new ArrayList<>();
-    private JList listInventory;
->>>>>>> bcc505470a73be7ee518dc85c41e61fee439a757
+
 
     private int wWidth = 850, wHeight = 700;
 
@@ -322,8 +316,7 @@ public class GUIGame extends Observable implements Observer {
             // inventory panel
             JPanel pnlInventory = new JPanel();
             {
-            	
-                pnlInventory.setBackground(Color.black);
+                   pnlInventory.setBackground(Color.black);
                 {
                     GridLayout g = new GridLayout(5, 1);
                     g.setVgap(5);
@@ -349,13 +342,9 @@ public class GUIGame extends Observable implements Observer {
                         }
                         JLabel picLabel = new JLabel(new ImageIcon(myPicture));
                         mapPanel.add(picLabel);
-
-
                         mapPanel.add(label);
                         mapWindow.add(mapPanel);
                         mapPanel.setVisible(true);
-
-
                     }
                 });
                 pnlInventory.add(btnMap);
@@ -367,30 +356,12 @@ public class GUIGame extends Observable implements Observer {
                 pnlInventory.add(btnTakeItem);
                 grpAll.add(btnTakeItem);
 
-                JLabel lblInventory = new JLabel("Inventory/Equipped Items");
-                lblInventory.setFont(fontNormal);
-                lblInventory.setForeground(Color.WHITE);
-                pnlInventory.add(lblInventory);
+                btnPrintInv = new JButton("Show Inventory");
+                btnPrintInv.addActionListener(new Command(this, "inventory"));
+                pnlInventory.add(btnPrintInv);
+                grpAll.add(btnPrintInv);
 
-<<<<<<< HEAD
-                comboBox = new JComboBox(); 
-                pnlInventory.add(comboBox);
               
-=======
-
-                DefaultListModel l = new DefaultListModel();
-                listInventory = new JList<Item>(l);
-                {
-                    listInventory.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-                    listInventory.setLayoutOrientation(JList.HORIZONTAL_WRAP);
-                    JScrollPane listScroller = new JScrollPane(listInventory);
-                    listScroller.setPreferredSize(new Dimension(250, 80));
-
-                    pnlInventory.add(listInventory);
-                    grpAll.add(listInventory);
-                }
-
->>>>>>> bcc505470a73be7ee518dc85c41e61fee439a757
                 JPanel pnlButtonsItem = new JPanel();
                 {
                     GridLayout g = new GridLayout(2, 1);
@@ -398,9 +369,8 @@ public class GUIGame extends Observable implements Observer {
                     pnlButtonsItem.setLayout(g);
                     pnlButtonsItem.setBackground(Color.BLACK);
                     pnlInventory.add(pnlButtonsItem);
-                    
-                    
-                    
+                                      
+                   
 
                     btnUseOrEquip = new JButton("Use/Equip");
                     pnlButtonsItem.add(btnUseOrEquip);
@@ -515,8 +485,7 @@ public class GUIGame extends Observable implements Observer {
         }
 
         // send to the GUI
-        //addItems(Item.getPlayerItems());
-        comboBox = new JComboBox(Item.getPlayerItems().toArray());
+
  
     }
 
@@ -525,24 +494,6 @@ public class GUIGame extends Observable implements Observer {
         notifyObservers();
     }
 
-<<<<<<< HEAD
-    
-
-	
-=======
-
-    private void addItems(ArrayList<Item> a) {
-
-        DefaultListModel l = new DefaultListModel();
-        for (Item i : a) {
-            l.addElement(i.getItemName());
-        }
-        listInventory = new JList<Item>(l);
-        listInventory.setSelectedIndex(0);
-        listInventory.ensureIndexIsVisible(0);
-        listInventory.setModel(l);
-    }
->>>>>>> bcc505470a73be7ee518dc85c41e61fee439a757
 
 
 }
