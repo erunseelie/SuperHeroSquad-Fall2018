@@ -130,11 +130,11 @@ public class Command implements ActionListener
 		{
 			turnCount++;
 
-			Main.player.setInCombat(true);
 			Monster currentMonster = mapMonsters.get(currentRoom.getMonsters().get(0));
 
 			if (turnCount > 0 && currentMonster.getHealth() > 0)
 			{
+				Main.player.setInCombat(true);
 				int currentArmor;
 
 				if (Main.player.getCurrentArmor().isEmpty())
@@ -215,6 +215,11 @@ public class Command implements ActionListener
 				}
 
 				currentMonster.applyDamage(damageToDeal);
+				
+				if(currentMonster.getHealth() <= 0)
+				{
+					Main.player.setInCombat(false);
+				}
 
 				return "ATTACK: \n" + "You dealt " + damageToDeal + " damage to " + currentMonster.getName() + "\n"
 						+ currentMonster.getName() + " has " + currentMonster.getHealth() + " health left.";
@@ -268,24 +273,24 @@ public class Command implements ActionListener
 	{
 		StringBuilder s = new StringBuilder();
 
-		// if (!Main.player.getInCombat())
-		// {
-		ArrayList<String> rooms = getRoomConnections();
-
-		for (String r : rooms)
+		if (!Main.player.getInCombat())
 		{
-			Room room = mapRooms.get(r);
-			s.append(room.getRoomName()).append(", ");
+			ArrayList<String> rooms = getRoomConnections();
+
+			for (String r : rooms)
+			{
+				Room room = mapRooms.get(r);
+				s.append(room.getRoomName()).append(", ");
+			}
+
+			s.deleteCharAt(s.length() - 1);
+			s.deleteCharAt(s.length() - 1);
 		}
 
-		s.deleteCharAt(s.length() - 1);
-		s.deleteCharAt(s.length() - 1);
-		// }
-
-		// else
-		// {
-		// s.append("You're a little busy fighting right now");
-		// }
+		else
+		{
+			s.append("You're a little busy fighting right now");
+		}
 
 		return "LIST: \n" + s;
 
@@ -296,36 +301,47 @@ public class Command implements ActionListener
 		ArrayList<String> rooms = getRoomConnections();
 		String s = "";
 
-		for (String r : rooms)
+		if (!Main.player.getInCombat())
 		{
-			if (mapRooms.get(r).getRoomName().toLowerCase().equals(location))
-			{
-				Room.setCurrentRoom(r);
-				ArrayList<Puzzle> listP = Puzzle.getPuzzles();
-				String curRoom = Room.getCurrentRoomKey();
-				for (Puzzle p : listP)
-				{
-					if (p.getLocation().equals(curRoom))
-					{
-						gui.enablePuzzleAccess(true);
-						break;
-					} else
-						gui.enablePuzzleAccess(false);
-				}
-				turnCount = -1;
-				s = "You mosey through the dust. You have arrived at your destination...";
-				s += "\n" + cmdLook().substring(6);
 
-				break;
-			} else
-				s = "That place doesn't seem to be nearby.";
+			for (String r : rooms)
+			{
+				if (mapRooms.get(r).getRoomName().toLowerCase().equals(location))
+				{
+					Room.setCurrentRoom(r);
+					ArrayList<Puzzle> listP = Puzzle.getPuzzles();
+					String curRoom = Room.getCurrentRoomKey();
+					for (Puzzle p : listP)
+					{
+						if (p.getLocation().equals(curRoom))
+						{
+							gui.enablePuzzleAccess(true);
+							break;
+						} else
+							gui.enablePuzzleAccess(false);
+					}
+					turnCount = -1;
+					s = "You mosey through the dust. You have arrived at your destination...";
+					s += "\n" + cmdLook().substring(6);
+
+					break;
+				} else
+					s = "That place doesn't seem to be nearby.";
+			}
+
+			if (!(mapRooms.get(Room.getCurrentRoomKey()).getMonsters().isEmpty()))
+			{
+				Monster currentMonster = mapMonsters.get(mapRooms.get(Room.getCurrentRoomKey()).getMonsters().get(0));
+				s += "\n\nThere's somebody in the room! It's " + currentMonster.getName() + "!";
+			}
+			return "GO: " + mapRooms.get(Room.getCurrentRoomKey()).getRoomName() + "\n" + s;
 		}
 
-		if (!(mapRooms.get(Room.getCurrentRoomKey()).getMonsters().isEmpty())) {
-            Monster currentMonster = mapMonsters.get(mapRooms.get(Room.getCurrentRoomKey()).getMonsters().get(0));
-            s += "\n\nThere's somebody in the room! It's " + currentMonster.getName() + "!";
-        }
-		return "GO: " + mapRooms.get(Room.getCurrentRoomKey()).getRoomName() + "\n" + s;
+		else
+		{
+			return "You're a little busy fighting right now";
+		}
+
 	}
 
 	private ArrayList<String> getRoomConnections()
@@ -336,31 +352,41 @@ public class Command implements ActionListener
 	private String cmdPuzzleEnter(boolean exit)
 	{
 		String s = "";
-		if (exit)
+		if (!Main.player.getInCombat())
 		{
-			Puzzle.setAttempting(false);
-			gui.enterPuzzle(false);
-			gui.enablePuzzleAccess(true);
-			s = "You leave the puzzle for now.";
-		} else
-		{
-			ArrayList<Puzzle> listP = Puzzle.getPuzzles();
-			String curRoom = Room.getCurrentRoomKey();
-			for (Puzzle p : listP)
+
+			if (exit)
 			{
-				if (p.getLocation().equals(curRoom))
+				Puzzle.setAttempting(false);
+				gui.enterPuzzle(false);
+				gui.enablePuzzleAccess(true);
+				s = "You leave the puzzle for now.";
+			} else
+			{
+				ArrayList<Puzzle> listP = Puzzle.getPuzzles();
+				String curRoom = Room.getCurrentRoomKey();
+				for (Puzzle p : listP)
 				{
-					Puzzle.setAttempting(true);
-					gui.enterPuzzle(true);
-					gui.enablePuzzleAccess(false);
-					Puzzle.setCurrentPuzzle(p);
-					s = "Something catches your eye...\n";
-					s += p.getDescription();
-					break;
+					if (p.getLocation().equals(curRoom))
+					{
+						Puzzle.setAttempting(true);
+						gui.enterPuzzle(true);
+						gui.enablePuzzleAccess(false);
+						Puzzle.setCurrentPuzzle(p);
+						s = "Something catches your eye...\n";
+						s += p.getDescription();
+						break;
+					}
 				}
 			}
+			return "PUZZLE:\n" + s;
 		}
-		return "PUZZLE:\n" + s;
+
+		else
+		{
+			return "You're a little busy fighting right now";
+		}
+
 	}
 
 	private String cmdPuzzleAttempt()
