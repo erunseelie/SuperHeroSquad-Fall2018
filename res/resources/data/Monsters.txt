@@ -22,7 +22,7 @@ monSpeed::0
 endMon::
 ID::En_Larry
 monName::Larry The Lasso
-monDesc::This guy got a las-so? Maybe I should keep my distance.
+monDesc::This guy got a lasso? Maybe I should keep my distance.
 monHealth::40
 monDefense::25
 monAtkValue::20

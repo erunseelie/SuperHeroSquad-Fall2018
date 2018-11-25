@@ -135,6 +135,7 @@ public class Command implements ActionListener
 			if (turnCount > 0 && currentMonster.getHealth() > 0)
 			{
 				Main.player.setInCombat(true);
+				gui.enterCombat(true);
 				int currentArmor;
 
 				if (Main.player.getCurrentArmor().isEmpty())
@@ -186,6 +187,7 @@ public class Command implements ActionListener
 		else
 		{
 			Main.player.setInCombat(false);
+			gui.enterCombat(false);
 		}
 
 	}
@@ -219,6 +221,7 @@ public class Command implements ActionListener
 				if(currentMonster.getHealth() <= 0)
 				{
 					Main.player.setInCombat(false);
+					gui.enterCombat(false);
 				}
 
 				return "ATTACK: \n" + "You dealt " + damageToDeal + " damage to " + currentMonster.getName() + "\n"
@@ -266,6 +269,7 @@ public class Command implements ActionListener
 		Room.setCurrentRoom("B0R0");
 		gui.enablePuzzleAccess(false);
 		Main.player.setInCombat(false);
+		gui.enterCombat(false);
 		return "EXIT:\n" + "You have returned to the street.";
 	}
 
