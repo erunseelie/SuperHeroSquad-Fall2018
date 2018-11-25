@@ -47,7 +47,9 @@ public class GUIGame extends Observable implements Observer {
     private ArrayList<JComponent> grpAll = new ArrayList<>();
     private ArrayList<JComponent> grpPuzzle = new ArrayList<>();
     private ArrayList<JComponent> grpPlayer = new ArrayList<>();
-    private JList listInventory;
+   // private JList listInventory;
+    
+    private JComboBox comboBox;
 
     private int wWidth = 850, wHeight = 700;
 
@@ -308,6 +310,7 @@ public class GUIGame extends Observable implements Observer {
             // inventory panel
             JPanel pnlInventory = new JPanel();
             {
+            	
                 pnlInventory.setBackground(Color.black);
                 {
                     GridLayout g = new GridLayout(5, 1);
@@ -348,19 +351,9 @@ public class GUIGame extends Observable implements Observer {
                 lblInventory.setForeground(Color.WHITE);
                 pnlInventory.add(lblInventory);
 
-               
-				DefaultListModel l = new DefaultListModel();
-                listInventory = new JList<Item>(l);
-                {
-                    listInventory.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-                    listInventory.setLayoutOrientation(JList.HORIZONTAL_WRAP);
-                    JScrollPane listScroller = new JScrollPane(listInventory);
-                    listScroller.setPreferredSize(new Dimension(250, 80));
-
-                    pnlInventory.add(listInventory);
-                    grpAll.add(listInventory);
-                }
-
+                comboBox = new JComboBox(); 
+                pnlInventory.add(comboBox);
+              
                 JPanel pnlButtonsItem = new JPanel();
                 {
                     GridLayout g = new GridLayout(2, 1);
@@ -368,6 +361,9 @@ public class GUIGame extends Observable implements Observer {
                     pnlButtonsItem.setLayout(g);
                     pnlButtonsItem.setBackground(Color.BLACK);
                     pnlInventory.add(pnlButtonsItem);
+                    
+                    
+                    
 
                     btnUseOrEquip = new JButton("Use/Equip");
                     pnlButtonsItem.add(btnUseOrEquip);
@@ -469,7 +465,9 @@ public class GUIGame extends Observable implements Observer {
         lblEnemyWeapon.setText("Weapon: "); // + Monster.getCurrentMonster().getMonAtkValue());
 
         // send to the GUI
-        addItems(Item.getPlayerItems());
+        //addItems(Item.getPlayerItems());
+        comboBox = new JComboBox(Item.getPlayerItems().toArray());
+ 
     }
 
     private void updateGUI() {
@@ -478,17 +476,7 @@ public class GUIGame extends Observable implements Observer {
     }
 
     
-	private void addItems(ArrayList<Item> a) {
-        
-		DefaultListModel l = new DefaultListModel();
-        for (Item i : a) {
-            l.addElement(i.getItemName());
-        }
-        listInventory = new JList<Item>(l);
-        listInventory.setSelectedIndex(0);
-        listInventory.ensureIndexIsVisible(0);
-        listInventory.setModel(l);
-    }
+
 	
 
 	
