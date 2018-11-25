@@ -1,7 +1,7 @@
 ID::En_Harley
 monName::Alamo Harley
 monDesc::Oh man, she looks quick with those daggers. I wonder if there's some-thing I could use to make her lose her balance and slow her down.
-monHealth::75
+monHealth::65
 monDefense::15
 monAtkValue::10
 atkName::Dagger Flurry
@@ -12,7 +12,7 @@ endMon::
 ID::En_Gordo
 monName::Gordo
 monDesc::This guy is big. What a unit he is, maybe I should keep my distance.
-monHealth::100
+monHealth::80
 monDefense::50
 monAtkValue::40
 atkName::Body Slam
@@ -22,8 +22,8 @@ monSpeed::0
 endMon::
 ID::En_Larry
 monName::Larry The Lasso
-monDesc::This guy got a las-so? Maybe I should keep my distance.
-monHealth::50
+monDesc::This guy got a lasso? Maybe I should keep my distance.
+monHealth::40
 monDefense::25
 monAtkValue::20
 atkName::Lasso Choke
@@ -35,7 +35,7 @@ endMon::
 ID::En_RedEye
 monName::Red Eye
 monDesc::This looks to be something wrong with this one. He looks like a maniac, possibly drugged out. He's all over the place, maybe if I had something to slow him down.
-monHealth::50
+monHealth::45
 monDefense::10
 monAtkValue::35
 atkName::Maul
@@ -47,7 +47,7 @@ endMon::
 ID::En_Greasy
 monName::Greasy
 monDesc::This must be the chef of the group. He looks serious about trying to bludgeon me with kitchen utensils. He's got pots and pans tied all around his body. Guns probably won't work against this guy.
-monHealth::50
+monHealth::35
 monDefense::70
 monAtkValue::40
 atkName::Spatula Slap
@@ -59,7 +59,7 @@ endMon::
 ID::En_Quick-Draw
 monName::Quick-Draw
 monDesc::This must be the sharpshoot. I'm going to have to be careful with this guy. Maybe I could use something to disturb his vision.
-monHealth::80
+monHealth::70
 monDefense::10
 monAtkValue::40
 atkName::Revolver Shot
@@ -71,7 +71,7 @@ endMon::
 ID::En_Smokey
 monName::Smokey
 monDesc::This guy got a bunch of gunpowder and fire-starting device. He looks dangerous. I won-der what would happen if I had something to put out the fire.
-monHealth::50
+monHealth::40
 monDefense::10
 monAtkValue::40
 atkName::Flare

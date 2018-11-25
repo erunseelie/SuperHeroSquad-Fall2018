@@ -95,18 +95,6 @@ itemType::Combat
 itemDesc::This bucket of water can be used to make things wet.
 itemLocation::B5R3
 endItem::
-ID::It_BlueBook
-itemName::Blue book
-itemType::Puzzle
-itemDesc::It's a small blue book that reads: ???From the mightiest oak, underneath, fauna crept. I now reside in a building supporting your steps.???
-itemLocation::B3R2
-endItem::
-ID::It_BrownBook
-itemName::Brown Book
-itemType::Puzzle
-itemDesc::A small, brown, leather book that reads: ???Where the dead sleep and the living are blind, the treasure you seek, lies behind."
-itemLocation::B5R2
-endItem::
 ID::It_OilCan
 itemName::Oil Canister
 itemType::Combat
@@ -116,7 +104,7 @@ endItem::
 ID::It_FlashBomb
 itemName::Flash Bomb
 itemType::Combat
-itemDesc::A flash bombs. This would probably mess up someone's vision bad if they were ex-posed to this.
+itemDesc::A flash bomb. This would probably mess up someone's vision bad if they were exposed to this.
 itemLocation::B2R4
 endItem::
 ID::It_Morphine

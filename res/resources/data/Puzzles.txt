@@ -26,20 +26,6 @@ clue::There's a piece of paper attached to the safe. It reads: 'stars and stripe
 answer::3104
 boon::It_SteelArmor
 end::
-ID::BOOK_1
-location::invalid
-desc::You flip through the pages of the book, coming across a strange riddle. 'From the mightiest oak, underneath, fauna crept. I now reside in a building supporting your steps.'
-clue::invalid
-answer::invalid
-boon::It_FirstAid
-end::
-ID::BOOK_2
-location::invalid
-desc::You flip through the pages of the book, coming across a strange riddle. 'Where the dead sleep and the living are blind, the treasure you seek, lies behind.'
-clue::invalid
-answer::invalid
-boon::It_Morphine
-end::
 ID::SEQUENCE_1
 location::B1R2
 desc::You see six levers before you, each with a different-colored handle.
