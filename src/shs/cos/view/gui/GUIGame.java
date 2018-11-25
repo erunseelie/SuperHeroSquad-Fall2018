@@ -8,7 +8,13 @@ import shs.cos.model.items.Item;
 import shs.cos.model.puzzles.Puzzle;
 
 import javax.swing.*;
+
+import javafx.geometry.Pos;
+import javafx.scene.layout.GridPane;
+
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.ArrayList;
@@ -18,8 +24,8 @@ import java.util.Observer;
 public class GUIGame extends Observable implements Observer {
     private Container container;
 
-    private Font fontNormal = new Font("Times New Roman", Font.PLAIN, 14);
-    private Font fontLog = new Font("Times New Roman", Font.BOLD, 14);
+    private Font fontNormal = new Font("Times New Roman", Font.PLAIN, 18);
+    private Font fontLog = new Font("Times New Roman", Font.BOLD, 20);
 
     private JTextArea log;
     private JTextField inputUser, inputPuzzle;
@@ -36,14 +42,14 @@ public class GUIGame extends Observable implements Observer {
     // puzzles
     private JButton btnPuzzleAccess, btnPuzzleHint, btnPuzzleAttempt, btnPuzzleExit;
     // inventory
-    private JButton btnTakeItem, btnUseOrEquip, btnDropItem;
+    private JButton btnMap, btnTakeItem, btnUseOrEquip, btnDropItem;
 
     private ArrayList<JComponent> grpAll = new ArrayList<>();
     private ArrayList<JComponent> grpPuzzle = new ArrayList<>();
     private ArrayList<JComponent> grpPlayer = new ArrayList<>();
     private JList listInventory;
 
-    private int wWidth = 750, wHeight = 550;
+    private int wWidth = 850, wHeight = 700;
 
     public GUIGame() {
 
@@ -304,12 +310,34 @@ public class GUIGame extends Observable implements Observer {
             {
                 pnlInventory.setBackground(Color.black);
                 {
-                    GridLayout g = new GridLayout(4, 1);
-                    g.setVgap(4);
+                    GridLayout g = new GridLayout(5, 1);
+                    g.setVgap(5);
                     pnlInventory.setLayout(g);
                 }
                 pnlMain.add(pnlInventory);
 
+                btnMap = new JButton("Map");
+                btnMap.addActionListener(new ActionListener(){
+                	public void actionPerformed(ActionEvent e) {
+                		JFrame mapWindow = new JFrame("Map");
+                		mapWindow.setVisible(true);
+                		mapWindow.setSize(950, 550);
+                		
+                		JPanel mapPanel = new JPanel();
+                		JLabel label = new JLabel("You clicked map!");
+                		
+                		
+                		mapPanel.add(label);
+                		mapWindow.add(mapPanel);
+                		mapPanel.setVisible(true);
+                		               		
+                		
+                   	}
+                });       
+                pnlInventory.add(btnMap);
+                grpAll.add(btnMap);
+                
+                
                 btnTakeItem = new JButton("Take Item");
                 btnTakeItem.addActionListener(new Command(this, "take"));
                 pnlInventory.add(btnTakeItem);
@@ -461,4 +489,7 @@ public class GUIGame extends Observable implements Observer {
         listInventory.ensureIndexIsVisible(0);
         listInventory.setModel(l);
     }
+	
+
+	
 }
