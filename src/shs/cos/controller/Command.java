@@ -396,6 +396,7 @@ public class Command implements ActionListener
 				i.set(k);
 				s.set("You picked up: " + v.getItemName().toLowerCase() + ". It can be used as: "
 						+ v.getItemType().toLowerCase() + ".");
+				Item.getPlayerItems();
 				break;
 			} else
 			{

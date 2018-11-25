@@ -70,7 +70,8 @@ public class GUIGame extends Observable implements Observer {
         makeGameWindow();
     }
 
-    private void makeGameWindow() {
+   
+	private void makeGameWindow() {
         {
             BorderLayout b = new BorderLayout();
             b.setVgap(5);
@@ -319,7 +320,8 @@ public class GUIGame extends Observable implements Observer {
                 lblInventory.setForeground(Color.WHITE);
                 pnlInventory.add(lblInventory);
 
-                DefaultListModel l = new DefaultListModel();
+               
+				DefaultListModel l = new DefaultListModel();
                 listInventory = new JList<Item>(l);
                 {
                     listInventory.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -447,13 +449,16 @@ public class GUIGame extends Observable implements Observer {
         notifyObservers();
     }
 
-    private void addItems(ArrayList<Item> a) {
-        DefaultListModel l = new DefaultListModel();
+    
+	private void addItems(ArrayList<Item> a) {
+        
+		DefaultListModel l = new DefaultListModel();
         for (Item i : a) {
             l.addElement(i.getItemName());
         }
         listInventory = new JList<Item>(l);
         listInventory.setSelectedIndex(0);
         listInventory.ensureIndexIsVisible(0);
+        listInventory.setModel(l);
     }
 }
