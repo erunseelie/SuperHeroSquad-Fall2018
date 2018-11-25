@@ -337,6 +337,8 @@ public class Command implements ActionListener
 			{
 				Monster currentMonster = mapMonsters.get(mapRooms.get(Room.getCurrentRoomKey()).getMonsters().get(0));
 				s += "\n\nThere's somebody in the room! It's " + currentMonster.getName() + "!";
+				Main.player.setInCombat(true);
+				gui.enterCombat(true);
 			}
 			return "GO: " + mapRooms.get(Room.getCurrentRoomKey()).getRoomName() + "\n" + s;
 		}
