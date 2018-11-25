@@ -495,21 +495,5 @@ public class GUIGame extends Observable implements Observer {
     }
 
 
-<<<<<<< HEAD
-=======
-    private void addItems(ArrayList<Item> a) {
-
-        DefaultListModel l = new DefaultListModel();
-        for (Item i : a) {
-            l.addElement(i.getItemName());
-        }
-        listInventory = new JList<Item>(l);
-        listInventory.setSelectedIndex(0);
-        listInventory.ensureIndexIsVisible(0);
-//        listInventory.setModel(l);
-//        listInventory = new JList<Item>(l);
-    }
-
->>>>>>> ee35ac4f7234c0a3f10d83050072d4a18e9844f3
 
 }
