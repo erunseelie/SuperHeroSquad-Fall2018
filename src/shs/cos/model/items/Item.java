@@ -85,6 +85,7 @@ public class Item {
 
     public static ArrayList<Item> addPlayerItem(Item i) {
         playerItems.add(i);
+        itemIDList.remove(i.getItemID());
         return playerItems;
     }
 
@@ -116,4 +117,5 @@ public class Item {
     public String getItemID() {
         return itemID;
     }
+
 }

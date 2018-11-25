@@ -52,7 +52,7 @@ public class SessionManager {
             String key = entry.getKey();
             if (key.length() >= 5 && key.substring(0, 5).equals("ITEM_")) {
                 Item i = Item.getItemIDList().get(key.substring(5));
-                Item.addPlayerItem(i);
+                if (i != null) Item.addPlayerItem(i);
                 // TODO: remove item from the world
             }
         }
