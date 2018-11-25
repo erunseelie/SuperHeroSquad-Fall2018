@@ -401,8 +401,8 @@ public class Command implements ActionListener {
         for (Item i : Item.getPlayerItems()) {
             s += i.getItemName() + ", ";
         }
-        s = s.substring(s.length() - 2);
-        return s;
+        s = s.substring(0, s.length() - 2);
+        return "INVENTORY:\n" + s;
     }
 
 }
