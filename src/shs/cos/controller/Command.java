@@ -225,9 +225,14 @@ public class Command implements ActionListener
 					gui.enterCombat(false);
 
 					gui.addLogText(currentMonster.getName() + " is dead. Just like my dreams.");
-					// + " \n From his body you find "
-					// + mapItems.get(currentMonster.getItemDrop()).getItemName() + ".");
-					// Item.addPlayerItem(mapItems.get(currentMonster.getItemDrop()));
+
+					if (!currentMonster.getItemDrop().isEmpty())
+					{
+						gui.addLogText(" \n From his body you find "
+								+ mapItems.get(currentMonster.getItemDrop()).getItemName() + ".");
+						Item.addPlayerItem(mapItems.get(currentMonster.getItemDrop()));
+					}
+
 				}
 
 				return "ATTACK: \n" + "You dealt " + damageToDeal + " damage to " + currentMonster.getName() + "\n"

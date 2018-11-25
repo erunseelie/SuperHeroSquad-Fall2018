@@ -14,7 +14,7 @@ public class Monster extends Character {
     private String atkName;
     private String weakness;
     private String location;
-    private String itemDrop;
+    private String itemDrop = "";
     //Monster Speed break down:
     //monSpeed == 2 means the monster gets 2 turns for every 1 player turn
     //monSpeed == 1 means the monster gets 1 turn for every 1 player turn
