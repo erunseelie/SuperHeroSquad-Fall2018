@@ -307,6 +307,7 @@ public class GUIGame extends Observable implements Observer {
                     grpCombat.add(btnAttack);
 
                     btnFlee = new JButton("Flee");
+                    btnFlee.addActionListener(new Command(this, "flee"));
                     pnlButtonsMonster.add(btnFlee);
                     grpAll.add(btnFlee);
                     grpCombat.add(btnFlee);

@@ -59,6 +59,8 @@ public class Command implements ActionListener {
                     break;
                 case "attack":
                     s = cmdAttack();
+                case "flee":
+                	s = cmdExit();
                     break;
                 case "inventory":
                     s = cmdPrintInventoryContents();
