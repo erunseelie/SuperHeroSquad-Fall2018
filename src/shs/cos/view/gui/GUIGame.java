@@ -4,6 +4,7 @@ import shs.cos.controller.SessionManager;
 import shs.cos.controller.Main;
 import shs.cos.controller.Command;
 import shs.cos.model.Room;
+import shs.cos.model.entities.Monster;
 import shs.cos.model.items.Item;
 import shs.cos.model.puzzles.Puzzle;
 
@@ -81,8 +82,8 @@ public class GUIGame extends Observable implements Observer {
         makeGameWindow();
     }
 
-   
-	private void makeGameWindow() {
+
+    private void makeGameWindow() {
         {
             BorderLayout b = new BorderLayout();
             b.setVgap(5);
@@ -324,14 +325,14 @@ public class GUIGame extends Observable implements Observer {
                 pnlMain.add(pnlInventory);
 
                 btnMap = new JButton("Map");
-                btnMap.addActionListener(new ActionListener(){
-                	public void actionPerformed(ActionEvent e) {
-                		JFrame mapWindow = new JFrame("Map");
-                		mapWindow.setVisible(true);
-                		mapWindow.setSize(950, 550);
-                		
-                		JPanel mapPanel = new JPanel();
-                		JLabel label = new JLabel("You clicked map!");
+                btnMap.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        JFrame mapWindow = new JFrame("Map");
+                        mapWindow.setVisible(true);
+                        mapWindow.setSize(950, 550);
+
+                        JPanel mapPanel = new JPanel();
+                        JLabel label = new JLabel("You clicked map!");
 
                         BufferedImage myPicture = null;
                         try {
@@ -341,19 +342,19 @@ public class GUIGame extends Observable implements Observer {
                         }
                         JLabel picLabel = new JLabel(new ImageIcon(myPicture));
                         mapPanel.add(picLabel);
-                		
-                		
-                		mapPanel.add(label);
-                		mapWindow.add(mapPanel);
-                		mapPanel.setVisible(true);
-                		               		
-                		
-                   	}
-                });       
+
+
+                        mapPanel.add(label);
+                        mapWindow.add(mapPanel);
+                        mapPanel.setVisible(true);
+
+
+                    }
+                });
                 pnlInventory.add(btnMap);
                 grpAll.add(btnMap);
-                
-                
+
+
                 btnTakeItem = new JButton("Take Item");
                 btnTakeItem.addActionListener(new Command(this, "take"));
                 pnlInventory.add(btnTakeItem);
@@ -364,8 +365,8 @@ public class GUIGame extends Observable implements Observer {
                 lblInventory.setForeground(Color.WHITE);
                 pnlInventory.add(lblInventory);
 
-               
-				DefaultListModel l = new DefaultListModel();
+
+                DefaultListModel l = new DefaultListModel();
                 listInventory = new JList<Item>(l);
                 {
                     listInventory.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -429,6 +430,7 @@ public class GUIGame extends Observable implements Observer {
 
     /**
      * Unifies the panel's component style, and adds them to the specified group.
+     *
      * @param p Panel holding desired components
      * @param a List of components
      */
@@ -467,11 +469,13 @@ public class GUIGame extends Observable implements Observer {
 
     public void enterPuzzle(boolean b) {
         for (JComponent c : grpAll) c.setEnabled(!b);
+        for (JComponent c : grpCombat) c.setEnabled(!b);
         for (JComponent c : grpPuzzle) c.setEnabled(b);
     }
 
     public void enterCombat(boolean b) {
         for (JComponent c : grpAll) c.setEnabled(!b);
+        for (JComponent c : grpPuzzle) c.setEnabled(!b);
         for (JComponent c : grpCombat) c.setEnabled(b);
     }
 
@@ -485,9 +489,14 @@ public class GUIGame extends Observable implements Observer {
         lblDefense.setText("Defense: " + Main.player.getCurrentArmor());
         lblWeapon.setText("Weapon: " + Main.player.getCurrentWeapon());
 
-        lblEnemyHealth.setText("Health: "); // + Monster.getCurrentMonster().getHealth());
-        lblEnemyDefense.setText("Defense: "); // + Monster.getCurrentMonster().getMonDefense());
-        lblEnemyWeapon.setText("Weapon: "); // + Monster.getCurrentMonster().getMonAtkValue());
+        lblEnemyHealth.setText("Health: ");
+        lblEnemyDefense.setText("Defense: ");
+        lblEnemyWeapon.setText("Weapon: ");
+        if (Monster.getCurrentMonster() != null) {
+            lblEnemyHealth.setText(lblEnemyHealth.getText() + Monster.getCurrentMonster().getHealth());
+            lblEnemyDefense.setText(lblEnemyDefense.getText() + Monster.getCurrentMonster().getMonDefense());
+            lblEnemyWeapon.setText(lblEnemyWeapon.getText() + Monster.getCurrentMonster().getMonAtkValue());
+        }
 
         // send to the GUI
         addItems(Item.getPlayerItems());
@@ -498,10 +507,10 @@ public class GUIGame extends Observable implements Observer {
         notifyObservers();
     }
 
-    
-	private void addItems(ArrayList<Item> a) {
-        
-		DefaultListModel l = new DefaultListModel();
+
+    private void addItems(ArrayList<Item> a) {
+
+        DefaultListModel l = new DefaultListModel();
         for (Item i : a) {
             l.addElement(i.getItemName());
         }
@@ -510,7 +519,6 @@ public class GUIGame extends Observable implements Observer {
         listInventory.ensureIndexIsVisible(0);
         listInventory.setModel(l);
     }
-	
 
-	
+
 }
