@@ -7,6 +7,7 @@ import shs.cos.model.Room;
 import shs.cos.model.items.Item;
 import shs.cos.model.puzzles.Puzzle;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import javafx.geometry.Pos;
@@ -17,6 +18,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -325,6 +329,15 @@ public class GUIGame extends Observable implements Observer {
                 		
                 		JPanel mapPanel = new JPanel();
                 		JLabel label = new JLabel("You clicked map!");
+
+                        BufferedImage myPicture = null;
+                        try {
+                            myPicture = ImageIO.read(new File("res/resources/images/map1.png"));
+                        } catch (IOException e1) {
+                            e1.printStackTrace();
+                        }
+                        JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+                        mapPanel.add(picLabel);
                 		
                 		
                 		mapPanel.add(label);

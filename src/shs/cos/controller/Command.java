@@ -453,4 +453,13 @@ public class Command implements ActionListener
 		return "TAKE:\n" + s;
 	}
 
+	private String useItem(Item i) {
+		String s = "";
+		i.use();
+
+
+
+		return s;
+	}
+
 }

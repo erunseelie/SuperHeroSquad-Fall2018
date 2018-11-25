@@ -24,6 +24,15 @@ public class Item {
 
     }
 
+    public Item(String itemID, String itemName, String itemType, String itemDesc, String itemLocation, int itemStat) {
+        this.itemID = itemID;
+        this.itemName = itemName;
+        this.itemType = itemType;
+        this.itemDesc = itemDesc;
+        this.itemLocation = itemLocation;
+        this.itemStat = itemStat;
+    }
+
     public static boolean readItemFile(File f) {
         try {
             input = new Scanner(f);
@@ -65,6 +74,8 @@ public class Item {
                     }
 
                     if (nextLine[0].equals("endItem") || nextLine[0].equals("ID")) {
+
+
                         itemIDList.put(newItem.itemID, newItem);
 
                         break OUTER_LOOP;
@@ -117,5 +128,11 @@ public class Item {
     public String getItemID() {
         return itemID;
     }
+
+    public String use() {
+        return "...";
+    }
+
+    ;
 
 }
