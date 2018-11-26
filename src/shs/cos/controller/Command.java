@@ -400,7 +400,7 @@ public class Command implements ActionListener {
                 s.set("There's nothing around. You cannot get ye item.");
             }
         }
-        Item.getItemIDList().remove(i.toString());
+//        Item.getItemIDList().remove(i.toString());
         return "TAKE:\n" + s;
     }
 
