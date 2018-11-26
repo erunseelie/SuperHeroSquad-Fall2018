@@ -231,6 +231,8 @@ public class Command implements ActionListener
 						gui.addLogText(" \n From his body you find "
 								+ mapItems.get(currentMonster.getItemDrop()).getItemName() + ".");
 						Item.addPlayerItem(mapItems.get(currentMonster.getItemDrop()));
+						
+						mapMonsters.get(currentMonster.getMondID()).setItemDrop("");
 					}
 
 				}

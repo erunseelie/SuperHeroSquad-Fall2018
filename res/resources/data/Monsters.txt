@@ -30,7 +30,7 @@ atkName::Lasso Choke
 weakness::It_Rifle
 location::B5R1
 monSpeed::2
-itemDrop::IT_Note6
+itemDrop::It_Note6
 endMon::
 ID::En_RedEye
 monName::Red Eye
@@ -42,7 +42,7 @@ atkName::Maul
 weakness::It_Morphine
 location::B7R1
 monSpeed::1
-itemDrop::IT_Note4
+itemDrop::It_Note4
 endMon::
 ID::En_Greasy
 monName::Greasy
@@ -54,7 +54,7 @@ atkName::Spatula Slap
 weakness::It_Revolver
 location::B2R1
 monSpeed::1
-itemDrop::IT_Note1
+itemDrop::It_Note1
 endMon::
 ID::En_Quick-Draw
 monName::Quick-Draw
@@ -66,11 +66,11 @@ atkName::Revolver Shot
 weakness::It_FlashBomb
 location::B6R1
 monSpeed::1
-itemDrop::IT_Note2
+itemDrop::It_Note2
 endMon::
 ID::En_Smokey
 monName::Smokey
-monDesc::This guy got a bunch of gunpowder and fire-starting device. He looks dangerous. I won-der what would happen if I had something to put out the fire.
+monDesc::This guy got a bunch of gunpowder and fire-starting device. He looks dangerous. I wonder what would happen if I had something to put out the fire.
 monHealth::40
 monDefense::10
 monAtkValue::40
@@ -78,7 +78,7 @@ atkName::Flare
 weakness::It_WaterBucket
 location::B3R1
 monSpeed::1
-itemDrop::IT_Note3
+itemDrop::It_Note3
 endMon::
 ID::En_Birddog
 monName::Bird Dog
@@ -90,5 +90,5 @@ atkName::Hay-Maker
 weakness::It_Axe
 location::B4R1
 monSpeed::1
-itemDrop::IT_Note5
+itemDrop::It_Note5
 endMon::
