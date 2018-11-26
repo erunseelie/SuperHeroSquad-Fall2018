@@ -407,7 +407,7 @@ public class Command implements ActionListener {
         String s = "Ye have no items. Shame upon ye.";
         ArrayList<Item> inv = Item.getPlayerItems();
         for (Item i : inv) {
-            if (i.getItemName().toLowerCase().equals(questionable)) {
+            if (i.getItemName().toLowerCase().contains(questionable)) {
                 s = i.use();
                 break;
             } else {
