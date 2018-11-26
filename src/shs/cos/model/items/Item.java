@@ -1,5 +1,6 @@
 package shs.cos.model.items;
 
+import shs.cos.controller.Main;
 import shs.cos.model.utils.io.IO;
 
 import java.io.File;
@@ -74,6 +75,9 @@ public class Item {
                     }
 
                     if (nextLine[0].equals("endItem") || nextLine[0].equals("ID")) {
+//                        if (newItem.itemType.toLowerCase().equals("defense")) {
+//                            newItem = new ItemDefense()
+//                        }
 
 
                         itemIDList.put(newItem.itemID, newItem);
@@ -130,7 +134,15 @@ public class Item {
     }
 
     public String use() {
+        String s = "";
+        if (itemType.toLowerCase().equals("defense")) {
+            Main.player.setCurrentArmor(getItemID());
+            s += "Your armor went up.";
+        } else if (itemType.toLowerCase().equals("weapon")) {
+            Main.player.setCurrentWeapon(getItemID());
+            s += "Your weapon changed.";
+        }
         // TODO: custom item functionality
-        return "You used the " + getItemName().toLowerCase() + ".\n" + getItemDesc();
+        return "You used the " + getItemName().toLowerCase() + ". " + s;
     }
 }

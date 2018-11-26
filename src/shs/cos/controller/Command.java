@@ -281,16 +281,18 @@ public class Command implements ActionListener {
         if (!Main.player.getInCombat()) {
 
             for (String r : rooms) {
-                if (mapRooms.get(r).getRoomName().toLowerCase().equals(location)) {
+                if (mapRooms.get(r).getRoomName().toLowerCase().contains(location)) {
                     Room.setCurrentRoom(r);
                     ArrayList<Puzzle> listP = Puzzle.getPuzzles();
                     String curRoom = Room.getCurrentRoomKey();
-                    for (Puzzle p : listP) {
-                        if (p.getLocation().equals(curRoom)) {
-                            gui.enablePuzzleAccess(true);
-                            break;
-                        } else
-                            gui.enablePuzzleAccess(false);
+                    if (mapRooms.get(Room.getCurrentRoomKey()).getMonsters().isEmpty()) {
+                        for (Puzzle p : listP) {
+                            if (p.getLocation().equals(curRoom)) {
+                                gui.enablePuzzleAccess(true);
+                                break;
+                            } else
+                                gui.enablePuzzleAccess(false);
+                        }
                     }
                     turnCount = -1;
                     s = "You mosey through the dust. You have arrived at your destination...";
