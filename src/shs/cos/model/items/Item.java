@@ -130,9 +130,7 @@ public class Item {
     }
 
     public String use() {
-        return "...";
+        // TODO: custom item functionality
+        return "You used the " + getItemName().toLowerCase() + ".\n" + getItemDesc();
     }
-
-    ;
-
 }

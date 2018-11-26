@@ -233,10 +233,9 @@ public class GUIGame extends Observable implements Observer {
                 }
 
                 for (Component c : pnlPuzzle.getComponents()) {
-                    grpPuzzle.add((JComponent) c);
                     c.setEnabled(false);
                 }
-                grpAll.addAll(grpPuzzle);
+                quicksetPanelStyle(pnlPuzzle, grpPuzzle);
             }
 
             // combat panel
@@ -286,7 +285,7 @@ public class GUIGame extends Observable implements Observer {
                     lblEnemyWeapon = new JLabel();
                     pnlEnemy.add(lblEnemyWeapon);
 
-                    quicksetPanelStyle(pnlEnemy, grpAll);
+                    quicksetPanelStyle(pnlEnemy, grpPlayer);
                     lblEnemyAttributes.setFont(fontLog);
                 }
 
@@ -317,7 +316,7 @@ public class GUIGame extends Observable implements Observer {
             // inventory panel
             JPanel pnlInventory = new JPanel();
             {
-                   pnlInventory.setBackground(Color.black);
+                pnlInventory.setBackground(Color.black);
                 {
                     GridLayout g = new GridLayout(5, 1);
                     g.setVgap(5);
@@ -326,27 +325,23 @@ public class GUIGame extends Observable implements Observer {
                 pnlMain.add(pnlInventory);
 
                 btnMap = new JButton("Map");
-                btnMap.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        JFrame mapWindow = new JFrame("Map");
-                        mapWindow.setVisible(true);
-                        mapWindow.setSize(950, 550);
+                btnMap.addActionListener(e -> {
+                    JFrame mapWindow = new JFrame("Map");
+                    mapWindow.setVisible(true);
+                    mapWindow.setSize(950, 550);
 
-                        JPanel mapPanel = new JPanel();
-                        JLabel label = new JLabel("You clicked map!");
+                    JPanel mapPanel = new JPanel();
 
-                        BufferedImage myPicture = null;
-                        try {
-                            myPicture = ImageIO.read(new File("res/resources/images/map1.png"));
-                        } catch (IOException e1) {
-                            e1.printStackTrace();
-                        }
-                        JLabel picLabel = new JLabel(new ImageIcon(myPicture));
-                        mapPanel.add(picLabel);
-                        mapPanel.add(label);
-                        mapWindow.add(mapPanel);
-                        mapPanel.setVisible(true);
+                    BufferedImage myPicture = null;
+                    try {
+                        myPicture = ImageIO.read(new File("res/resources/images/map1.png"));
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
                     }
+                    JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+                    mapPanel.add(picLabel);
+                    mapWindow.add(mapPanel);
+                    mapPanel.setVisible(true);
                 });
                 pnlInventory.add(btnMap);
                 grpAll.add(btnMap);
@@ -362,25 +357,23 @@ public class GUIGame extends Observable implements Observer {
                 pnlInventory.add(btnPrintInv);
                 grpAll.add(btnPrintInv);
 
-              
-                JPanel pnlButtonsItem = new JPanel();
-                {
-                    GridLayout g = new GridLayout(2, 1);
-                    g.setVgap(3);
-                    pnlButtonsItem.setLayout(g);
-                    pnlButtonsItem.setBackground(Color.BLACK);
-                    pnlInventory.add(pnlButtonsItem);
-                                      
-                   
 
-                    btnUseOrEquip = new JButton("Use/Equip");
-                    pnlButtonsItem.add(btnUseOrEquip);
-                    grpAll.add(btnUseOrEquip);
-
-                    btnDropItem = new JButton("Drop");
-                    pnlButtonsItem.add(btnDropItem);
-                    grpAll.add(btnDropItem);
-                }
+//                JPanel pnlButtonsItem = new JPanel();
+//                {
+//                    GridLayout g = new GridLayout(2, 1);
+//                    g.setVgap(3);
+//                    pnlButtonsItem.setLayout(g);
+//                    pnlButtonsItem.setBackground(Color.BLACK);
+//                    pnlInventory.add(pnlButtonsItem);
+//
+//                    btnUseOrEquip = new JButton("Use/Equip");
+//                    pnlButtonsItem.add(btnUseOrEquip);
+//                    grpAll.add(btnUseOrEquip);
+//
+//                    btnDropItem = new JButton("Drop");
+//                    pnlButtonsItem.add(btnDropItem);
+//                    grpAll.add(btnDropItem);
+//                }
             }
         }
 
@@ -427,6 +420,7 @@ public class GUIGame extends Observable implements Observer {
             c.setForeground(Color.WHITE);
             c.setBackground(Color.BLACK);
             a.add((JComponent) c);
+            grpAll.add((JComponent) c);
         }
     }
 
@@ -456,13 +450,13 @@ public class GUIGame extends Observable implements Observer {
 
     public void enterPuzzle(boolean b) {
         for (JComponent c : grpAll) c.setEnabled(!b);
-        for (JComponent c : grpCombat) c.setEnabled(!b);
+//        for (JComponent c : grpCombat) c.setEnabled(!b);
         for (JComponent c : grpPuzzle) c.setEnabled(b);
     }
 
     public void enterCombat(boolean b) {
         for (JComponent c : grpAll) c.setEnabled(!b);
-        for (JComponent c : grpPuzzle) c.setEnabled(!b);
+//        for (JComponent c : grpPuzzle) c.setEnabled(!b);
         for (JComponent c : grpCombat) c.setEnabled(b);
     }
 
@@ -484,17 +478,12 @@ public class GUIGame extends Observable implements Observer {
             lblEnemyDefense.setText(lblEnemyDefense.getText() + Monster.getCurrentMonster().getMonDefense());
             lblEnemyWeapon.setText(lblEnemyWeapon.getText() + Monster.getCurrentMonster().getMonAtkValue());
         }
-
-        // send to the GUI
-
- 
     }
 
     private void updateGUI() {
         setChanged();
         notifyObservers();
     }
-
 
 
 }
