@@ -325,10 +325,12 @@ public class GUIGame extends Observable implements Observer {
                 pnlMain.add(pnlInventory);
 
                 btnMap = new JButton("Map");
+                final JFrame[] mapWindow = new JFrame[1];
                 btnMap.addActionListener(e -> {
-                    JFrame mapWindow = new JFrame("Map");
-                    mapWindow.setVisible(true);
-                    mapWindow.setSize(950, 550);
+                    if (mapWindow[0] != null) return;
+                    mapWindow[0] = new JFrame("Map");
+                    mapWindow[0].setVisible(true);
+                    mapWindow[0].setSize(950, 550);
 
                     JPanel mapPanel = new JPanel();
 
@@ -340,7 +342,7 @@ public class GUIGame extends Observable implements Observer {
                     }
                     JLabel picLabel = new JLabel(new ImageIcon(myPicture));
                     mapPanel.add(picLabel);
-                    mapWindow.add(mapPanel);
+                    mapWindow[0].add(mapPanel);
                     mapPanel.setVisible(true);
                 });
                 pnlInventory.add(btnMap);
@@ -458,6 +460,12 @@ public class GUIGame extends Observable implements Observer {
         for (JComponent c : grpAll) c.setEnabled(!b);
         for (JComponent c : grpPuzzle) c.setEnabled(!b);
         for (JComponent c : grpCombat) c.setEnabled(b);
+    }
+
+    public void resetPanels() {
+        for (JComponent c : grpAll) c.setEnabled(true);
+        for (JComponent c : grpPuzzle) c.setEnabled(false);
+        for (JComponent c : grpCombat) c.setEnabled(false);
     }
 
     public String getPuzzleInput() {

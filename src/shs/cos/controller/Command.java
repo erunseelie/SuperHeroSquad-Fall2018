@@ -248,9 +248,8 @@ public class Command implements ActionListener {
 
     private String cmdExit() {
         Room.setCurrentRoom("B0R0");
-        gui.enablePuzzleAccess(false);
         Main.player.setInCombat(false);
-        gui.enterCombat(false);
+        gui.resetPanels();
         return "EXIT:\n" + "You have returned to the street.";
     }
 

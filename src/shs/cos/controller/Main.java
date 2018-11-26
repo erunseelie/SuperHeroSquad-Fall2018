@@ -37,27 +37,26 @@ public class Main {
      * Add to this method as necessary as more data is created.
      */
     private static void loadGameData() {
-        if (!(Room.readRoomFile(new File(selectFile("Rooms")))))
-//        if (!(Room.readRoomFile(selectFile("Rooms"))))
+        if (!(Room.readRoomFile(new File(selectFile("Rooms.txt")))))
+//        if (!(Room.readRoomFile(selectFileFromJar("Rooms.txt"))))
             GUILogin.displayWarning("The following data file was not found, or contains invalid data: Rooms.txt");
-        if (!(Monster.readMonsterFile(new File(selectFile("Monsters")))))
-//        if (!(Monster.readMonsterFile(selectFile("Monsters"))))
+        if (!(Monster.readMonsterFile(new File(selectFile("Monsters.txt")))))
+//        if (!(Monster.readMonsterFile(selectFileFromJar("Monsters.txt"))))
             GUILogin.displayWarning("The following data file was not found, or contains invalid data: Monsters.txt");
-        if (!(Item.readItemFile(new File(selectFile("Items")))))
-//        if (!(Item.readItemFile(selectFile("Items"))))
+        if (!(Item.readItemFile(new File(selectFile("Items.txt")))))
+//        if (!(Item.readItemFile(selectFileFromJar("Items.txt"))))
             GUILogin.displayWarning("The following data file was not found, or contains invalid data: Items.txt");
-        if (!(Puzzle.loadPuzzleFile(new File(selectFile("Puzzles")))))
-//        if (!(Puzzle.loadPuzzleFile(selectFile("Puzzles"))))
+        if (!(Puzzle.loadPuzzleFile(new File(selectFile("Puzzles.txt")))))
+//        if (!(Puzzle.loadPuzzleFile(selectFileFromJar("Puzzles.txt"))))
             GUILogin.displayWarning("The following data file was not found, or contains invalid data: Puzzles.txt");
     }
 
-//    private static File selectFile(String s) {
+//    private static File selectFileFromJar(String s) {
 //        String dataDirectory = "/resources/data/";
-//        String dataExtension = ".txt";
 //        try {
 //            File f = File.createTempFile(s, "temp");
 //            f.deleteOnExit();
-//            InputStream streamIn = Main.class.getResourceAsStream(dataDirectory + s + dataExtension);
+//            InputStream streamIn = Main.class.getResourceAsStream(dataDirectory + s);
 //            FileUtils.copyInputStreamToFile(streamIn, f);
 //            streamIn.close();
 //            return f;
@@ -69,8 +68,6 @@ public class Main {
 
     private static String selectFile(String s) {
         String dataDirectory = "res/resources/data/";
-//        String dataDirectory = "data/";
-        String dataExtension = ".txt";
-        return dataDirectory + s + dataExtension;
+        return dataDirectory + s;
     }
 }
