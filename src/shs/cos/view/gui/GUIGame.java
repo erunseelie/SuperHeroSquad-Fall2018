@@ -205,9 +205,9 @@ public class GUIGame extends Observable implements Observer {
                 btnPuzzleAccess = new JButton("Seek Puzzle");
                 btnPuzzleAccess.addActionListener(new Command(this, "puzzleAccess"));
                 pnlPuzzle.add(btnPuzzleAccess);
-                btnPuzzleAttempt = new JButton("Attempt");
-                btnPuzzleAttempt.addActionListener(new Command(this, "puzzleAttempt"));
-                pnlPuzzle.add(btnPuzzleAttempt);
+//                btnPuzzleAttempt = new JButton("Attempt");
+//                btnPuzzleAttempt.addActionListener(new Command(this, "puzzleAttempt"));
+//                pnlPuzzle.add(btnPuzzleAttempt);
                 btnPuzzleHint = new JButton("Hint");
                 btnPuzzleHint.addActionListener(new Command(this, "puzzleHint"));
                 pnlPuzzle.add(btnPuzzleHint);
@@ -450,13 +450,13 @@ public class GUIGame extends Observable implements Observer {
 
     public void enterPuzzle(boolean b) {
         for (JComponent c : grpAll) c.setEnabled(!b);
-//        for (JComponent c : grpCombat) c.setEnabled(!b);
+        for (JComponent c : grpCombat) c.setEnabled(!b);
         for (JComponent c : grpPuzzle) c.setEnabled(b);
     }
 
     public void enterCombat(boolean b) {
         for (JComponent c : grpAll) c.setEnabled(!b);
-//        for (JComponent c : grpPuzzle) c.setEnabled(!b);
+        for (JComponent c : grpPuzzle) c.setEnabled(!b);
         for (JComponent c : grpCombat) c.setEnabled(b);
     }
 

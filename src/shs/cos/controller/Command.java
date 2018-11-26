@@ -172,10 +172,10 @@ public class Command implements ActionListener {
 
                 gui.addLogText(s);
                 gui.update(gui, action);
+            } else {
+                Main.player.setInCombat(false);
+                gui.enterCombat(false);
             }
-        } else {
-            Main.player.setInCombat(false);
-            gui.enterCombat(false);
         }
 
     }
