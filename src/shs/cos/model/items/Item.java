@@ -141,6 +141,15 @@ public class Item {
         } else if (itemType.toLowerCase().equals("weapon")) {
             Main.player.setCurrentWeapon(getItemID());
             s += "Your weapon changed.";
+        } 
+        int health = Main.player.getHealth() + itemStat;
+        
+            if (itemType.toLowerCase().equals("consumable")) {
+            if(Main.player.getHealth() < 100) {
+            	health = health + itemStat;
+            	s = "You have used " + getItemName() + "to increase your health by: " + itemStat;
+            }
+           
         }
         // TODO: custom item functionality
         return "You used the " + getItemName().toLowerCase() + ". " + s;

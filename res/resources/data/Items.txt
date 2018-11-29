@@ -51,7 +51,7 @@ ID::It_FirstAid
 itemName::First Aid Kit
 itemType::Consumable
 itemDesc::A first-aid kit. This can be used to heal wounds significantly.
-itemStat::100
+itemStat::99
 itemLocation::B4R8
 endItem::
 ID::It_Pan
@@ -110,8 +110,8 @@ endItem::
 ID::It_Morphine
 itemName::Morphine Syringe
 itemType::Consumable
-itemDesc::This morphine isn't legal, no wonder they were hiding it. This could probably be used to ease pain. This would slow you down real nicely.
-itemStat::100
+itemDesc::This morphine isn't legal, no wonder they were hiding it. This could probably be used to ease pain. 
+itemStat::60
 itemLocation::B7R2
 endItem::
 ID::It_Bandages
@@ -155,20 +155,6 @@ itemType::Defense
 itemDesc::This armor has a steel plat inside. Taking damage would be an afterthought while wearing this.
 itemStat::40
 itemLocation::B3R3
-endItem::
-ID::It_BluePills
-itemName::Blue Pills
-itemType::Consumable
-itemDesc::These blue pills have a weird smell but, it kind of makes you feel a little amped up.
-itemStat::10
-itemLocation::B4R3
-endItem::
-ID::It_RedPills
-itemName::Red Pills
-itemType::Consumable
-itemDesc::These red pills have a weird smell but, it kind of makes you feel very steadfast.
-itemStat::10
-itemLocation::B4R5
 endItem::
 ID::It_PitchFork
 itemName::Pitch Fork 
