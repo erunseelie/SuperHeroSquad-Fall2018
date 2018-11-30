@@ -1,6 +1,7 @@
 package shs.cos.controller;
 
 import shs.cos.model.Room;
+import shs.cos.model.entities.Monster;
 import shs.cos.model.entities.Player;
 import shs.cos.model.items.Item;
 import shs.cos.view.gui.GUILogin;
@@ -37,6 +38,14 @@ public class SessionManager {
                 if (i != null) updatePlayerData("ITEM_" + i.getItemID(), "1");
             }
         }
+        if (!Monster.getMonsterList().isEmpty()) {
+            for (String s : Monster.getMonsterList().keySet()) {
+                Monster m = Monster.getMonsterList().get(s);
+                if (m.getHealth() <= 0) {
+                    updatePlayerData("MONSTER_" + m.getMondID(), "1");
+                }
+            }
+        }
         saveToFile(mapSaveData, currentUser);
     }
 
@@ -54,6 +63,9 @@ public class SessionManager {
                 Item i = Item.getItemIDList().get(key.substring(5));
                 if (i != null) Item.addPlayerItem(i);
                 // TODO: remove item from the world
+            } else if (key.length() >= 8 && key.substring(0, 5).equals("MONSTER_")) {
+                Monster m = Monster.getMonsterList().get(key.substring(8));
+                if (m != null) Monster.killMonster(m.getMondID());
             }
         }
     }

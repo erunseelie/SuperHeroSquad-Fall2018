@@ -100,7 +100,7 @@ public class Item {
 
     public static ArrayList<Item> addPlayerItem(Item i) {
         playerItems.add(i);
-        itemIDList.remove(i.getItemID());
+//        itemIDList.remove(i.getItemID());
         return playerItems;
     }
 
@@ -139,17 +139,16 @@ public class Item {
             Main.player.setCurrentArmor(getItemID());
             s += "Your armor went up.";
         } else if (itemType.toLowerCase().equals("weapon")) {
+            addPlayerItem(Item.getItemIDList().get(Main.player.getCurrentWeapon()));
             Main.player.setCurrentWeapon(getItemID());
             s += "Your weapon changed.";
-        } 
-        int health = Main.player.getHealth() + itemStat;
-        
-            if (itemType.toLowerCase().equals("consumable")) {
-            if(Main.player.getHealth() < 100) {
-            	health = health + itemStat;
-            	s = "You have used " + getItemName() + "to increase your health by: " + itemStat;
+        } else if (itemType.toLowerCase().equals("puzzle")) {
+            s += "The note reads: " + getItemDesc();
+        } else if (itemType.toLowerCase().equals("consumable")) {
+            if (Main.player.getHealth() < 100) {
+                Main.player.applyDamage(-itemStat);
+                s = "You have used " + getItemName() + "to increase your health by: " + itemStat;
             }
-           
         }
         // TODO: custom item functionality
         return "You used the " + getItemName().toLowerCase() + ". " + s;

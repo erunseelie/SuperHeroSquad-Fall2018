@@ -73,6 +73,7 @@ public class Command implements ActionListener {
                     s = "You don't know how to do that.";
                     break;
             }
+            gui.updateGUI();
             gui.addLogText(s);
         } else if (Main.player.getHealth() > 0) {
             // textual commands
@@ -122,9 +123,11 @@ public class Command implements ActionListener {
             }
 
             gui.addLogText(s);
+            gui.updateGUI();
         } else {
             s = "You are too dead to do that. Please start a new game";
             gui.addLogText(s);
+            gui.updateGUI();
         }
 
         // check for inCombat, and if so, give monster a turn to deal damage. If there
@@ -171,10 +174,11 @@ public class Command implements ActionListener {
                 }
 
                 gui.addLogText(s);
-                gui.update(gui, action);
+                gui.updateGUI();
             } else {
                 Main.player.setInCombat(false);
                 gui.enterCombat(false);
+                gui.updateGUI();
             }
         }
 

@@ -186,4 +186,8 @@ public class Monster extends Character
 		return monID;
 	}
 
+	public static void killMonster(String id) {
+		monsterList.remove(monsterList.get(id));
+	}
+
 }
