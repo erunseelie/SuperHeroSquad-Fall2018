@@ -233,7 +233,7 @@ public class GUIGame extends Observable implements Observer {
                 }
 
                 for (Component c : pnlPuzzle.getComponents()) {
-                    c.setEnabled(false);
+//                    c.setEnabled(false);
                 }
                 quicksetPanelStyle(pnlPuzzle, grpPuzzle);
             }
@@ -327,7 +327,7 @@ public class GUIGame extends Observable implements Observer {
                 btnMap = new JButton("Map");
                 final JFrame[] mapWindow = new JFrame[1];
                 btnMap.addActionListener(e -> {
-                    if (mapWindow[0] != null) return;
+//                    if (mapWindow[0] != null) return;
                     mapWindow[0] = new JFrame("Map");
                     mapWindow[0].setVisible(true);
                     mapWindow[0].setSize(950, 550);
@@ -358,24 +358,6 @@ public class GUIGame extends Observable implements Observer {
                 btnPrintInv.addActionListener(new Command(this, "inventory"));
                 pnlInventory.add(btnPrintInv);
                 grpAll.add(btnPrintInv);
-
-
-//                JPanel pnlButtonsItem = new JPanel();
-//                {
-//                    GridLayout g = new GridLayout(2, 1);
-//                    g.setVgap(3);
-//                    pnlButtonsItem.setLayout(g);
-//                    pnlButtonsItem.setBackground(Color.BLACK);
-//                    pnlInventory.add(pnlButtonsItem);
-//
-//                    btnUseOrEquip = new JButton("Use/Equip");
-//                    pnlButtonsItem.add(btnUseOrEquip);
-//                    grpAll.add(btnUseOrEquip);
-//
-//                    btnDropItem = new JButton("Drop");
-//                    pnlButtonsItem.add(btnDropItem);
-//                    grpAll.add(btnDropItem);
-//                }
             }
         }
 
@@ -451,21 +433,21 @@ public class GUIGame extends Observable implements Observer {
     }
 
     public void enterPuzzle(boolean b) {
-        for (JComponent c : grpAll) c.setEnabled(!b);
-        for (JComponent c : grpCombat) c.setEnabled(!b);
-        for (JComponent c : grpPuzzle) c.setEnabled(b);
+//        for (JComponent c : grpAll) c.setEnabled(!b);
+//        for (JComponent c : grpCombat) c.setEnabled(!b);
+//        for (JComponent c : grpPuzzle) c.setEnabled(b);
     }
 
     public void enterCombat(boolean b) {
-        for (JComponent c : grpAll) c.setEnabled(!b);
-        for (JComponent c : grpPuzzle) c.setEnabled(!b);
-        for (JComponent c : grpCombat) c.setEnabled(b);
+//        for (JComponent c : grpAll) c.setEnabled(!b);
+//        for (JComponent c : grpPuzzle) c.setEnabled(!b);
+//        for (JComponent c : grpCombat) c.setEnabled(b);
     }
 
     public void resetPanels() {
         for (JComponent c : grpAll) c.setEnabled(true);
-        for (JComponent c : grpPuzzle) c.setEnabled(false);
-        for (JComponent c : grpCombat) c.setEnabled(false);
+//        for (JComponent c : grpPuzzle) c.setEnabled(false);
+//        for (JComponent c : grpCombat) c.setEnabled(false);
     }
 
     public String getPuzzleInput() {
@@ -488,7 +470,7 @@ public class GUIGame extends Observable implements Observer {
         }
     }
 
-    private void updateGUI() {
+    public void updateGUI() {
         setChanged();
         notifyObservers();
     }

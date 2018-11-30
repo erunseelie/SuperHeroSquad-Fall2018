@@ -63,7 +63,7 @@ public class SessionManager {
                 Item i = Item.getItemIDList().get(key.substring(5));
                 if (i != null) Item.addPlayerItem(i);
                 // TODO: remove item from the world
-            } else if (key.length() >= 8 && key.substring(0, 5).equals("MONSTER_")) {
+            } else if (key.length() >= 8 && key.substring(0, 8).equals("MONSTER_")) {
                 Monster m = Monster.getMonsterList().get(key.substring(8));
                 if (m != null) Monster.killMonster(m.getMondID());
             }

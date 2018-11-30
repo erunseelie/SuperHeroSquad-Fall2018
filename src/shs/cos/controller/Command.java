@@ -287,6 +287,15 @@ public class Command implements ActionListener {
             for (String r : rooms) {
                 if (mapRooms.get(r).getRoomName().toLowerCase().contains(location)) {
                     Room.setCurrentRoom(r);
+
+                    if (!(mapRooms.get(Room.getCurrentRoomKey()).getMonsters().isEmpty())) {
+                        Monster currentMonster = mapMonsters.get(mapRooms.get(Room.getCurrentRoomKey()).getMonsters().get(0));
+                        s += "\n\nThere's somebody in the room! It's " + currentMonster.getName() + "!";
+                        Main.player.setInCombat(true);
+                        gui.enterCombat(true);
+                        break;
+                    }
+
                     ArrayList<Puzzle> listP = Puzzle.getPuzzles();
                     String curRoom = Room.getCurrentRoomKey();
                     if (mapRooms.get(Room.getCurrentRoomKey()).getMonsters().isEmpty()) {
@@ -307,12 +316,7 @@ public class Command implements ActionListener {
                     s = "That place doesn't seem to be nearby.";
             }
 
-            if (!(mapRooms.get(Room.getCurrentRoomKey()).getMonsters().isEmpty())) {
-                Monster currentMonster = mapMonsters.get(mapRooms.get(Room.getCurrentRoomKey()).getMonsters().get(0));
-                s += "\n\nThere's somebody in the room! It's " + currentMonster.getName() + "!";
-                Main.player.setInCombat(true);
-                gui.enterCombat(true);
-            }
+
             return "GO: " + mapRooms.get(Room.getCurrentRoomKey()).getRoomName() + "\n" + s;
         } else {
             return "You're a little busy fighting right now";
@@ -424,6 +428,9 @@ public class Command implements ActionListener {
 
     private String cmdPrintInventoryContents() {
         String s = "";
+        if (Item.getPlayerItems().isEmpty()) {
+            s = "There's nothing in ye collection.";
+        }
         for (Item i : Item.getPlayerItems()) {
             s += i.getItemName() + ", ";
         }

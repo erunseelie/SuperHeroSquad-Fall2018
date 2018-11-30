@@ -135,20 +135,25 @@ public class Item {
 
     public String use() {
         String s = "";
-        if (itemType.toLowerCase().equals("defense")) {
-            Main.player.setCurrentArmor(getItemID());
-            s += "Your armor went up.";
-        } else if (itemType.toLowerCase().equals("weapon")) {
-            addPlayerItem(Item.getItemIDList().get(Main.player.getCurrentWeapon()));
-            Main.player.setCurrentWeapon(getItemID());
-            s += "Your weapon changed.";
-        } else if (itemType.toLowerCase().equals("puzzle")) {
-            s += "The note reads: " + getItemDesc();
-        } else if (itemType.toLowerCase().equals("consumable")) {
-            if (Main.player.getHealth() < 100) {
-                Main.player.applyDamage(-itemStat);
-                s = "You have used " + getItemName() + "to increase your health by: " + itemStat;
-            }
+        switch (itemType.toLowerCase()) {
+            case "defense":
+                Main.player.setCurrentArmor(getItemID());
+                s += "Your armor went up.";
+                break;
+            case "weapon":
+                addPlayerItem(Item.getItemIDList().get(Main.player.getCurrentWeapon()));
+                Main.player.setCurrentWeapon(getItemID());
+                s += "Your weapon changed.";
+                break;
+            case "puzzle":
+                s += "The note reads: " + getItemDesc();
+                break;
+            case "consumable":
+                if (Main.player.getHealth() < 100) {
+                    Main.player.applyDamage(-itemStat);
+                    s = "You have used " + getItemName() + "to increase your health by: " + itemStat;
+                }
+                break;
         }
         // TODO: custom item functionality
         return "You used the " + getItemName().toLowerCase() + ". " + s;
