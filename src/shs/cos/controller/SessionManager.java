@@ -98,6 +98,7 @@ public class SessionManager {
         mapSaveData = new TreeMap<>();
         updatePlayerData(idPassword, currentPassword);
         player = new Player();
+        Room.setCurrentRoom("B0R0");
     }
 
     public static void createNewSaveFile(String username, String password) {

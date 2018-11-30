@@ -181,7 +181,7 @@ public class Command implements ActionListener {
                 gui.updateGUI();
             }
         }
-
+        gui.updateGUI();
     }
 
     private String cmdAttack() {
